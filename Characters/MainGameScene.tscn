@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://characters/Ghost.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/ammoCount.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GameScene/GameManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Art/MainScene/backgroundMain.png" type="Texture" id=6]
+[ext_resource path="res://characters/CameraController.gd" type="Script" id=7]
+
+[node name="MainGameScene" type="Node2D"]
+position = Vector2( 0, 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ -2796.0 ]
+}
+
+[node name="GameManager" parent="." instance=ExtResource( 5 )]
+
+[node name="Ghost" parent="." instance=ExtResource( 1 )]
+position = Vector2( 866, 232 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 480, 270 )
+Bullet = ExtResource( 2 )
+
+[node name="ghost2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 229, 143 )
+
+[node name="ghost3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 237, 471 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 478, 278 )
+scale = Vector2( 37.4666, 24.0287 )
+z_index = -100
+texture = ExtResource( 6 )
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2( 480, 270 )
+current = true
+script = ExtResource( 7 )
+
+[node name="AmmoCount" parent="Camera2D2" instance=ExtResource( 3 )]
+margin_left = -471.0
+margin_top = -257.0
+margin_right = -281.0
+margin_bottom = -155.0
