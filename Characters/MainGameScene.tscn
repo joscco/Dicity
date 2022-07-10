@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://characters/Ghost.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/Bullet.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://GameScene/GameManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Art/MainScene/backgroundMain.png" type="Texture" id=6]
 [ext_resource path="res://characters/CameraController.gd" type="Script" id=7]
+[ext_resource path="res://characters/UIController.gd" type="Script" id=8]
 
 [node name="MainGameScene" type="Node2D"]
 position = Vector2( 0, 2 )
@@ -16,32 +17,44 @@ __meta__ = {
 
 [node name="GameManager" parent="." instance=ExtResource( 5 )]
 
-[node name="Ghost" parent="." instance=ExtResource( 1 )]
-position = Vector2( 866, 232 )
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 480, 270 )
-Bullet = ExtResource( 2 )
-
-[node name="ghost2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 229, 143 )
-
-[node name="ghost3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 237, 471 )
-
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 478, 278 )
-scale = Vector2( 37.4666, 24.0287 )
+scale = Vector2( 40, 25 )
 z_index = -100
 texture = ExtResource( 6 )
 
 [node name="Camera2D2" type="Camera2D" parent="."]
-position = Vector2( 480, 270 )
 current = true
 script = ExtResource( 7 )
 
-[node name="AmmoCount" parent="Camera2D2" instance=ExtResource( 3 )]
-margin_left = -471.0
-margin_top = -257.0
-margin_right = -281.0
-margin_bottom = -155.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+
+[node name="AmmoCount" parent="CanvasLayer/MarginContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 513.0
+margin_right = 1880.0
+margin_bottom = 527.0
+
+[node name="Characters" type="YSort" parent="."]
+
+[node name="Ghost" parent="Characters" instance=ExtResource( 1 )]
+position = Vector2( 866, 232 )
+
+[node name="Player" parent="Characters" instance=ExtResource( 4 )]
+position = Vector2( 480, 270 )
+Bullet = ExtResource( 2 )
+
+[node name="ghost2" parent="Characters" instance=ExtResource( 1 )]
+position = Vector2( 229, 143 )
+
+[node name="ghost3" parent="Characters" instance=ExtResource( 1 )]
+position = Vector2( 237, 471 )

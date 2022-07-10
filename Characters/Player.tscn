@@ -4,28 +4,28 @@
 [ext_resource path="res://Scripts/Move.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 13.0
-height = 22.0
+radius = 39.0
+height = 108.0
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 2, -96 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -4.76837e-06, 0 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 22, -95 )
 texture = ExtResource( 1 )
 hframes = 16
 vframes = 3
 
 [node name="Gun" type="Node2D" parent="."]
+position = Vector2( 0, -94 )
 scale = Vector2( 0.2, 0.2 )
 
 [node name="Muzzle" type="Position2D" parent="Gun"]
-position = Vector2( 65, 0 )
+position = Vector2( 335, 0 )
 __meta__ = {
 "_gizmo_extents_": 14.8
 }

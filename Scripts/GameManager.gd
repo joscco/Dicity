@@ -11,7 +11,7 @@ onready var HitSound = preload("res://sounds/hit.mp3")
 onready var ShellSound = preload("res://sounds/shells.mp3")
 onready var ShootSound = preload("res://sounds/shoot.mp3")
 
-onready var player = get_node("../Player")
+onready var player = get_node("../Characters/Player")
 
 var timer = null
 
@@ -35,10 +35,11 @@ func spawn():
 		offset.y = -offset.y
 	b.transform.origin = player.position + offset
 
-	owner.add_child(b)
+	get_node("../Characters").add_child(b)
 	
 func playSound(sfx = "hit"):
 	var asp = AudioStreamPlayer2D.new()
+	
 	add_child(asp)
 	if sfx == "hit":
 		asp.stream = HitSound

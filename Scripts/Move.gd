@@ -50,8 +50,9 @@ func shoot():
 			reloadTimer.start()
 		else:
 			can_shoot = false
-			get_node("../GameManager").playSound("shoot")
-			get_node("../GameManager").playSound("shells")			
+			print("shooting")
+			get_node("../../GameManager").playSound("hit")
+			get_node("../../GameManager").playSound("shells")			
 			timer.start()
 			var b = Bullet.instance()
 			owner.add_child(b)
@@ -74,9 +75,9 @@ func get_input():
 
 func rotateSprite():
 	if velocity[0] > 0:
-		sprite.flip_h = true
-	elif velocity[0] < 0:
 		sprite.flip_h = false
+	elif velocity[0] < 0:
+		sprite.flip_h = true
 	
 func _physics_process(delta):
 	
