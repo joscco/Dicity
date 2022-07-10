@@ -26,10 +26,10 @@ texture = ExtResource( 6 )
 current = true
 script = ExtResource( 7 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -37,12 +37,11 @@ margin_top = 20.0
 margin_right = -20.0
 margin_bottom = -20.0
 
-[node name="AmmoCount" parent="CanvasLayer/MarginContainer" instance=ExtResource( 3 )]
+[node name="AmmoCount" parent="GUI/MarginContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 513.0
 margin_right = 1880.0
-margin_bottom = 527.0
+margin_bottom = 14.0
 
 [node name="Characters" type="YSort" parent="."]
 

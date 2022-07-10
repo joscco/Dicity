@@ -22,7 +22,7 @@ var can_shoot = true
 
 # Playerobjs
 onready var sprite = $Sprite
-onready var gunSprite = $Gun
+onready var gun = $Gun
 
 func _ready():
 	timer = Timer.new()
@@ -50,12 +50,11 @@ func shoot():
 			reloadTimer.start()
 		else:
 			can_shoot = false
-			print("shooting")
 			get_node("../../GameManager").playSound("hit")
 			get_node("../../GameManager").playSound("shells")			
 			timer.start()
 			var b = Bullet.instance()
-			owner.add_child(b)
+			get_node("../..").add_child(b)
 			b.transform = $Gun/Muzzle.global_transform
 
 func get_input():
@@ -81,7 +80,7 @@ func rotateSprite():
 	
 func _physics_process(delta):
 	
-	gunSprite.look_at(get_global_mouse_position())
+	gun.look_at(get_global_mouse_position())
 	get_input()
 	rotateSprite()
 	velocity = move_and_slide(velocity)
