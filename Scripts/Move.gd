@@ -50,11 +50,11 @@ func shoot():
 			reloadTimer.start()
 		else:
 			can_shoot = false
-			get_node("../../GameManager").playSound("hit")
+			get_node("../../GameManager").playSound("shoot")
 			get_node("../../GameManager").playSound("shells")			
 			timer.start()
 			var b = Bullet.instance()
-			get_node("../..").add_child(b)
+			owner.add_child(b)
 			b.transform = $Gun/Muzzle.global_transform
 
 func get_input():
