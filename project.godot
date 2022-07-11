@@ -17,12 +17,14 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/dpi/allow_hidpi=true
+window/size/width=960
+window/size/height=540
+window/size/resizable=false
 mouse_cursor/custom_image="res://Art/MainScene/crosshair.png"
+mouse_cursor/custom_image_hotspot=Vector2( 78, 78 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+window/stretch/shrink=0.5
 
 [input]
 
