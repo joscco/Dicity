@@ -23,5 +23,3 @@ func _on_Bullet_body_entered(body):
 		body.hit(damage)
 		get_node("../GameManager").playSound("hit")
 		queue_free()
-
-
