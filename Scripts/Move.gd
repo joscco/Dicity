@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 export (int) var speed = 200

@@ -6,7 +6,6 @@ var bounce = 0
 var pierce = 0
 
 
-
 func _physics_process(delta):
 	position += transform.x * speed * delta
 
