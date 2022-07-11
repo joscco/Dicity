@@ -85,3 +85,9 @@ func _physics_process(delta):
 	rotateSprite()
 	velocity = move_and_slide(velocity)
 
+
+# Pickup XP
+func _on_XP_pickuparea_area_entered(area):
+	if area.is_in_group("xp"):
+		print("XP gained")
+		area.queue_free()

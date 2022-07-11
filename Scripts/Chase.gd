@@ -4,6 +4,7 @@ export var run_speed := 25
 export var maxHp := 10
 export var velocity := Vector2.ZERO
 export var dmg := 1
+export (PackedScene) var XP
 
 onready var player = get_node("../Player")
 onready var sprite = get_node("Sprite")
@@ -29,7 +30,7 @@ func _ready():
 	hitTimer.connect("timeout",self,"canHitAgain")
 	add_child(hitTimer)
 	
-	enthralled = randf()>0.5
+	enthralled = randf()>0.9
 	
 func canHitAgain():
 	canHit = true
@@ -46,6 +47,7 @@ func hit(dmg):
 	else:
 		sprite.modulate = Color(1,.2,.2)
 		timer.start()
+		
 		
 		
 func findEnemy():
@@ -69,7 +71,12 @@ func death():
 		timer.stop()
 		findEnemy()
 	else:
+		
+		var b = XP.instance()
+		get_node("..").add_child(b)
+		b.transform = global_transform
 		queue_free()
+		
 
 func _physics_process(delta):
 	velocity = Vector2.ZERO
