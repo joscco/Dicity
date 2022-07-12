@@ -25,6 +25,10 @@ config/description="The GMTK 2022 entry of team Jolex"
 run/main_scene="res://Characters/StartScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SoundManager="*res://Singletons/SoundManager.tscn"
+
 [display]
 
 window/size/width=1920
