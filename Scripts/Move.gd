@@ -54,9 +54,9 @@ func shoot():
 			GameManager.playSound("shoot")
 			GameManager.playSound("shells")			
 			timer.start()
-			var b = Bullet.instance()
-			owner.add_child(b)
-			b.transform = $Gun/Muzzle.global_transform
+			var bullet = Bullet.instance()
+			owner.add_child(bullet)
+			bullet.transform = $Gun/Muzzle.global_transform
 
 func get_input():
 	velocity = Vector2()
@@ -90,10 +90,8 @@ func _physics_process(delta):
 # Pickup XP
 func _on_XP_pickuparea_area_entered(area):
 	if area.is_in_group("xp"):
-		print("XP gained")
 		GameManager.playSound("blip")
 		GameManager.xp += 1
 		if GameManager.xp%2 == 0:
-			print("LevelUp")
 			GameManager.levelUp()
 		area.queue_free()
