@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/startButton.png-351f2807b6108050e07f08b2ecd075ef.stex"
+path="res://.import/subTitle.png-5666287fae8561b38de28607d9c0158a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StartScene/startButton.png"
-dest_files=[ "res://.import/startButton.png-351f2807b6108050e07f08b2ecd075ef.stex" ]
+source_file="res://AssetCreation/Graphics/PNGs/GameOverScene/subTitle.png"
+dest_files=[ "res://.import/subTitle.png-5666287fae8561b38de28607d9c0158a.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GENES.png-79f6043d530ab414e77558d7f253f274.stex"
+path="res://.import/title.png-e41e6b360af91981d6eaaeac783a0c6e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StartScene/GENES.png"
-dest_files=[ "res://.import/GENES.png-79f6043d530ab414e77558d7f253f274.stex" ]
+source_file="res://AssetCreation/Graphics/PNGs/StartScene/title.png"
+dest_files=[ "res://.import/title.png-e41e6b360af91981d6eaaeac783a0c6e.stex" ]
 
 [params]
 

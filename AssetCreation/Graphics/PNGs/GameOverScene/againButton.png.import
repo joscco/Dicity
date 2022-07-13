@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GUN.png-18bd906f24f198618ccf0bc1992b48e9.stex"
+path="res://.import/againButton.png-ecb5a1451b53df02cc83aa35bb9c5f1f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://StartScene/GUN.png"
-dest_files=[ "res://.import/GUN.png-18bd906f24f198618ccf0bc1992b48e9.stex" ]
+source_file="res://AssetCreation/Graphics/PNGs/GameOverScene/againButton.png"
+dest_files=[ "res://.import/againButton.png-ecb5a1451b53df02cc83aa35bb9c5f1f.stex" ]
 
 [params]
 

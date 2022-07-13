@@ -19,6 +19,6 @@ func on_mouse_exited():
 
 func scaleTo(scaleVector: Vector2):
 	moveTween.stop_all()
-	moveTween.interpolate_property(self, "rect_scale", null, scaleVector, 0.3, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	moveTween.interpolate_property(self, "rect_scale", null, scaleVector, 0.3, Tween.TRANS_BACK, Tween.EASE_OUT)
 	moveTween.start()
 
