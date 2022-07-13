@@ -4,9 +4,7 @@ export var speed := 200
 export var dir := Vector2(0,0)
 
 
-
 func move():
-
 	dir = dir.normalized() * speed
 	look_at(dir)
 

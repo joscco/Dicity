@@ -22,13 +22,13 @@ _global_script_class_icons={
 
 config/name="GMTK 2022 Team Jolex"
 config/description="The GMTK 2022 entry of team Jolex"
-run/main_scene="res://Characters/StartScene.tscn"
+run/main_scene="res://Scenes/StartScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GameManager="*res://GameScene/GameManager.tscn"
 SoundManager="*res://Singletons/SoundManager.tscn"
+GameManager="*res://Singletons/GameManager.tscn"
 
 [display]
 

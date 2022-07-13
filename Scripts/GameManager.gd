@@ -7,10 +7,10 @@ export var delayDecay := 0.99
 
 onready var EnemyClass = preload("res://Characters/Ghost.tscn")
 
-onready var HitSound = preload("res://sounds/hit.mp3")
-onready var ShellSound = preload("res://sounds/shells.mp3")
-onready var ShootSound = preload("res://sounds/shoot.mp3")
-onready var BlipSound = preload("res://sounds/blip.wav")
+onready var HitSound = preload("res://Sounds/hit.mp3")
+onready var ShellSound = preload("res://Sounds/shells.mp3")
+onready var ShootSound = preload("res://Sounds/shoot.mp3")
+onready var BlipSound = preload("res://Sounds/blip.wav")
 
 var player = null
 var timer = null
