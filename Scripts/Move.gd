@@ -42,21 +42,21 @@ func on_timeout_complete():
 	can_shoot = true
 	
 func reload():
-	ammo = clipSize
+	GameManager.ammo = GameManager.maxAmmo
 	
 func shoot():
-	if can_shoot and ammo > 0:
-		ammo -= 1
-		if ammo <= 0:
+	if can_shoot and GameManager.ammo > 0:
+		GameManager.ammo -= 1
+		if GameManager.ammo <= 0:
 			reloadTimer.start()
 		else:
 			can_shoot = false
-			get_node("../../GameManager").playSound("shoot")
-			get_node("../../GameManager").playSound("shells")			
+			GameManager.playSound("shoot")
+			GameManager.playSound("shells")			
 			timer.start()
-			var b = Bullet.instance()
-			owner.add_child(b)
-			b.transform = $Gun/Muzzle.global_transform
+			var bullet = Bullet.instance()
+			owner.add_child(bullet)
+			bullet.transform = $Gun/Muzzle.global_transform
 
 func get_input():
 	velocity = Vector2()
@@ -90,5 +90,8 @@ func _physics_process(delta):
 # Pickup XP
 func _on_XP_pickuparea_area_entered(area):
 	if area.is_in_group("xp"):
-		print("XP gained")
+		GameManager.playSound("blip")
+		GameManager.xp += 1
+		if GameManager.xp%2 == 0:
+			GameManager.levelUp()
 		area.queue_free()
