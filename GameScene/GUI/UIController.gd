@@ -6,5 +6,5 @@ onready var levelCount = $LevelCountBack/LevelCount
 
 func _process(delta):
 	ammoCount.text = str(GameManager.ammo)
-	levelBar.value = 100 * (float(GameManager.xp) / float(GameManager.get_required_xp()))
+	levelBar.value = 100 * (float(GameManager.xp) / float(GameManager.getRequiredXP()))
 	levelCount.text = str(GameManager.level)

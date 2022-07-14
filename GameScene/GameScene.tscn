@@ -11,7 +11,6 @@ script = ExtResource( 2 )
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -100
-follow_viewport_enable = true
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 anchor_right = 1.0
@@ -20,6 +19,7 @@ color = Color( 0.309804, 0.294118, 0.415686, 1 )
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
 script = ExtResource( 7 )
 
 [node name="GUI" parent="." instance=ExtResource( 1 )]
