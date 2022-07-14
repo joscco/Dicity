@@ -1,20 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Characters/LevelUpScreen.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/MainGameScene.gd" type="Script" id=2]
 [ext_resource path="res://UI/ammoCount.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Art/MainScene/backgroundMain.png" type="Texture" id=6]
 [ext_resource path="res://Characters/CameraController.gd" type="Script" id=7]
 [ext_resource path="res://Characters/UIController.gd" type="Script" id=8]
 
 [node name="MainGameScene" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Background" type="Sprite" parent="."]
-scale = Vector2( 40, 25 )
-z_index = -100
-texture = ExtResource( 6 )
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.309804, 0.294118, 0.415686, 1 )
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 current = true
@@ -30,10 +32,10 @@ position = Vector2( 552, 271 )
 [node name="MarginContainer" type="MarginContainer" parent="GUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_left = 8.0
+margin_top = 15.0
+margin_right = -32.0
+margin_bottom = -25.0
 
 [node name="AmmoCount" parent="GUI/MarginContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0

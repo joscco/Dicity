@@ -1,7 +1,7 @@
 class_name Player
 extends KinematicBody2D
 
-export (int) var speed = 200
+export (int) var speed = 300
 
 # Player Stats
 export var hp := 10
@@ -22,10 +22,11 @@ var reloadTimer = null
 var can_shoot = true
 
 # Playerobjs
-onready var sprite = $Sprite
-onready var gun = $Gun
+onready var renderer = $PlayerRenderer
+onready var pickupArea = $XPPickupArea
 
 func _ready():
+	pickupArea.connect("area_entered", self, "_on_XP_pickuparea_area_entered")
 	timer = Timer.new()
 	timer.set_one_shot(true)
 	timer.set_wait_time(bulletDelay)
@@ -51,12 +52,12 @@ func shoot():
 			reloadTimer.start()
 		else:
 			can_shoot = false
-			GameManager.playSound("shoot")
-			GameManager.playSound("shells")			
+			SoundManager.playSound("shells")			
 			timer.start()
 			var bullet = Bullet.instance()
 			owner.add_child(bullet)
-			bullet.transform = $Gun/Muzzle.global_transform
+			bullet.position = renderer.getMullet().global_position
+			bullet.rotation = renderer.getMullet().global_rotation
 
 func get_input():
 	velocity = Vector2()
@@ -72,26 +73,15 @@ func get_input():
 		shoot()
 
 	velocity = velocity.normalized() * speed
-
-func rotateSprite():
-	if velocity[0] > 0:
-		sprite.flip_h = false
-	elif velocity[0] < 0:
-		sprite.flip_h = true
 	
 func _physics_process(delta):
-	
-	gun.look_at(get_global_mouse_position())
 	get_input()
-	rotateSprite()
 	velocity = move_and_slide(velocity)
-
+	renderer.adaptToVelocity(velocity)
 
 # Pickup XP
 func _on_XP_pickuparea_area_entered(area):
 	if area.is_in_group("xp"):
-		GameManager.playSound("blip")
-		GameManager.xp += 1
-		if GameManager.xp%2 == 0:
-			GameManager.levelUp()
+		SoundManager.playSound("blip")
+		GameManager.addXP(1)
 		area.queue_free()
