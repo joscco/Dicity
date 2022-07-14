@@ -82,6 +82,4 @@ func _physics_process(delta):
 # Pickup XP
 func _on_XP_pickuparea_area_entered(area):
 	if area.is_in_group("xp"):
-		SoundManager.playSound("blip")
-		GameManager.addXP(1)
-		area.queue_free()
+		area.startFollowing(self)

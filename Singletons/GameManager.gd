@@ -46,18 +46,14 @@ func addAmmo(amount: int) :
 
 func addXP(amount: int):
 	xp += amount
-	if xp > get_required_xp():
+	if xp > getRequiredXP():
 		levelUp()
 		
-func get_required_xp() -> int:
+func getRequiredXP() -> int:
 	return level * 2
 
 func levelUp():
 	level += 1
-	yield(get_tree(), "idle_frame")
-	showLevelUp()
-
-func showLevelUp():
 	xp = 0
 	levelUpScreen.show()
 	get_tree().paused = true
