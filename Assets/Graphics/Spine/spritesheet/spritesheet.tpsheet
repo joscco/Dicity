@@ -1,0 +1,1038 @@
+{
+	"textures": [
+		{
+			"image": "playerLegsSpritesheet.png",
+			"size": {
+				"w": 1834,
+				"h": 1830
+			},
+			"sprites": [
+				{
+					"filename": "PlayerLegs-idle_00.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_00.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_01.png",
+					"region": {
+						"x": 262,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_02.png",
+					"region": {
+						"x": 524,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_03.png",
+					"region": {
+						"x": 786,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_04.png",
+					"region": {
+						"x": 1048,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_05.png",
+					"region": {
+						"x": 1310,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_06.png",
+					"region": {
+						"x": 1572,
+						"y": 0,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_07.png",
+					"region": {
+						"x": 0,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_08.png",
+					"region": {
+						"x": 262,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_09.png",
+					"region": {
+						"x": 524,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_10.png",
+					"region": {
+						"x": 786,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_11.png",
+					"region": {
+						"x": 1048,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_12.png",
+					"region": {
+						"x": 1310,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_13.png",
+					"region": {
+						"x": 1572,
+						"y": 183,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_14.png",
+					"region": {
+						"x": 0,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_15.png",
+					"region": {
+						"x": 262,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_16.png",
+					"region": {
+						"x": 524,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_17.png",
+					"region": {
+						"x": 786,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_18.png",
+					"region": {
+						"x": 1048,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_19.png",
+					"region": {
+						"x": 1310,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_20.png",
+					"region": {
+						"x": 1572,
+						"y": 366,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_21.png",
+					"region": {
+						"x": 0,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_22.png",
+					"region": {
+						"x": 262,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_23.png",
+					"region": {
+						"x": 524,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_24.png",
+					"region": {
+						"x": 786,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_25.png",
+					"region": {
+						"x": 1048,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_26.png",
+					"region": {
+						"x": 1310,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_27.png",
+					"region": {
+						"x": 1572,
+						"y": 549,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_28.png",
+					"region": {
+						"x": 0,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_29.png",
+					"region": {
+						"x": 262,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_30.png",
+					"region": {
+						"x": 524,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_31.png",
+					"region": {
+						"x": 786,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_32.png",
+					"region": {
+						"x": 1048,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_33.png",
+					"region": {
+						"x": 1310,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_34.png",
+					"region": {
+						"x": 1572,
+						"y": 732,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_35.png",
+					"region": {
+						"x": 0,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_36.png",
+					"region": {
+						"x": 262,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_37.png",
+					"region": {
+						"x": 524,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_38.png",
+					"region": {
+						"x": 786,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_39.png",
+					"region": {
+						"x": 1048,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_40.png",
+					"region": {
+						"x": 1310,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_41.png",
+					"region": {
+						"x": 1572,
+						"y": 915,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_42.png",
+					"region": {
+						"x": 0,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_43.png",
+					"region": {
+						"x": 262,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_44.png",
+					"region": {
+						"x": 524,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_45.png",
+					"region": {
+						"x": 786,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_46.png",
+					"region": {
+						"x": 1048,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-idle_47.png",
+					"region": {
+						"x": 1310,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_01.png",
+					"region": {
+						"x": 1572,
+						"y": 1098,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_02.png",
+					"region": {
+						"x": 0,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_03.png",
+					"region": {
+						"x": 262,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_04.png",
+					"region": {
+						"x": 524,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_05.png",
+					"region": {
+						"x": 786,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_06.png",
+					"region": {
+						"x": 1048,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_07.png",
+					"region": {
+						"x": 1310,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_08.png",
+					"region": {
+						"x": 1572,
+						"y": 1281,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_09.png",
+					"region": {
+						"x": 0,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_10.png",
+					"region": {
+						"x": 262,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_11.png",
+					"region": {
+						"x": 524,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_12.png",
+					"region": {
+						"x": 786,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_13.png",
+					"region": {
+						"x": 1048,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_14.png",
+					"region": {
+						"x": 1310,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_15.png",
+					"region": {
+						"x": 1572,
+						"y": 1464,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_16.png",
+					"region": {
+						"x": 0,
+						"y": 1647,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_17.png",
+					"region": {
+						"x": 262,
+						"y": 1647,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_18.png",
+					"region": {
+						"x": 524,
+						"y": 1647,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "PlayerLegs-run_19.png",
+					"region": {
+						"x": 786,
+						"y": 1647,
+						"w": 262,
+						"h": 183
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:0922f540343fcf7c03d7a7829442b947:c54b02e072b13c123e3a619bfea5f677:7c8b865c027dce23e07185eeeab39c18$"
+	}
+}

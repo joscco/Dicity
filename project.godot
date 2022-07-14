@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://Scripts/Move.gd"
+"path": "res://GameScene/Characters/Player.gd"
 } ]
 _global_script_class_icons={
 "Player": ""
@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="GMTK 2022 Team Jolex"
 config/description="The GMTK 2022 entry of team Jolex"
-run/main_scene="res://Scenes/StartScene.tscn"
+run/main_scene="res://StartScene/StartScene.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -36,8 +36,6 @@ window/size/width=1920
 window/size/height=1080
 window/size/resizable=false
 window/dpi/allow_hidpi=true
-mouse_cursor/custom_image="res://Art/MainScene/crosshair.png"
-mouse_cursor/custom_image_hotspot=Vector2( 78, 78 )
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
