@@ -20,7 +20,8 @@ func adaptToVelocity(velocity: Vector2):
 		animationPlayer.play("idle")
 		running = false
 	elif !running and velocity.length() > 0.05:
-		animationPlayer.play("run")
+		animationPlayer.stop()
+		animationPlayer.play("run", 0.5, 1.7)
 		running = true
 		
 	if velocity.x > 0.05:
@@ -31,7 +32,6 @@ func adaptToVelocity(velocity: Vector2):
 		legs.scale.x = -1
 
 func _process(delta):
-	time += delta
 	
 	var mousePosition = get_global_mouse_position()
 	gunSprite.look_at(mousePosition)
@@ -45,5 +45,8 @@ func _process(delta):
 		gunSprite.z_index = 1
 		eyesSprite.z_index = 1
 	
+	time += delta
+	bodySprite.rotation = 0.1 * sin(5* time)
 	if !running:
 		bodySprite.position.y = 5 * sin(5*time)
+		

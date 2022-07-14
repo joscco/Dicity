@@ -1,7 +1,7 @@
 class_name Player
 extends KinematicBody2D
 
-export (int) var speed = 300
+export (int) var speed = 500
 
 # Player Stats
 export var hp := 10
