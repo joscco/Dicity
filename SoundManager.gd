@@ -33,7 +33,7 @@ func stopMusic():
 	audioPlayer.stop()
 	
 func playSound(sfx = "hit"):
-	var asp = AudioStreamPlayer2D.new()
+	var asp = AudioStreamPlayer.new()
 	
 	add_child(asp)
 	if sfx == "hit":
