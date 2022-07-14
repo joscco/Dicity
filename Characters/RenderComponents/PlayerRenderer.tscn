@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/playerBody_0.png" type="Texture" id=1]
+[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/playerEyes_0_closed.png" type="Texture" id=2]
+[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/playerGun_0_0.png" type="Texture" id=3]
+[ext_resource path="res://Characters/RenderComponents/PlayerRenderer.gd" type="Script" id=4]
+[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/playerGun_0_-1.png" type="Texture" id=5]
+[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/playerGun_0_1.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "gun",
+"speed": 5.0
+} ]
+
+[node name="Body" type="Sprite"]
+position = Vector2( 1, -102 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Eyes" type="Sprite" parent="."]
+position = Vector2( 24, 29 )
+texture = ExtResource( 2 )
+
+[node name="Gun" type="AnimatedSprite" parent="."]
+position = Vector2( 79, 58 )
+frames = SubResource( 1 )
+animation = "gun"
+speed_scale = 0.0
