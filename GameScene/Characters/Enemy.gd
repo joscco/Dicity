@@ -92,7 +92,6 @@ func _physics_process(delta):
 					if collision.collider.is_in_group("player"):
 						position-=  30*position.direction_to(collision.collider.position)
 						if is_in_group("mobs") && canHit:
-							print("dmgplayer")
 							canHit = false
 							hitTimer.start()
 							player.hp -= dmg

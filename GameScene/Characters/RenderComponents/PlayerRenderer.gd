@@ -3,7 +3,7 @@ extends Node2D
 onready var bodySprite: Sprite = $Body
 onready var eyesSprite: Sprite = $Body/Eyes
 onready var gunSprite: Sprite = $Body/Gun
-onready var mullet: Node2D = $Body/Gun/Muzzle
+onready var muzzle: Node2D = $Body/Gun/Muzzle
 onready var legs: Sprite = $Legs
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
@@ -16,8 +16,7 @@ var rotationTime = 0
 var wiggleTime = 0
 		
 func getMuzzle():
-	print(mullet.position)
-	return mullet
+	return muzzle
 	
 func adaptToVelocity(velocity: Vector2):
 	if running and velocity.length() < 0.1:
