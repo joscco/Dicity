@@ -23,7 +23,6 @@ var can_shoot = true
 
 # Playerobjs
 onready var renderer = $PlayerRenderer
-onready var gun = $Gun
 onready var pickupArea = $XPPickupArea
 
 func _ready():
@@ -57,7 +56,8 @@ func shoot():
 			timer.start()
 			var bullet = Bullet.instance()
 			owner.add_child(bullet)
-			bullet.transform = $Gun/Muzzle.global_transform
+			bullet.position = renderer.getMullet().global_position
+			bullet.rotation = renderer.getMullet().global_rotation
 
 func get_input():
 	velocity = Vector2()
@@ -75,11 +75,9 @@ func get_input():
 	velocity = velocity.normalized() * speed
 	
 func _physics_process(delta):
-	gun.look_at(get_global_mouse_position())
 	get_input()
-	renderer.adaptToGunRotation(gun.rotation_degrees)
 	velocity = move_and_slide(velocity)
-
+	renderer.adaptToVelocity(velocity)
 
 # Pickup XP
 func _on_XP_pickuparea_area_entered(area):

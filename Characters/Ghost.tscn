@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://AssetCreation/Graphics/PNGs/GameScene/enemyBody_0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Graphics/PNGs/GameScene/enemyBody_0.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Chase.gd" type="Script" id=2]
 [ext_resource path="res://Characters/ExperiencePoint.tscn" type="PackedScene" id=3]
 

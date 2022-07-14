@@ -10,7 +10,10 @@
 [node name="MainGameScene" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.309804, 0.294118, 0.415686, 1 )

@@ -3,8 +3,8 @@ extends Node
 onready var audioPlayer: AudioStreamPlayer = $AudioPlayer
 
 # Looping Sound files work way better in ogg format!
-var mainMusicIntro = preload("res://AssetCreation/Music/Intro.ogg")
-var mainMusic = preload("res://AssetCreation/Music/Main.ogg")
+var mainMusicIntro = preload("res://Assets/Music/Intro.ogg")
+var mainMusic = preload("res://Assets/Music/Main.ogg")
 
 var HitSound = preload("res://Sounds/hit.mp3")
 var ShellSound = preload("res://Sounds/shells.mp3")
