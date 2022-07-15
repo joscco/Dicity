@@ -15,14 +15,13 @@ func _input(event):
 				toggleState()
 				
 func toggleState():
-	if GameManager.currentAction == 'changeNumber':
+	if GameManager.currentAction == 'changeStateToYellow':
 		GameManager.currentAction = null
 		delight()
 	else:
-		GameManager.currentAction = 'changeNumber'
+		GameManager.currentAction = 'changeStateToYellow'
 		diceRollScreen.changeHighlightedSprite(self)
-
-
+		
 func highlight():
 	tween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

@@ -36,20 +36,29 @@ func changeType(newType):
 		else:
 			type = newType
 			changeSprite()
+			GameManager.typeChangesLeft -= 1
 	else:
 		print('no more typechanges')
 		SoundManager.playSound('error')
+
+func applyAction():
+	if GameManager.currentAction == 'changeNumber':
+		reroll()
+	if GameManager.currentAction == 'changeStateToYellow':
+		changeType(0)
+	if GameManager.currentAction == 'changeStateToBeige':
+		changeType(1)
+	if GameManager.currentAction == 'changeStateToRed':
+		changeType(2)
+	if GameManager.currentAction == 'changeStateToBlack':
+		changeType(3)
 
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
 			if event.pressed:
-				if GameManager.currentAction == 'changeColor':
-					changeType(2)
-				if GameManager.currentAction == 'changeNumber':
-					reroll()
-				GameManager.currentAction = null
+				applyAction()
 
 
 
