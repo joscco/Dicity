@@ -70,7 +70,6 @@ func death():
 		timer.stop()
 		findEnemy()
 	else:
-		
 		var b = XP.instance()
 		get_node("..").add_child(b)
 		b.transform = global_transform
@@ -94,7 +93,7 @@ func _physics_process(delta):
 						if is_in_group("mobs") && canHit:
 							canHit = false
 							hitTimer.start()
-							player.hp -= dmg
+							GameManager.addHP(-dmg)
 							
 					elif  canHit && is_in_group("friends") && collision.collider.is_in_group("mobs"):
 						collision.collider.hit(dmg)

@@ -11,7 +11,7 @@ var player = null
 var timer = null
 var levelUpScreen = null
 
-var hp
+var hp = 10
 var maxHp
 var maxAmmo = 10
 var ammo = maxAmmo
@@ -32,6 +32,11 @@ func spawn():
 
 
 func prepareForMaingame():
+	hp = 10
+	ammo = 10
+	level = 1
+	xp = 0
+	
 	levelUpScreen = get_tree().current_scene.find_node("LevelUpScreen")
 	player = get_tree().current_scene.find_node("Player")
 	timer = Timer.new()
@@ -49,6 +54,15 @@ func addXP(amount: int):
 	if xp > getRequiredXP():
 		levelUp()
 		
+func addHP(amount: int):
+	hp += amount
+	if hp <= 0:
+		die()
+		
+func die():
+	timer.stop()
+	TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
+
 func getRequiredXP() -> int:
 	return level * 2
 

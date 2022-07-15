@@ -3,11 +3,6 @@ extends KinematicBody2D
 
 export (int) var speed = 500
 
-# Player Stats
-export var hp := 10
-export var xp := 0
-export var ammo := 10
-
 # Gun Stats
 export (PackedScene) var Bullet
 export var bulletDelay := 0.1
