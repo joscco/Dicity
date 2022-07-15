@@ -17,6 +17,6 @@ func _on_screen_exited():
 		
 func _on_body_entered(body: Node):
 	if body.is_in_group("mobs"):
-		body.hit(damage)
+		body.call_deferred("hit", damage)
 		SoundManager.playSound("hit")
 		queue_free()
