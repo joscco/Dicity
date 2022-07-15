@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dice2.png-d3866542b334719566cc7e44cd704cbf.stex"
+path="res://.import/dice1.png-4e8766d9f451442b0e655bd77a41f11c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/DiceGraphics/dice2.png"
-dest_files=[ "res://.import/dice2.png-d3866542b334719566cc7e44cd704cbf.stex" ]
+source_file="res://Assets/Graphics/DiceGraphics/Food/dice1.png"
+dest_files=[ "res://.import/dice1.png-4e8766d9f451442b0e655bd77a41f11c.stex" ]
 
 [params]
 
