@@ -7,4 +7,4 @@ func _ready():
 	for i in range(GameManager.diceCount):
 		var dieInstance = die.instance()
 		add_child(dieInstance)
-		dieInstance.position = $DiceAnchor.position + Vector2(i* 270,0)
+		dieInstance.position = $DiceAnchor.position + Vector2(i* 110,0)

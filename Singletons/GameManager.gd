@@ -1,5 +1,12 @@
 extends Node
 
+var currentAction
+
+
+var food
+var mood
+var education
+var industry
 
 var rollsLeft = 10
 

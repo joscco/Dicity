@@ -45,7 +45,11 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
 			if event.pressed:
-				reroll()
+				if GameManager.currentAction == 'changeColor':
+					changeType(2)
+				if GameManager.currentAction == 'changeNumber':
+					reroll()
+				GameManager.currentAction = null
 
 
 
