@@ -4,7 +4,8 @@
 [ext_resource path="res://Assets/Graphics/Spine/spritesheet/playerLegsSpritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Graphics/PNGs/GameScene/playerBody_0.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Graphics/PNGs/GameScene/basicGun.png" type="Texture" id=4]
-[ext_resource path="res://GameScene/Characters/RenderComponents/PlayerRenderer.gd" type="Script" id=5]
+[ext_resource path="res://OldGameScene/Characters/RenderComponents/PlayerRenderer.gd" type="Script" id=5]
+
 
 [sub_resource type="Animation" id=1]
 length = 0.001

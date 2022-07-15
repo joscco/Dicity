@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://GameScene/Characters/RenderComponents/PlayerRenderer.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GameScene/Characters/Player.gd" type="Script" id=2]
-[ext_resource path="res://GameScene/Objects/Bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OldGameScene/Characters/RenderComponents/PlayerRenderer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://OldGameScene/Characters/Player.gd" type="Script" id=2]
+[ext_resource path="res://OldGameScene/Objects/Bullet.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 39.0
