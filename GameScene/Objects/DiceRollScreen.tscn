@@ -12,4 +12,4 @@ scale = Vector2( 3.28932, 1 )
 texture = ExtResource( 1 )
 
 [node name="DiceAnchor" type="Node2D" parent="."]
-position = Vector2( -98, 45 )
+position = Vector2( -72, 37 )

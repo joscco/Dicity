@@ -10,6 +10,8 @@ var HitSound = preload("res://Assets/Sounds/hit.mp3")
 var ShellSound = preload("res://Assets/Sounds/shells.mp3")
 var ShootSound = preload("res://Assets/Sounds/shoot.mp3")
 var BlipSound = preload("res://Assets/Sounds/blip.wav")
+var DiceSound = preload("res://Assets/Sounds/diceroll.wav")
+var ErrorSound = preload("res://Assets/Sounds/error.mp3")
 
 var musicPlaying: bool
 var introPlaying: bool
@@ -44,4 +46,8 @@ func playSound(sfx = "hit"):
 		asp.stream = ShootSound
 	if sfx == "blip":
 		asp.stream = BlipSound
+	if sfx == "diceroll":
+		asp.stream = DiceSound
+	if sfx == "error":
+		asp.stream = ErrorSound
 	asp.play()

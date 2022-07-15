@@ -17,6 +17,7 @@ func _ready():
 func changeSprite():
 	var imgPathToLoad = 'res://Assets/Graphics/DiceGraphics/'+typeMap[type]+'/dice'+str(eyes)+'.png'
 	$DiceSprite.texture = load(imgPathToLoad)
+	SoundManager.playSound('diceroll')
 	
 
 func reroll():
@@ -26,6 +27,7 @@ func reroll():
 		GameManager.diceRerollsLeft -= 1
 	else:
 		print('no more rerolls')
+		SoundManager.playSound('error')
 
 func changeType(newType):
 	if GameManager.typeChangesLeft > 0:
@@ -36,6 +38,7 @@ func changeType(newType):
 			changeSprite()
 	else:
 		print('no more typechanges')
+		SoundManager.playSound('error')
 
 
 func _input(event):
