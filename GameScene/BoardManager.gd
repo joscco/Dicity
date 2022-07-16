@@ -44,7 +44,7 @@ func createEmptyBoardState(width, height, blocker = 0):
 		var blockerPos = [randi()%height, randi()%width]
 		while matrix[blockerPos[0]][blockerPos[1]]==[-1,0]:
 			blockerPos = [randi() % height, randi() % width]
-		matrix[blockerPos[0]][blockerPos[1]]=[-1,0]
+		matrix[blockerPos[0]][blockerPos[1]]=[-1,randi()%2]
 	
 	return matrix
 

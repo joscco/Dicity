@@ -22,6 +22,7 @@ func throwDice():
 		dieInstance.position = $DiceAnchor.position + Vector2(i* 110,0)
 
 func moveUpDice():
+	#moving backwards through list to not mess up index
 	for i in range(thrownDice.size()-1,0,-1):
 		if !is_instance_valid(thrownDice[i]):
 			thrownDice.remove(i)

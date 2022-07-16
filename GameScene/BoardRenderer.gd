@@ -32,7 +32,7 @@ func elementToSpritePath(element):
 	if element[0]==0:
 		return 'res://Assets/Graphics/DiceGraphics/emptyField.png'
 	if element[0]==-1:
-		return 'res://Assets/Graphics/DiceGraphics/blockerField.png'
+		return 'res://Assets/Graphics/DiceGraphics/blocker'+str(element[1]%2+1)+'.png'
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
 func drawboardState():
