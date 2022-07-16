@@ -26,7 +26,7 @@ func createDummyBoardState(width, height):
 		matrix[row].resize(width)
 
 		for column in range(width):
-			matrix[row][column] = [randi() % 7, randi() % 4]
+			matrix[row][column] = [3, randi() % 4]
 
 	return matrix
 
@@ -66,8 +66,54 @@ func filterByNumber(matrix,number):
 	
 	return output
 
-func getConnectedComponents(matrix):
-	pass
+
+func getPossibleNeighborPositions(matrix, row, column):
+	var possibleNeighbors = []
+	var rows = matrix.size()
+	var columns = matrix[0].size()
+	if row > 0:
+		possibleNeighbors.append([row-1,column])
+	if row < rows -1:
+		possibleNeighbors.append([row+1,column])
+	if column > 0:
+		possibleNeighbors.append([row,column-1])
+	if column < columns -1:
+		possibleNeighbors.append([row,column+1])
+	return possibleNeighbors
+
+
+func nonZeroNeighbors(matrix, row, column):
+	var possibleNeighbors = getPossibleNeighborPositions(matrix, row, column)
+	var nonZeroNeighbors = []
+	for possibleNeighbor in possibleNeighbors:
+		if matrix[possibleNeighbor[0]][possibleNeighbor[1]] != 0:
+			nonZeroNeighbors.append(possibleNeighbor)
+	return nonZeroNeighbors
+
+func getOneConnectedComponent(matrix, row, column):
+	var nonZeroNeighbors = nonZeroNeighbors(matrix,row,column)
+	matrix[row][column]=0
+	var conComp = [[row,column]]
+	for nonZeroNeighbor in nonZeroNeighbors:
+		conComp += getOneConnectedComponent(matrix, nonZeroNeighbor[0], nonZeroNeighbor[1])
+	
+	for compElement in conComp:
+		matrix[compElement[0]][compElement[1]]=0
+	return conComp
+	
+
+func getAllConnectedComponents(matrix):
+	var rows = matrix.size()
+	var columns = matrix[0].size()
+	var components = []
+	for row in range(rows):
+		for column in range(columns):
+			if matrix[row][column]!= 0:
+				var comp = getOneConnectedComponent(matrix, row, column)				
+				components.append(comp)
+	return components
+
+
 
 func _ready():
 	var boardState = createDummyBoardState(width, height)
@@ -78,3 +124,6 @@ func _ready():
 	prettyPrint(filteredForState1)
 	print()
 	prettyPrint(filteredForNumber3)
+	var conComps = getAllConnectedComponents(filteredForNumber3)
+	print()
+	prettyPrint(conComps)
