@@ -4,10 +4,10 @@ var currentAction = null
 var selectedDice = null
 var ghostSprite = null
 
-var food
-var mood
-var education
-var industry
+var food = 0
+var mood = 0
+var education = 0
+var industry = 0
 
 var rollsLeft = 10
 
@@ -55,4 +55,11 @@ func getBoni():
 	diceCount = int(currentScore[0]/20) + 2
 	diceRerolls = int(currentScore[1]/20) + 2
 	typeChanges = int(currentScore[2]/20) + 2
+	
+func updateStats():
+	var currentScore = BoardManager.getPointsForAllTypes()
+	food = currentScore[0]
+	mood = currentScore[1]
+	education = currentScore[2]
+	industry = currentScore[3]
 

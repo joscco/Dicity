@@ -36,11 +36,14 @@ func _input(event):
 						print('cant place on existing die') 
 					else:
 						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
-						BoardManager.boardState[index[0]][index[1]]= value
+						BoardManager.boardState[index[0]][index[1]] = value
 						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
 						GameManager.selectedDice.vanish()
 						GameManager.selectedDice = null
+						GameManager.updateStats()
 						_start_tween()
+						
+						
 
 						
 		else:
