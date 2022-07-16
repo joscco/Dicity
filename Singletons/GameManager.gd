@@ -24,6 +24,11 @@ var gridWidth = 16
 var gridHeight = 6
 var mountainCount = 10
 
+var moneyToEarn = 100
+var foodNeeded = 100
+var educationNeeded = 100
+var funNeeded = 100
+
 
 func _ready():
 	ghostSprite = Sprite.new()
@@ -38,16 +43,16 @@ func _process(delta):
 
 	else:
 		ghostSprite.texture = null
-		
+
 func nextRound():
 	rollsLeft -= 1
 	getBoni()
 	diceRerollsLeft = diceRerolls
 	typeChangesLeft = typeChanges
-	
+
 func getBoni():
 	var currentScore = BoardManager.getPointsForAllTypes()
 	diceCount = int(currentScore[0]/20) + 2
 	diceRerolls = int(currentScore[1]/20) + 2
 	typeChanges = int(currentScore[2]/20) + 2
-	
+
