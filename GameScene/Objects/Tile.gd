@@ -16,7 +16,7 @@ func _start_tween():
 	tween.interpolate_property(self,'scale',tween_values[0],tween_values[1],2,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)    
 	tween.start()
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	tween_values.invert()
 	_start_tween()
 

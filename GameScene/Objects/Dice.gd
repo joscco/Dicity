@@ -83,13 +83,16 @@ func toggleState():
 	else:
 		diceRollScreen.changeHighlightedSprite(self)
 		GameManager.selectedDice = self
-		
+
+func qFreeWith2Params(_object, _key):
+	queue_free()
+
 func vanish():
 	GameManager.selectedDice = null
 	GameManager.currentAction = null
 	GameManager.diceLeft -= 1
 	diceRollScreen.currentActionSprite = null
 	tween.interpolate_property(self,'scale',null,Vector2(0,0),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.connect("on_tween_completed", self, 'queue_free')
+	tween.connect("tween_completed", self, 'qFreeWith2Params')
 	tween.start()
 

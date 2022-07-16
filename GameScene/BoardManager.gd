@@ -142,18 +142,3 @@ func getPointsForAllTypes(matrix):
 	for i in range(4):
 		allPoints[i] = getPointsForOneType(filterByType(matrix,i))
 	return allPoints
-
-func _ready():
-	var boardState = createDummyBoardState(width, height)
-	var filteredForState1 = filterByType(boardState,1)
-	var filteredForNumber3 = filterByNumber(filteredForState1,3)
-	prettyPrint(boardState)
-	print()
-	prettyPrint(filteredForState1)
-	print()
-	prettyPrint(filteredForNumber3)
-	var conComps = getAllConnectedComponents(filteredForNumber3)
-	print()
-	prettyPrint(conComps)
-	print()
-	print(getPointsForAllTypes(boardState))
