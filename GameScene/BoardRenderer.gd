@@ -34,8 +34,8 @@ func elementToSpritePath(element):
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
 func drawboardState():
-	var rows = boardManager.boardState.size()
-	var columns = boardManager.boardState[0].size()
+	var rows = BoardManager.boardState.size()
+	var columns = BoardManager.boardState[0].size()
 	
 	for row in range(rows):
 		for column in range(columns):
@@ -46,3 +46,11 @@ func drawboardState():
 			newTile.index = [row,column]
 			add_child(newTile)
 			indexToTileDict[[row,column]] = newTile
+
+
+func refreshBoardState():
+	var rows = BoardManager.boardState.size()
+	var columns = BoardManager.boardState[0].size()
+	for row in range(rows):
+		for column in range(columns):
+			indexToTileDict[[row,column]].get_node('Sprite').texture = indexToSpriteDict[boardManager.boardState[row][column]]

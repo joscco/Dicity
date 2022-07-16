@@ -2,9 +2,6 @@ extends Node
 
 var dummyGameState = []
 
-var height = 5
-var width = 10
-
 var boardState
 
 func createMatrix(width, height):
@@ -148,3 +145,30 @@ func getPointsForAllTypes(matrix = boardState):
 	for i in range(4):
 		allPoints[i] = getPointsForOneType(filterByType(matrix,i))
 	return allPoints
+
+
+func negativeImpact(i,j):
+	
+	var clusterType = boardState[i][j]
+	var filteredByType = filterByType(boardState, clusterType[1])
+	var filteredByNumber = filterByNumber(filteredByType, clusterType[0])
+	var conComp = getOneConnectedComponent(filteredByNumber,i,j)
+	
+	if conComp.size() == 1:
+		return
+	else:
+		var malus = min(conComp.size(), clusterType[0])
+		for member in conComp:
+			if member[0] >0:
+				if boardState[member[0]-1][member[1]][1]!=clusterType[1]:
+					boardState[member[0]-1][member[1]][0] = max(0,boardState[member[0]-1][member[1]][0]-malus)
+			if member[0]<GameManager.gridWidth-1:
+				if boardState[member[0]+1][member[1]][1]!=clusterType[1]:
+					boardState[member[0]+1][member[1]][0] = max(0,boardState[member[0]+1][member[1]][0]-malus)
+			if member[1]>0:
+				if boardState[member[0]][member[1]-1][1]!=clusterType[1]:
+					boardState[member[0]][member[1]-1][0] = max(0,boardState[member[0]][member[1]-1][0]-malus)
+			if member[1]<GameManager.gridHeight-1:
+				if boardState[member[0]][member[1]+1][1]!=clusterType[1]:
+					boardState[member[0]][member[1]+1][0] = max(0,boardState[member[0]][member[1]+1][0]-malus)
+

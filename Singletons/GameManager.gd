@@ -22,7 +22,7 @@ var typeChangesLeft = typeChanges
 
 var gridWidth = 16
 var gridHeight = 6
-var mountainCount = 10
+var mountainCount = 35
 
 var moneyToEarn = 100
 var foodNeeded = 100

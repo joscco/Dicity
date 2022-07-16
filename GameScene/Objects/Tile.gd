@@ -25,7 +25,7 @@ func highlight():
 	
 func  delight():
 	$Sprite.modulate = Color.white
-
+#Nils
 func _input(event):
 	if $Sprite.get_rect().has_point(get_local_mouse_position()):
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -37,10 +37,12 @@ func _input(event):
 					else:
 						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
 						BoardManager.boardState[index[0]][index[1]] = value
+						BoardManager.negativeImpact(index[0],index[1])
 						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
 						GameManager.selectedDice.vanish()
 						GameManager.selectedDice = null
 						GameManager.updateStats()
+						boardRenderer.refreshBoardState()
 						_start_tween()
 						
 						
