@@ -8,7 +8,6 @@ var index
 onready var tween_values = [Vector2(1,1), Vector2(1.1,1.1)]
 onready var boardRenderer = get_parent()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	tween = $Tween
 
@@ -39,9 +38,11 @@ func _input(event):
 						BoardManager.boardState[index[0]][index[1]] = value
 						BoardManager.negativeImpact(index[0],index[1])
 						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
+						GameManager.diceRollScreen.thrownDice.erase(GameManager.selectedDice)
 						GameManager.selectedDice.vanish()
 						GameManager.selectedDice = null
 						GameManager.updateStats()
+						GameManager.diceRollScreen.moveUpDice()
 						boardRenderer.refreshBoardState()
 						_start_tween()
 						

@@ -26,6 +26,7 @@ texture = ExtResource( 15 )
 texture = ExtResource( 1 )
 
 [node name="DiceAnchor" type="Node2D" parent="."]
+position = Vector2( -730, 0 )
 
 [node name="ChangeColorSprite" type="Sprite" parent="."]
 position = Vector2( -870.5, -61.5 )

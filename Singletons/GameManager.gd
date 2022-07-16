@@ -3,6 +3,7 @@ extends Node2D
 var currentAction = null
 var selectedDice = null
 var ghostSprite = null
+var diceRollScreen
 
 var food = 0
 var mood = 0

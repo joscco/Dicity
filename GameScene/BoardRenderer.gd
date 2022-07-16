@@ -6,9 +6,11 @@ var offset = 10
 var indexToSpriteDict = {}
 var indexToTileDict = {}
 
+
 export (PackedScene) var tile
 
 onready var boardManager = BoardManager
+
 
 func _ready():
 	boardManager.boardState = boardManager.createEmptyBoardState(GameManager.gridHeight,GameManager.gridWidth,GameManager.mountainCount)
