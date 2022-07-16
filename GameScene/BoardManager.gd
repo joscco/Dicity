@@ -13,7 +13,7 @@ func createMatrix(width, height):
 		matrix[row].resize(width)
 
 		for column in range(width):
-			matrix[row][column] = 0#row*width + column
+			matrix[row][column] = 0 #row*width + column
 
 	return matrix
 
@@ -101,7 +101,6 @@ func getOneConnectedComponent(matrix, row, column):
 		matrix[compElement[0]][compElement[1]]=0
 	return conComp
 	
-
 func getAllConnectedComponents(matrix):
 	var rows = matrix.size()
 	var columns = matrix[0].size()
@@ -120,7 +119,7 @@ func getPointsForOneType(matrix):
 		var filter = filterByNumber(matrix,i)
 		var comps = getAllConnectedComponents(filter)
 		for comp in comps:
-			points += i* comp.size() * comp.size()
+			points += i * comp.size() * comp.size()
 	return points
 	
 func getPointsForAllTypes(matrix):
