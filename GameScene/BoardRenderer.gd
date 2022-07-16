@@ -11,8 +11,8 @@ export (PackedScene) var tile
 onready var boardManager = BoardManager
 
 func _ready():
-	boardManager.boardState = boardManager.createEmptyBoardState(6,16)
-	for i in range(7):
+	boardManager.boardState = boardManager.createEmptyBoardState(GameManager.gridHeight,GameManager.gridWidth,GameManager.mountainCount)
+	for i in range(-1,7):
 		for j in range(4):
 			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
 
@@ -29,6 +29,8 @@ func screnPosToIndex(mousePosition):
 func elementToSpritePath(element):
 	if element[0]==0:
 		return 'res://Assets/Graphics/DiceGraphics/emptyField.png'
+	if element[0]==-1:
+		return 'res://Assets/Graphics/DiceGraphics/blockerField.png'
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
 func drawboardState():

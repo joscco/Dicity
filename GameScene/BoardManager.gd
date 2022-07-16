@@ -32,7 +32,7 @@ func createDummyBoardState(width, height):
 
 	return matrix
 
-func createEmptyBoardState(width, height):
+func createEmptyBoardState(width, height, blocker = 0):
 	randomize()
 	var matrix = []
 
@@ -42,7 +42,13 @@ func createEmptyBoardState(width, height):
 
 		for column in range(width):
 			matrix[row][column] = [0, 0]
-
+	
+	for _i in range(blocker):
+		var blockerPos = [randi()%height, randi()%width]
+		while matrix[blockerPos[0]][blockerPos[1]]==[-1,0]:
+			blockerPos = [randi()%width, randi()%height]
+		matrix[blockerPos[0]][blockerPos[1]]=[-1,0]
+	
 	return matrix
 
 func prettyPrint(matrix):
@@ -137,7 +143,7 @@ func getPointsForOneType(matrix):
 			points += i * comp.size() * comp.size()
 	return points
 	
-func getPointsForAllTypes(matrix):
+func getPointsForAllTypes(matrix = boardState):
 	var allPoints = [0,0,0,0]
 	for i in range(4):
 		allPoints[i] = getPointsForOneType(filterByType(matrix,i))
