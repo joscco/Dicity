@@ -11,9 +11,18 @@ onready var boardManager = get_owner()
 func _ready():
 	boardState = boardManager.createDummyBoardState(5,10)
 	drawboardState()
+	$BoardBackground.position = $BoardAnchor.position
+	$BoardBackground.scale = Vector2(5,10)
+	
 
 func indexToScreenPos(i,j):
 	return $BoardAnchor.position + Vector2(i*(100+offset),j*(100+offset))
+
+func screnPosToIndex(mousePosition):
+	mousePosition -= $BoardAnchor.position
+	var i = int(mousePosition[0]/(100+offset))
+	var j = int(mousePosition[1]/(100+offset))
+	return [i,j]
 
 func elementToSpritePath(element):
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
