@@ -1,10 +1,8 @@
 extends Sprite
 
-
 var muted = false
 onready var muteSprite = load('res://Assets/Graphics/UI/soundoff.png')
 onready var soundSprite = load('res://Assets/Graphics/UI/soundOn.png')
-
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
@@ -17,7 +15,7 @@ func toggleState():
 	
 	if muted:
 		texture = muteSprite
-		SoundManager.stopMusic()
+		SoundManager.mute()
 	else:
 		texture = soundSprite
-		SoundManager.playMusic()
+		SoundManager.unmute()

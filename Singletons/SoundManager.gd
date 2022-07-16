@@ -1,6 +1,8 @@
 extends Node
 
-onready var audioPlayer: AudioStreamPlayer = $AudioPlayer
+onready var musicPlayer: AudioStreamPlayer = $MusicPlayer
+onready var soundPlayer: AudioStreamPlayer = $SoundPlayer
+var muted = false
 
 # Looping Sound files work way better in ogg format!
 var mainMusicIntro = preload("res://Assets/Music/Intro.ogg")
@@ -18,36 +20,44 @@ var introPlaying: bool
 
 func playMusic():
 	if !musicPlaying and !introPlaying:
-		audioPlayer.stream = mainMusicIntro
-		audioPlayer.play()
+		musicPlayer.stream = mainMusicIntro
+		musicPlayer.play()
 		
 		introPlaying = true
 		musicPlaying = true
 		
 		# Wait until the intro has finished playing
-		yield(audioPlayer, "finished")
+		yield(musicPlayer, "finished")
 		introPlaying = false
-		audioPlayer.stream = mainMusic
-		audioPlayer.play()
+		musicPlayer.stream = mainMusic
+		musicPlayer.play()
 		
-	
 func stopMusic():
-	audioPlayer.stop()
+	musicPlayer.stop()
+	introPlaying = false
+	musicPlaying = false
+
+func mute():
+	muted = true
+	musicPlayer.stream_paused = true
+	soundPlayer.stream_paused = true
+
+func unmute():
+	muted = false
+	musicPlayer.stream_paused = false
+	soundPlayer.stream_paused = false
 	
 func playSound(sfx = "hit"):
-	var asp = AudioStreamPlayer.new()
-	
-	add_child(asp)
 	if sfx == "hit":
-		asp.stream = HitSound
+		soundPlayer.stream = HitSound
 	if sfx == "shells":
-		asp.stream = ShellSound
+		soundPlayer.stream = ShellSound
 	if sfx == "shoot":
-		asp.stream = ShootSound
+		soundPlayer.stream = ShootSound
 	if sfx == "blip":
-		asp.stream = BlipSound
+		soundPlayer.stream = BlipSound
 	if sfx == "diceroll":
-		asp.stream = DiceSound
+		soundPlayer.stream = DiceSound
 	if sfx == "error":
-		asp.stream = ErrorSound
-	asp.play()
+		soundPlayer.stream = ErrorSound
+	soundPlayer.play()
