@@ -12,9 +12,10 @@ func _ready():
 
 func throwDice():
 	for thrownDie in thrownDice:
-		thrownDie.vanish()
+		if is_instance_valid(thrownDie):
+			thrownDie.vanish()
 	for i in range(GameManager.diceCount):
-		var dieInstance = die.instance()
+		var dieInstance: Node2D = die.instance()
 		add_child(dieInstance)
 		thrownDice.append(dieInstance)
 		dieInstance.position = $DiceAnchor.position + Vector2(i* 110,0)
