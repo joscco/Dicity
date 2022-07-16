@@ -36,7 +36,7 @@ func _ready():
 	ghostSprite.z_index = 1
 	add_child(ghostSprite)
 
-func _process(delta):
+func _process(_delta):
 	if selectedDice != null:
 		ghostSprite.texture = selectedDice.get_node('DiceSprite').texture
 		ghostSprite.position = get_local_mouse_position()
