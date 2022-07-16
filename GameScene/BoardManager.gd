@@ -26,7 +26,7 @@ func createDummyBoardState(width, height):
 		matrix[row].resize(width)
 
 		for column in range(width):
-			matrix[row][column] = [3, randi() % 4]
+			matrix[row][column] = [randi()%6+1, randi() % 4]
 
 	return matrix
 
@@ -113,7 +113,21 @@ func getAllConnectedComponents(matrix):
 				components.append(comp)
 	return components
 
-
+func getPointsForOneType(matrix):
+	var points = 0
+	
+	for i in range(1,7):
+		var filter = filterByNumber(matrix,i)
+		var comps = getAllConnectedComponents(filter)
+		for comp in comps:
+			points += i* comp.size() * comp.size()
+	return points
+	
+func getPointsForAllTypes(matrix):
+	var allPoints = [0,0,0,0]
+	for i in range(4):
+		allPoints[i] = getPointsForOneType(filterByType(matrix,i))
+	return allPoints
 
 func _ready():
 	var boardState = createDummyBoardState(width, height)
@@ -127,3 +141,5 @@ func _ready():
 	var conComps = getAllConnectedComponents(filteredForNumber3)
 	print()
 	prettyPrint(conComps)
+	print()
+	print(getPointsForAllTypes(boardState))
