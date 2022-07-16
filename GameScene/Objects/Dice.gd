@@ -47,8 +47,8 @@ func changeType(newType):
 		SoundManager.playSound('error')
 
 func applyAction():
-	if GameManager.currentAction == 'default':
-		highlight()
+	if GameManager.currentAction == null:
+		toggleState()
 	elif GameManager.currentAction == 'changeNumber':
 		reroll()
 	elif GameManager.currentAction == 'changeStateToYellow':
@@ -62,11 +62,10 @@ func applyAction():
 
 
 func _input(event):
-	if GameManager.currentAction == 'default':
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
 				if event.pressed:
-					toggleState()
+					applyAction()
 
 func highlight():
 	tween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -79,4 +78,7 @@ func delight():
 
 				
 func toggleState():
-	diceRollScreen.changeHighlightedSprite(self)
+	if diceRollScreen.currentActionSprite == $DiceSprite:
+		delight()
+	else:
+		diceRollScreen.changeHighlightedSprite(self)

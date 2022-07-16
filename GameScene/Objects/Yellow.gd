@@ -16,7 +16,7 @@ func _input(event):
 				
 func toggleState():
 	if GameManager.currentAction == 'changeStateToYellow':
-		GameManager.currentAction = 'default'
+		GameManager.currentAction = null
 		delight()
 	else:
 		GameManager.currentAction = 'changeStateToYellow'

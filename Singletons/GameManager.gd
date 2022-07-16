@@ -1,6 +1,6 @@
 extends Node
 
-var currentAction = 'default'
+var currentAction = null
 
 
 var food
