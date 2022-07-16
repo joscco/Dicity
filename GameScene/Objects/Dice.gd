@@ -1,29 +1,36 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
 var eyes 
 var type
-var tween
+var scaleTween : Tween
+var moveTween : Tween
+const moveSpeed = 100
 
 var typeMap = ['Food','Fun','Education','Industry']
 
 onready var diceRollScreen = get_parent()
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	eyes = randi() % 6 + 1
 	type = randi() % 4
-	tween = Tween.new()
-	add_child(tween)
+	
+	scaleTween = Tween.new()
+	moveTween = Tween.new()
+	
+	add_child(scaleTween)
+	add_child(moveTween)
 	changeSprite()
+	
+func moveTo(newPosition: Vector2): 
+	var distance = (newPosition - position).length()
+	moveTween.interpolate_property(self, "position", null, newPosition, distance / moveSpeed, Tween.TRANS_BACK, Tween.EASE_OUT)
+	moveTween.start()
 
 func changeSprite():
 	var imgPathToLoad = 'res://Assets/Graphics/DiceGraphics/'+typeMap[type]+'/dice'+str(eyes)+'.png'
 	$DiceSprite.texture = load(imgPathToLoad)
 	SoundManager.playSound('diceroll')
-	
 
 func reroll():
 	if GameManager.diceRerollsLeft > 0:
@@ -60,7 +67,6 @@ func applyAction():
 	elif GameManager.currentAction == 'changeStateToBlack':
 		changeType(3)
 
-
 func _input(event):
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
@@ -68,12 +74,12 @@ func _input(event):
 					applyAction()
 
 func highlight():
-	tween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	scaleTween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	scaleTween.start()
 
 func delight():
-	tween.interpolate_property(self,'scale',null,Vector2(1,1),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	scaleTween.interpolate_property(self,'scale',null,Vector2(1,1),0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	scaleTween.start()
 
 func toggleState():
 	if diceRollScreen.currentActionSprite == self:
@@ -92,7 +98,7 @@ func vanish():
 	GameManager.currentAction = null
 	GameManager.diceLeft -= 1
 	diceRollScreen.currentActionSprite = null
-	tween.interpolate_property(self,'scale',null,Vector2(0,0),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.connect("tween_completed", self, 'qFreeWith2Params')
-	tween.start()
+	scaleTween.interpolate_property(self, 'scale', null, Vector2(0,0), 0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	scaleTween.connect("tween_completed", self, 'qFreeWith2Params')
+	scaleTween.start()
 

@@ -1,23 +1,21 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Graphics/UI/nextThrowButton.png" type="Texture" id=1]
 [ext_resource path="res://GameScene/Objects/DiceRollScreen.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Graphics/UI/changeNumberButton.png" type="Texture" id=3]
-[ext_resource path="res://GameScene/Objects/Yellow.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/yellow.png" type="Texture" id=5]
+[ext_resource path="res://GameScene/Objects/ColorChanger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameScene/Objects/changeNumberSprite.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/beige.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/buttonBase.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/red.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/black.png" type="Texture" id=10]
-[ext_resource path="res://GameScene/Objects/Red.gd" type="Script" id=11]
-[ext_resource path="res://GameScene/Objects/Beige.gd" type="Script" id=12]
-[ext_resource path="res://GameScene/Objects/Black.gd" type="Script" id=13]
 [ext_resource path="res://GameScene/Objects/NextRoundSprite.gd" type="Script" id=14]
 [ext_resource path="res://Assets/Graphics/UI/slotsBackground.png" type="Texture" id=15]
+[ext_resource path="res://GameScene/Objects/Dice.tscn" type="PackedScene" id=16]
 
 [node name="DiceRollScreen" type="Node2D"]
 script = ExtResource( 2 )
+die = ExtResource( 16 )
 
 [node name="SlotsBackground" type="Sprite" parent="."]
 texture = ExtResource( 15 )
@@ -29,25 +27,22 @@ position = Vector2( -584, -26 )
 position = Vector2( -888, -24 )
 texture = ExtResource( 8 )
 
-[node name="Yellow" type="Sprite" parent="ChangeColorSprite"]
-position = Vector2( -19, -21 )
-texture = ExtResource( 5 )
-script = ExtResource( 4 )
+[node name="Yellow" parent="ChangeColorSprite" instance=ExtResource( 4 )]
 
-[node name="Red" type="Sprite" parent="ChangeColorSprite"]
-position = Vector2( 19, -20 )
+[node name="Red" parent="ChangeColorSprite" instance=ExtResource( 4 )]
+position = Vector2( 19, -21 )
 texture = ExtResource( 9 )
-script = ExtResource( 11 )
+methodName = "changeStateToRed"
 
-[node name="Beige" type="Sprite" parent="ChangeColorSprite"]
+[node name="Beige" parent="ChangeColorSprite" instance=ExtResource( 4 )]
 position = Vector2( -19, 17 )
 texture = ExtResource( 7 )
-script = ExtResource( 12 )
+methodName = "changeStateToBeige"
 
-[node name="Black" type="Sprite" parent="ChangeColorSprite"]
-position = Vector2( 19, 17 )
+[node name="Black" parent="ChangeColorSprite" instance=ExtResource( 4 )]
+position = Vector2( 20, 17 )
 texture = ExtResource( 10 )
-script = ExtResource( 13 )
+methodName = "changeStateToBlack"
 
 [node name="ChangeNumberSprite" type="Sprite" parent="."]
 position = Vector2( -755, -24 )

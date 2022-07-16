@@ -12,7 +12,7 @@ var money = 0
 
 var rollsLeft = 10
 
-var diceCount = 2
+var diceCount = 5
 var diceLeft = diceCount
 
 var diceRerolls = 2
@@ -30,7 +30,6 @@ var foodNeeded = 100
 var educationNeeded = 100
 var funNeeded = 100
 
-
 func _ready():
 	ghostSprite = Sprite.new()
 	ghostSprite.modulate.a = 0.5
@@ -41,7 +40,6 @@ func _process(_delta):
 	if selectedDice != null:
 		ghostSprite.texture = selectedDice.get_node('DiceSprite').texture
 		ghostSprite.position = get_local_mouse_position()
-
 	else:
 		ghostSprite.texture = null
 
@@ -63,4 +61,3 @@ func updateStats():
 	fun = currentScore[1]
 	education = currentScore[2]
 	money = currentScore[3]
-

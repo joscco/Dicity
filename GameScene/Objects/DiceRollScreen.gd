@@ -9,7 +9,6 @@ var thrownDice = []
 func _ready():
 	throwDice()
 	GameManager.diceRollScreen = self
-	
 
 func throwDice():
 	for thrownDie in thrownDice:
@@ -19,18 +18,17 @@ func throwDice():
 		var dieInstance: Node2D = die.instance()
 		add_child(dieInstance)
 		thrownDice.append(dieInstance)
-		dieInstance.position = $DiceAnchor.position + Vector2(i* 110,0)
+		dieInstance.position = $DiceAnchor.position + Vector2(i* 110, 0)
 
 func moveUpDice():
-	#moving backwards through list to not mess up index
-	for i in range(thrownDice.size()-1,0,-1):
+	for i in range(thrownDice.size() - 1, -1, -1):
 		if !is_instance_valid(thrownDice[i]):
 			thrownDice.remove(i)
+
 	var diceLeft = thrownDice.size()
-	for i in range(diceLeft-1):
-		thrownDice[i].position = $DiceAnchor.position + Vector2(i* 110,0)
-	
-	
+	for i in range(diceLeft):
+		thrownDice[i].moveTo($DiceAnchor.position + Vector2(i* 110, 0))
+
 func changeHighlightedSprite(newHighlight):
 	if currentActionSprite != null:
 		currentActionSprite.delight()
