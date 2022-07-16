@@ -30,6 +30,7 @@ config/icon="res://icon.png"
 SoundManager="*res://Singletons/SoundManager.tscn"
 GameManager="*res://Singletons/GameManager.tscn"
 TransitionManager="*res://Singletons/TransitionManager.tscn"
+BoardManager="*res://GameScene/BoardManager.tscn"
 
 [display]
 

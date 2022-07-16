@@ -28,7 +28,13 @@ func  delight():
 func _input(event):
 	if $Sprite.get_rect().has_point(get_local_mouse_position()):
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-			pass
+			if GameManager.currentAction == null:
+				if GameManager.selectedDice != null:
+					if value[0] != 0:
+						SoundManager.playSound('error')
+						print('cant place on existing die') 
+					else:
+						pass
 		else:
 			highlight()
 	else:

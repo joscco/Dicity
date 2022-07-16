@@ -1,7 +1,7 @@
 extends Node
 
 var currentAction = null
-
+var selectedDice = null
 
 var food
 var mood

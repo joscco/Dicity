@@ -21,6 +21,7 @@ func toggleState():
 		delight()
 	else:
 		GameManager.currentAction = 'changeStateToRed'
+		GameManager.selectedDice = null
 		diceRollScreen.changeHighlightedSprite(self)
 		
 func highlight():

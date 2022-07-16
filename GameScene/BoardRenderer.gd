@@ -8,14 +8,14 @@ var indexToSpriteDict = {}
 
 export (PackedScene) var tile
 
-onready var boardManager = get_owner()
+onready var boardManager = BoardManager
 
 func _ready():
 	boardState = boardManager.createDummyBoardState(6,16)
 	for i in range(7):
 		for j in range(4):
 			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
-	drawboardState()
+
 
 func indexToScreenPos(i,j):
 	return $BoardAnchor.position + Vector2(i*(100+offset),j*(100+offset))

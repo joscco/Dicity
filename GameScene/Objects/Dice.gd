@@ -78,6 +78,8 @@ func delight():
 func toggleState():
 	if diceRollScreen.currentActionSprite == self:
 		diceRollScreen.currentActionSprite = null
+		GameManager.selectedDice = null
 		delight()
 	else:
 		diceRollScreen.changeHighlightedSprite(self)
+		GameManager.selectedDice = self
