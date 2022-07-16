@@ -8,12 +8,8 @@ onready var educationBar: TextureProgress = $HBoxContainer/EducationBar
 onready var funBar: TextureProgress = $HBoxContainer/FunBar
 
 func _process(_delta):
-	print(GameManager.industry)
-	print(GameManager.food)
-	print(GameManager.education)
-	print(GameManager.mood)
-	moneyBar.value = 100 * GameManager.industry / GameManager.moneyToEarn
+	moneyBar.value = 100 * GameManager.money / GameManager.moneyToEarn
 	foodBar.value = 100 * GameManager.food / GameManager.foodNeeded
 	educationBar.value = 100 * GameManager.education / GameManager.educationNeeded
-	funBar.value = 100 * GameManager.mood / GameManager.funNeeded
+	funBar.value = 100 * GameManager.fun / GameManager.funNeeded
 	

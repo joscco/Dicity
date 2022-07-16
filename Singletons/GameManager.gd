@@ -6,9 +6,9 @@ var ghostSprite = null
 var diceRollScreen
 
 var food = 0
-var mood = 0
+var fun = 0
 var education = 0
-var industry = 0
+var money = 0
 
 var rollsLeft = 10
 
@@ -21,8 +21,8 @@ var diceRerollsLeft = diceRerolls
 var typeChanges = 2
 var typeChangesLeft = typeChanges
 
-var gridWidth = 16
-var gridHeight = 6
+var gridWidth = 15
+var gridHeight = 5
 var mountainCount = 35
 
 var moneyToEarn = 100
@@ -60,7 +60,7 @@ func getBoni():
 func updateStats():
 	var currentScore = BoardManager.getPointsForAllTypes()
 	food = currentScore[0]
-	mood = currentScore[1]
+	fun = currentScore[1]
 	education = currentScore[2]
-	industry = currentScore[3]
+	money = currentScore[3]
 
