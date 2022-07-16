@@ -75,10 +75,9 @@ func delight():
 	tween.interpolate_property(self,'scale',null,Vector2(1,1),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
-
-				
 func toggleState():
-	if diceRollScreen.currentActionSprite == $DiceSprite:
+	if diceRollScreen.currentActionSprite == self:
+		diceRollScreen.currentActionSprite = null
 		delight()
 	else:
 		diceRollScreen.changeHighlightedSprite(self)

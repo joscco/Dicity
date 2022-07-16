@@ -40,4 +40,5 @@ func drawboardState():
 			var newTile = tile.instance()
 			newTile.get_node('Sprite').texture = indexToSpriteDict[boardState[row][column]]
 			newTile.position = indexToScreenPos(row, column)
+			newTile.value = boardState[row][column]
 			add_child(newTile)

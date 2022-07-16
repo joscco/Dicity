@@ -17,6 +17,7 @@ func _input(event):
 func toggleState():
 	if GameManager.currentAction == 'changeStateToBlack':
 		GameManager.currentAction = null
+		diceRollScreen.currentActionSprite = null
 		delight()
 	else:
 		GameManager.currentAction = 'changeStateToBlack'
