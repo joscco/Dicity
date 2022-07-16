@@ -3,13 +3,14 @@ extends Node2D
 
 var tween
 var value = [0,0]
+var index
 
 onready var tween_values = [Vector2(1,1), Vector2(1.1,1.1)]
+onready var boardRenderer = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tween = $Tween
-	_start_tween()
 
 func _start_tween():
 	tween.interpolate_property(self,'scale',tween_values[0],tween_values[1],2,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)    
@@ -34,7 +35,14 @@ func _input(event):
 						SoundManager.playSound('error')
 						print('cant place on existing die') 
 					else:
-						pass
+						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
+						BoardManager.boardState[index[0]][index[1]]= value
+						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
+						GameManager.selectedDice.vanish()
+						GameManager.selectedDice = null
+						_start_tween()
+
+						
 		else:
 			highlight()
 	else:

@@ -5,6 +5,8 @@ var dummyGameState = []
 var height = 5
 var width = 10
 
+var boardState
+
 func createMatrix(width, height):
 	var matrix = []
 
@@ -27,6 +29,19 @@ func createDummyBoardState(width, height):
 
 		for column in range(width):
 			matrix[row][column] = [randi()%7, randi() % 4]
+
+	return matrix
+
+func createEmptyBoardState(width, height):
+	randomize()
+	var matrix = []
+
+	for row in range(height):
+		matrix.append([])
+		matrix[row].resize(width)
+
+		for column in range(width):
+			matrix[row][column] = [0, 0]
 
 	return matrix
 
