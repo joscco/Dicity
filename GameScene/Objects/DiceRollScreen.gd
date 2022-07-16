@@ -26,7 +26,7 @@ func moveUpDice():
 		if !is_instance_valid(thrownDice[i]):
 			thrownDice.remove(i)
 	var diceLeft = thrownDice.size()
-	for i in range(diceLeft):
+	for i in range(diceLeft-1):
 		thrownDice[i].position = $DiceAnchor.position + Vector2(i* 110,0)
 	
 	
