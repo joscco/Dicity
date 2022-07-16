@@ -26,7 +26,7 @@ func createDummyBoardState(width, height):
 		matrix[row].resize(width)
 
 		for column in range(width):
-			matrix[row][column] = [randi()%6+1, randi() % 4]
+			matrix[row][column] = [randi()%7, randi() % 4]
 
 	return matrix
 

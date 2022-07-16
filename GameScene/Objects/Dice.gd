@@ -4,14 +4,19 @@ extends Node2D
 # Declare member variables here. Examples:
 var eyes 
 var type
+var tween
 
 var typeMap = ['Food','Fun','Education','Industry']
+
+onready var diceRollScreen = get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	eyes = randi() % 6 + 1
 	type = randi() % 4
+	tween = Tween.new()
+	add_child(tween)
 	changeSprite()
 
 func changeSprite():
@@ -42,23 +47,36 @@ func changeType(newType):
 		SoundManager.playSound('error')
 
 func applyAction():
-	if GameManager.currentAction == 'changeNumber':
+	if GameManager.currentAction == 'default':
+		highlight()
+	elif GameManager.currentAction == 'changeNumber':
 		reroll()
-	if GameManager.currentAction == 'changeStateToYellow':
+	elif GameManager.currentAction == 'changeStateToYellow':
 		changeType(0)
-	if GameManager.currentAction == 'changeStateToBeige':
+	elif GameManager.currentAction == 'changeStateToRed':
 		changeType(1)
-	if GameManager.currentAction == 'changeStateToRed':
+	elif GameManager.currentAction == 'changeStateToBeige':
 		changeType(2)
-	if GameManager.currentAction == 'changeStateToBlack':
+	elif GameManager.currentAction == 'changeStateToBlack':
 		changeType(3)
 
 
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
-			if event.pressed:
-				applyAction()
+	if GameManager.currentAction == 'default':
+		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+			if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
+				if event.pressed:
+					toggleState()
+
+func highlight():
+	tween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
+func delight():
+	tween.interpolate_property(self,'scale',null,Vector2(1,1),0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
 
-
+				
+func toggleState():
+	diceRollScreen.changeHighlightedSprite(self)

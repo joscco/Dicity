@@ -3,17 +3,19 @@ extends Node
 var boardState
 var typeMap = ['Food','Fun','Education','Industry']
 var offset = 10
+var indexToSpriteDict = {}
+
 
 export (PackedScene) var tile
 
 onready var boardManager = get_owner()
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	boardState = boardManager.createDummyBoardState(5,10)
+	boardState = boardManager.createDummyBoardState(6,16)
+	for i in range(7):
+		for j in range(4):
+			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
 	drawboardState()
-	$BoardBackground.position = $BoardAnchor.position
-	$BoardBackground.scale = Vector2(5,10)
-	
 
 func indexToScreenPos(i,j):
 	return $BoardAnchor.position + Vector2(i*(100+offset),j*(100+offset))
@@ -25,6 +27,8 @@ func screnPosToIndex(mousePosition):
 	return [i,j]
 
 func elementToSpritePath(element):
+	if element[0]==0:
+		return 'res://Assets/Graphics/DiceGraphics/emptyField.png'
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
 func drawboardState():
@@ -34,12 +38,6 @@ func drawboardState():
 	for row in range(rows):
 		for column in range(columns):
 			var newTile = tile.instance()
-			newTile.get_node('Sprite').texture = load(elementToSpritePath(boardState[row][column]))
+			newTile.get_node('Sprite').texture = indexToSpriteDict[boardState[row][column]]
 			newTile.position = indexToScreenPos(row, column)
 			add_child(newTile)
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
