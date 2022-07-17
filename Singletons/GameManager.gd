@@ -7,6 +7,10 @@ var diceRollScreen
 var showingDialogue = false
 var level = 1
 
+var foodWarning
+var moodWarning
+var educationWarning
+
 var food = 0
 var fun = 0
 var education = 0
@@ -90,7 +94,7 @@ func nextRound():
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
-	return int(sqrt(level) * 10)
+	return 1000#int(sqrt(level) * 10)
 
 func getBoni():
 	var currentScore = BoardManager.getPointsForAllTypes()
