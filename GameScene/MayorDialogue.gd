@@ -11,6 +11,7 @@ func _ready():
 	$HintText.hide()
 	$HintSpeechbubble.hide()
 	$HintNextButton.hide()
+	$HintAnswer.hide()
 
 	
 var tutorialTexts = [\
@@ -47,6 +48,16 @@ var hintTexts =[\
 "The highest possible Yahtzee score is 1,575.",\
 ]
 
+var hintAnswers=[\
+'[center]ahh...[/center]',\
+'[center]facinating[/center]',\
+"[center]damn that's crazy[/center]",\
+'[center]cool cool cool[/center]',\
+'[center]wow[/center]',\
+'[center]ok[/center]',\
+'[center]whatever[/center]',\
+]
+
 func next():
 	tutorialState += 1
 	if not tutorialOver and tutorialState < tutorialTexts.size():
@@ -57,10 +68,13 @@ func next():
 		$TutorialText.hide()
 		$TutorialSpeechbubble.hide()
 		$TutorialNextButton.hide()
+		$SkipTutorial.hide()
 		
 		$HintText.hide()
 		$HintSpeechbubble.hide()
 		$HintNextButton.hide()
+		$HintAnswer.hide()
+
 		GameManager.showingDialogue = false
 
 func hint():
@@ -74,4 +88,7 @@ func hint():
 		$HintText.show()
 		$HintSpeechbubble.show()
 		$HintNextButton.show()
+		$HintAnswer.show()
 		$HintText.text = hintTexts[hintIndex]
+		$HintAnswer.bbcode_text = hintAnswers[randi()%hintAnswers.size()]
+		

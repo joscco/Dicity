@@ -30,9 +30,10 @@ offset = Vector2( -50, -100 )
 
 [node name="Multiplier" type="RichTextLabel" parent="Sprite"]
 modulate = Color( 0.988235, 0.968627, 0.847059, 0.654902 )
-margin_left = 8.0
-margin_top = -34.0
-margin_right = 63.0
+margin_left = 12.0
+margin_top = -27.0
+margin_right = 49.0
+margin_bottom = -2.0
 theme = ExtResource( 5 )
 scroll_active = false
 
