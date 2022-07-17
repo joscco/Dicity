@@ -197,21 +197,26 @@ func negativeImpact(i,j):
 	else:
 		var malus = min(conComp.size(), clusterType[0])
 		for member in conComp:
+			var negativelyImpacted = []
 			if member[0] >0:
 				if boardState[member[0]-1][member[1]][0] > 0:
 					if boardState[member[0]-1][member[1]][1]!=clusterType[1]:
+						negativelyImpacted.append([ member[0]-1 ,member[1] ])
 						boardState[member[0]-1][member[1]][0] = max(0,boardState[member[0]-1][member[1]][0]-malus)
 			if member[0]<GameManager.gridWidth-1:
 				if boardState[member[0]+1][member[1]][0] > 0:
 					if boardState[member[0]+1][member[1]][1]!=clusterType[1]:
+						negativelyImpacted.append([ member[0]+1 ,member[1] ])
 						boardState[member[0]+1][member[1]][0] = max(0,boardState[member[0]+1][member[1]][0]-malus)
 			if member[1]>0:
 				if boardState[member[0]][member[1]-1][0] > 0:
 					if boardState[member[0]][member[1]-1][1]!=clusterType[1]:
+						negativelyImpacted.append([ member[0] ,member[1]-1 ])
 						boardState[member[0]][member[1]-1][0] = max(0,boardState[member[0]][member[1]-1][0]-malus)
 			if member[1]<GameManager.gridHeight-1:
 				if boardState[member[0]][member[1]+1][0] > 0:
 					if boardState[member[0]][member[1]+1][1]!=clusterType[1]:
+						negativelyImpacted.append([ member[0] ,member[1]+1 ])
 						boardState[member[0]][member[1]+1][0] = max(0,boardState[member[0]][member[1]+1][0]-malus)
 
 func indexToClusterSize(i,j):
