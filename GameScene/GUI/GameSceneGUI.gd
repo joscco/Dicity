@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 const adaptationSpeed = 0.1
+signal level_up_screen_done
 
 onready var moneyBar: TextureProgress = $MoneyBar
 onready var levelCount: Label = $MoneyBar/LevelCountBack/LevelCount
@@ -10,10 +11,27 @@ onready var educationBar: TextureProgress = $HBoxContainer/EducationBar
 onready var funBar: TextureProgress = $HBoxContainer/FunBar
 
 var tween: Tween = Tween.new()
+
+onready var levelUpScreen : TextureRect = $LevelUpScreen
+var levelUpTween: Tween = Tween.new()
+
 var changingLevelCount = false
 
 func _ready():
 	add_child(tween)
+	add_child(levelUpTween)
+	GameManager.setGUIManager(self)
+	levelUpScreen.rect_scale = Vector2.ZERO
+	
+func on_level_up():
+	levelUpTween.interpolate_property(levelUpScreen, "rect_scale", null, Vector2(1,1), 1, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	levelUpTween.start()
+	yield(levelUpTween, "tween_completed")
+	yield(get_tree().create_timer(2.0), "timeout")
+	levelUpTween.interpolate_property(levelUpScreen, "rect_scale", null, Vector2.ZERO, 1, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+	levelUpTween.start()
+	yield(levelUpTween, "tween_completed")
+	emit_signal("level_up_screen_done")
 
 func _process(_delta):
 	var desiredMoneyBarValue = GameManager.getMoneyPercent()
