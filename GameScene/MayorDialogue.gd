@@ -65,6 +65,7 @@ func next():
 
 func hint():
 	if tutorialOver:
+		SoundManager.playSound('plop')
 		GameManager.showingDialogue = true
 		var hintIndex = randi() % hintTexts.size()
 		while hintIndex == lastHint:
