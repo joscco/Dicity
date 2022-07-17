@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://StartScene/GUI/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/StartScreen/startButton.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Graphics/StartScreen/a game by joscco & exla.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Graphics/StartScreen/titleDice.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Graphics/StartScreen/DICIT.png" type="Texture" id=5]
+[ext_resource path="res://GeneralScene/GUI/SquishyTitle.gd" type="Script" id=6]
 [ext_resource path="res://GeneralScene/GUI/ParallaxBackground.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Graphics/StartScreen/Pattern1.png" type="Texture" id=9]
 
@@ -23,14 +24,16 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 2000, 1200 )
 
-[node name="Title" type="Sprite" parent="."]
-position = Vector2( 918, 576 )
-texture = ExtResource( 5 )
-offset = Vector2( -95.5, -127 )
-
-[node name="TitleDice" type="Sprite" parent="Title"]
-position = Vector2( 440, -148 )
+[node name="TitleDice" type="Sprite" parent="."]
+position = Vector2( 1358, 428 )
 texture = ExtResource( 4 )
+script = ExtResource( 6 )
+offsetSquish = 1.0
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 827, 447 )
+texture = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [node name="Subtitle" type="Sprite" parent="."]
 position = Vector2( 956.5, 247 )

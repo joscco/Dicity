@@ -6,9 +6,13 @@ signal level_up_screen_done
 onready var moneyBar: TextureProgress = $MoneyBar
 onready var levelCount: Label = $MoneyBar/LevelCountBack/LevelCount
 
-onready var foodBar: TextureProgress = $HBoxContainer/FoodBar
-onready var educationBar: TextureProgress = $HBoxContainer/EducationBar
-onready var funBar: TextureProgress = $HBoxContainer/FunBar
+onready var foodBar: TextureProgress = $HBoxContainer/Food/FoodBar
+onready var educationBar: TextureProgress = $HBoxContainer/Education/EducationBar
+onready var funBar: TextureProgress = $HBoxContainer/Fun/FunBar
+
+onready var foodEffectLabel: Label = $HBoxContainer/Food/Effects/Num
+onready var educationEffectLabel: Label = $HBoxContainer/Education/Effects/Num
+onready var funEffectLabel: Label= $HBoxContainer/Fun/Effects/Num
 
 var tween: Tween = Tween.new()
 
@@ -18,6 +22,7 @@ var levelUpTween: Tween = Tween.new()
 var changingLevelCount = false
 
 func _ready():
+
 	add_child(tween)
 	add_child(levelUpTween)
 	GameManager.setGUIManager(self)
@@ -34,6 +39,10 @@ func on_level_up():
 	emit_signal("level_up_screen_done")
 
 func _process(_delta):
+	foodEffectLabel.text = str(GameManager.diceCount)
+	educationEffectLabel.text = str(GameManager.typeChangesLeft)
+	funEffectLabel.text = str(GameManager.diceRerollsLeft)
+	
 	var desiredMoneyBarValue = GameManager.getMoneyPercent()
 	var desiredFoodBarValue = GameManager.getFoodPercent()
 	var desiredEducationBarValue = GameManager.getEducationPercent()
