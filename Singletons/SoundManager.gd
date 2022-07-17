@@ -50,6 +50,7 @@ func unmute():
 	soundPlayer.stream_paused = false
 	
 func playSound(sfx: String):
+	soundPlayer.stop()
 	if sfx == "plop":
 		soundPlayer.stream = plopSound
 	if sfx == "oh":
