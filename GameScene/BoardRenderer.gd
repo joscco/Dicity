@@ -55,5 +55,10 @@ func refreshBoardState():
 	var columns = BoardManager.boardState[0].size()
 	for row in range(rows):
 		for column in range(columns):
-			indexToTileDict[[row,column]].get_node('Sprite').texture = indexToSpriteDict[boardManager.boardState[row][column]]
-			indexToTileDict[[row,column]].value = boardManager.boardState[row][column]
+			var tileToRefresh = indexToTileDict[[row,column]]
+			var newState = boardManager.boardState[row][column]
+			
+			tileToRefresh.get_node('Sprite').texture = indexToSpriteDict[newState]
+			tileToRefresh.value = newState
+			if tileToRefresh.value[0]<1:
+				tileToRefresh.tween.stop_all()
