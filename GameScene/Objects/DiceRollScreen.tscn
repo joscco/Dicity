@@ -25,7 +25,7 @@ die = ExtResource( 16 )
 texture = ExtResource( 15 )
 
 [node name="DiceAnchor" type="Node2D" parent="."]
-position = Vector2( -584, -26 )
+position = Vector2( -584, 28 )
 
 [node name="ChangeColorSprite" type="Sprite" parent="."]
 position = Vector2( -888, -24 )
@@ -68,6 +68,6 @@ texture = ExtResource( 5 )
 script = ExtResource( 12 )
 
 [node name="CancelButton" type="Sprite" parent="Overlay"]
-position = Vector2( 858, -34 )
+position = Vector2( 873, -22 )
 texture = ExtResource( 11 )
 script = ExtResource( 13 )

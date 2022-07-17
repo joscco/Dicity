@@ -24,7 +24,7 @@ func cancel():
 func highlight():
 	# Put that thingy to the front
 	z_index = 1
-	tween.interpolate_property(self, 'scale', null, Vector2(1, 1), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, 'scale', null, Vector2(0.9, 0.9), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
 
 func delight():
