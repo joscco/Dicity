@@ -10,8 +10,6 @@ func _ready():
 	hide()
 	GameManager.warnings[type]=self
 
-
-
 func _start_tween():
 	tween.interpolate_property(self,'scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
 	tween.start()
