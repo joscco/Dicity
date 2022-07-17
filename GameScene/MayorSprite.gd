@@ -13,6 +13,7 @@ func _input(event):
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if get_rect().has_point(get_local_mouse_position()):
 					mayor.hint()
+					SoundManager.playSound('plop')
 					
 
 func _start_tween():
@@ -22,3 +23,5 @@ func _start_tween():
 func _on_Tween_tween_completed(_object, _key):
 	tween_values.invert()
 	_start_tween()
+
+
