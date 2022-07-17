@@ -5,9 +5,10 @@ export (PackedScene) var die
 var currentActionSprite = null
 var thrownDice = []
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Overlay.visible = false
+	$Overlay/OverlayBackground.delight()
 	throwDice()
 	GameManager.diceRollScreen = self
 
@@ -37,5 +38,16 @@ func changeHighlightedSprite(newHighlight):
 	currentActionSprite.highlight()
 	
 func toggleOverlay():
-	$Overlay.visible = !$Overlay.visible
-	$NextRoundSprite.visible = !$NextRoundSprite.visible
+	$NextRoundSprite.active = !$NextRoundSprite.active
+	$Overlay/CancelButton.active = !$Overlay/CancelButton.active
+	
+	if $NextRoundSprite.active:
+		$NextRoundSprite.highlight()
+		$Overlay/CancelButton.delight()
+		$Overlay/OverlayBackground.delight()
+	else:
+		$NextRoundSprite.delight()
+		$Overlay/CancelButton.highlight()
+		$Overlay/OverlayBackground.highlight()
+	
+	
