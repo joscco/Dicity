@@ -26,10 +26,6 @@ var gridWidth = 15
 var gridHeight = 5
 var mountainCount = 35
 
-var foodNeeded = 100
-var educationNeeded = 100
-var funNeeded = 100
-
 func _ready():
 	ghostSprite = Sprite.new()
 	ghostSprite.modulate.a = 0.5
@@ -85,23 +81,23 @@ func getMoneyPercent():
 	return 100 * money / getMoneyNeededForThisLevel()
 	
 func getEducationPercent():
-	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3
 	print(BoardManager.getIndustryPointsWithoutClusters())
 	if educationNeededForIndustry == 0:
 		return 50
 	else:
-		return clamp(50 + education - educationNeeded, 0, 100)
+		return clamp(50 + education - educationNeededForIndustry, 0, 100)
 	
 func getFunPercent():
-	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 2
 	if funNeededForIndustry == 0:
 		return 50
 	else:
-		return clamp(50 + fun - funNeeded, 0, 100)
+		return clamp(50 + fun - funNeededForIndustry, 0, 100)
 	
 func getFoodPercent():
-	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 4
 	if foodNeededForIndustry == 0:
 		return 50
 	else:
-		return clamp(50 + food - foodNeeded, 0, 100)
+		return clamp(50 + food - foodNeededForIndustry, 0, 100)
