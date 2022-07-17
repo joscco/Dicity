@@ -195,7 +195,7 @@ func negativeImpact(i,j):
 	if conComp.size() == 1:
 		return
 	else:
-		var malus = min(conComp.size(), clusterType[0])
+		var malus = min(conComp.size()-1, clusterType[0])
 		for member in conComp:
 			var negativelyImpacted = []
 			if member[0] >0:
@@ -218,6 +218,9 @@ func negativeImpact(i,j):
 					if boardState[member[0]][member[1]+1][1]!=clusterType[1]:
 						negativelyImpacted.append([ member[0] ,member[1]+1 ])
 						boardState[member[0]][member[1]+1][0] = max(0,boardState[member[0]][member[1]+1][0]-malus)
+			
+			for impactedTile in negativelyImpacted:
+				GameManager.boardRenderer.indexToTileDict[impactedTile].showNegativeImpact(malus)
 
 func indexToClusterSize(i,j):
 	var valueAtIndex = boardState[i][j]

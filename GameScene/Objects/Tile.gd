@@ -15,6 +15,7 @@ onready var boardRenderer = get_parent()
 
 func _ready():
 	tween = $Tween
+	$NegativeImpact.hide()
 	crossOverlay.hide()
 	selectionOverlay.hide()
 
@@ -81,3 +82,11 @@ func updateMultiplier():
 		$Sprite/Multiplier.text = 'x'+str(multiplier)
 	else:
 		$Sprite/Multiplier.text = ''
+
+
+func showNegativeImpact(dmg):
+	$NegativeImpact/NegativeImpactText.text = '-'+str(dmg)
+	$NegativeImpact.reset()
+	$NegativeImpact.show()
+	$NegativeImpact.posTween.start()
+	$NegativeImpact.alphaTween.start()
