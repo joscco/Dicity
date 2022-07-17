@@ -56,3 +56,4 @@ func refreshBoardState():
 	for row in range(rows):
 		for column in range(columns):
 			indexToTileDict[[row,column]].get_node('Sprite').texture = indexToSpriteDict[boardManager.boardState[row][column]]
+			indexToTileDict[[row,column]].value = boardManager.boardState[row][column]
