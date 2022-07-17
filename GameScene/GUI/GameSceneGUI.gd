@@ -3,6 +3,9 @@ extends CanvasLayer
 const adaptationSpeed = 0.1
 signal level_up_screen_done
 
+onready var roundsLeftLabel : Label = $MoneyBar/Num
+onready var percentageDisplay : Label = $MoneyBar/PointsDisplay
+
 onready var moneyBar: TextureProgress = $MoneyBar
 onready var levelCount: Label = $MoneyBar/LevelCountBack/LevelCount
 
@@ -22,7 +25,6 @@ var levelUpTween: Tween = Tween.new()
 var changingLevelCount = false
 
 func _ready():
-
 	add_child(tween)
 	add_child(levelUpTween)
 	GameManager.setGUIManager(self)
@@ -39,6 +41,10 @@ func on_level_up():
 	emit_signal("level_up_screen_done")
 
 func _process(_delta):
+	
+	roundsLeftLabel.text = str(10 - GameManager.rollsLeft + 1) + "/10"
+	percentageDisplay.text = str(GameManager.money) + "/" + str(GameManager.getMoneyNeededForThisLevel())
+	
 	foodEffectLabel.text = str(GameManager.diceCount)
 	educationEffectLabel.text = str(GameManager.typeChangesLeft)
 	funEffectLabel.text = str(GameManager.diceRerollsLeft)
