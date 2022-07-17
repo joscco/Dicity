@@ -49,6 +49,7 @@ func nextRound():
 	getBoni()
 	diceRerollsLeft = diceRerolls
 	typeChangesLeft = typeChanges
+	diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
 	return int(sqrt(level) * 30)
@@ -82,7 +83,6 @@ func getMoneyPercent():
 	
 func getEducationPercent():
 	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3
-	print(BoardManager.getIndustryPointsWithoutClusters())
 	if educationNeededForIndustry == 0:
 		return 50
 	else:

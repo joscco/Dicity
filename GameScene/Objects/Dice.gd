@@ -93,10 +93,13 @@ func toggleState():
 func qFreeWith2Params(_object, _key):
 	queue_free()
 
-func vanish():
+func vanish(decrease=true):
 	GameManager.selectedDice = null
 	GameManager.currentAction = null
-	GameManager.diceLeft -= 1
+	if decrease:
+		GameManager.diceLeft -= 1
+		if GameManager.diceLeft < 1:
+			GameManager.nextRound()
 	diceRollScreen.currentActionSprite = null
 	scaleTween.interpolate_property(self, 'scale', null, Vector2(0,0), 0.3,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	scaleTween.connect("tween_completed", self, 'qFreeWith2Params')

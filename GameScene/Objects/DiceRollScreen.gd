@@ -16,7 +16,8 @@ func _ready():
 func throwDice():
 	for thrownDie in thrownDice:
 		if is_instance_valid(thrownDie):
-			thrownDie.vanish()
+			thrownDie.vanish(false)
+	GameManager.diceLeft = GameManager.diceCount
 	for i in range(GameManager.diceCount):
 		var dieInstance: Node2D = die.instance()
 		add_child(dieInstance)
@@ -28,8 +29,8 @@ func moveUpDice():
 		if !is_instance_valid(thrownDice[i]):
 			thrownDice.remove(i)
 
-	var diceLeft = thrownDice.size()
-	for i in range(diceLeft):
+	var diceLeftInArray = thrownDice.size()
+	for i in range(diceLeftInArray):
 		thrownDice[i].moveTo($DiceAnchor.position + Vector2(i* 110, 0))
 
 func changeHighlightedSprite(newHighlight):

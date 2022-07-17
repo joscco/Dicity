@@ -15,7 +15,6 @@ func _process(_delta):
 	var desiredEducationBarValue = GameManager.getEducationPercent()
 	var desiredFunBarValue = GameManager.getFunPercent()
 	
-	print(desiredFoodBarValue)
 
 	moneyBar.value = lerp(moneyBar.value, desiredMoneyBarValue, adaptationSpeed)
 	foodBar.value = lerp(foodBar.value, desiredFoodBarValue, adaptationSpeed)
