@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GameScene/MayorDialogue.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameScene/GameScene.gd" type="Script" id=2]
+[ext_resource path="res://GameScene/BackgroundStuffEmitter.gd" type="Script" id=3]
 [ext_resource path="res://GameScene/BoardRenderer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameScene/GUI/GameSceneGUI.tscn" type="PackedScene" id=5]
 
@@ -16,8 +17,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.984314, 0.964706, 0.835294, 1 )
 
+[node name="StuffRenderers" type="Node2D" parent="Background"]
+
+[node name="VerticalStuffRendererLeft" type="YSort" parent="Background/StuffRenderers"]
+position = Vector2( 24, 44 )
+script = ExtResource( 3 )
+height = 950
+width = 175
+numberOfStuffs = 30
+
+[node name="VerticalStuffRendererRight" type="YSort" parent="Background/StuffRenderers"]
+position = Vector2( 1753, 54 )
+script = ExtResource( 3 )
+height = 950
+width = 175
+numberOfStuffs = 30
+
+[node name="HorizontalStuffRenderer" type="YSort" parent="Background/StuffRenderers"]
+position = Vector2( 240, 41 )
+script = ExtResource( 3 )
+height = 150
+width = 1700
+numberOfStuffs = 60
+
 [node name="BoardRenderer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 184, 275 )
+position = Vector2( 241, 275 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 

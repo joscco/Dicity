@@ -23,7 +23,7 @@ var diceRerollsLeft = diceRerolls
 var typeChanges = 2
 var typeChangesLeft = typeChanges
 
-var gridWidth = 15
+var gridWidth = 14
 var gridHeight = 5
 var mountainCount = 30
 var maxMountainCount = 70
@@ -85,6 +85,7 @@ func nextRound():
 		TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
 	else:
 		getBoni()
+		rollsLeft = 10
 		diceRerollsLeft = diceRerolls
 		typeChangesLeft = typeChanges
 		diceRollScreen.throwDice()

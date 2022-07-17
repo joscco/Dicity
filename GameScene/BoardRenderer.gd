@@ -25,7 +25,6 @@ func _ready():
 		for j in range(4):
 			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
 
-
 func indexToScreenPos(i,j):
 	return $BoardAnchor.position + Vector2(i*(100+offset),j*(100+offset))
 
