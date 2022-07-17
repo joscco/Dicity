@@ -11,12 +11,13 @@ func _ready():
 
 func _input(event):
 	if active:
-		if GameManager.currentAction == null:
-			if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-				if get_rect().has_point(get_local_mouse_position()):
-						SoundManager.playSound("diceroll")
-						wiggleSize()
-						GameManager.nextRound()
+		if not GameManager.showingDialogue:
+			if GameManager.currentAction == null:
+				if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+					if get_rect().has_point(get_local_mouse_position()):
+							SoundManager.playSound("diceroll")
+							wiggleSize()
+							GameManager.nextRound()
 
 func wiggleSize():
 	tween.interpolate_property(self, 'scale', null, Vector2(1.3, 1.3), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)

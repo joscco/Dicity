@@ -4,7 +4,7 @@ var currentAction = null
 var selectedDice = null
 var ghostSprite = null
 var diceRollScreen
-
+var showingDialogue = false
 var level = 1
 
 var food = 0

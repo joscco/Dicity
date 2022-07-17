@@ -70,6 +70,7 @@ func applyAction():
 		changeType(3)
 
 func _input(event):
+	if not GameManager.showingDialogue:
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
 				if event.pressed:

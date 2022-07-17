@@ -4,6 +4,14 @@ var tutorialState = 0
 var tutorialOver = false
 var lastHint = null
 
+func _ready():
+	GameManager.showingDialogue = true
+	$TutorialText.text = tutorialTexts[0]
+	$HintText.hide()
+	$HintSpeechbubble.hide()
+	$HintNextButton.hide()
+
+
 var tutorialTexts = [\
 "Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but alas my family keeps assigning me project after project.",\
 "Would you mind taking over for me? At least for a little while, so I can hone my Yahtzee skills.",\
@@ -39,18 +47,27 @@ var hintTexts =[\
 func next():
 	tutorialState += 1
 	if not tutorialOver and tutorialState < tutorialTexts.size():
-		$Speechbubble/Text.text = tutorialTexts[tutorialState]
+		GameManager.showingDialogue = true
+		$TutorialText.text = tutorialTexts[tutorialState]
 	else:
 		tutorialOver = true
-		$Speechbubble.hide()
-		$NextButton.hide()
+		$TutorialText.hide()
+		$TutorialSpeechbubble.hide()
+		$TutorialNextButton.hide()
+		
+		$HintText.hide()
+		$HintSpeechbubble.hide()
+		$HintNextButton.hide()
+		GameManager.showingDialogue = false
 
 func hint():
 	if tutorialOver:
+		GameManager.showingDialogue = true
 		var hintIndex = randi() % hintTexts.size()
 		while hintIndex == lastHint:
 			hintIndex = randi() % hintTexts.size()
 		lastHint = hintIndex
-		$Speechbubble.show()
-		$NextButton.show()
-		$Speechbubble/Text.text = hintTexts[hintIndex]
+		$HintText.show()
+		$HintSpeechbubble.show()
+		$HintNextButton.show()
+		$HintText.text = hintTexts[hintIndex]
