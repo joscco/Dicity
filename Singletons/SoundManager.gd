@@ -47,15 +47,7 @@ func unmute():
 	musicPlayer.stream_paused = false
 	soundPlayer.stream_paused = false
 	
-func playSound(sfx = "hit"):
-	if sfx == "hit":
-		soundPlayer.stream = HitSound
-	if sfx == "shells":
-		soundPlayer.stream = ShellSound
-	if sfx == "shoot":
-		soundPlayer.stream = ShootSound
-	if sfx == "blip":
-		soundPlayer.stream = BlipSound
+func playSound(sfx: String):
 	if sfx == "diceroll":
 		soundPlayer.stream = DiceSound
 	if sfx == "error":

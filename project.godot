@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Reference",
-"class": "Player",
-"language": "GDScript",
-"path": "res://OldGameScene/Characters/Player.gd"
-} ]
-_global_script_class_icons={
-"Player": ""
-}
-
 [application]
 
 config/name="GMTK 2022 Team Jolex"

@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Graphics/GameOverScreen/ohNo.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/Pattern2.png" type="Texture" id=4]
 [ext_resource path="res://GameOverScene/GUI/AgainButton.gd" type="Script" id=5]
-[ext_resource path="res://OldGameScene/GUI/ParallaxBackground.gd" type="Script" id=6]
+[ext_resource path="res://GeneralScene/GUI/ParallaxBackground.gd" type="Script" id=6]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/over.png" type="Texture" id=7]
 
 [node name="GameOverScene" type="Node"]
