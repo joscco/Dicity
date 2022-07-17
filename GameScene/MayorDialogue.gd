@@ -37,4 +37,9 @@ var hintTexts =[\
 
 func next():
 	tutorialState += 1
-	$Speechbubble/Text.text = tutorialTexts[tutorialState]
+	if tutorialState < tutorialTexts.size() and not tutorialOver:
+		$Speechbubble/Text.text = tutorialTexts[tutorialState]
+	else:
+		tutorialOver = true
+		$Speechbubble.hide()
+		$NextButton.hide()
