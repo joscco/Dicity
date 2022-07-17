@@ -22,4 +22,4 @@ position = Vector2( 184, 275 )
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 
 [node name="Mayor" parent="." instance=ExtResource( 1 )]
-position = Vector2( 60, 740 )
+position = Vector2( 108, 740 )
