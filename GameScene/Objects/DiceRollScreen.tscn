@@ -68,6 +68,7 @@ texture = ExtResource( 5 )
 script = ExtResource( 12 )
 
 [node name="CancelButton" type="Sprite" parent="Overlay"]
-position = Vector2( 873, -22 )
+position = Vector2( 855, -22 )
+scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 11 )
 script = ExtResource( 13 )

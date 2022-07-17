@@ -55,13 +55,39 @@ func _process(_delta):
 			ghostSprite.texture = null
 		else:
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
+			
+func startNewGame():
+	level = 1
+	food = 0
+	fun = 0
+	education = 0
+	money = 0
+
+	rollsLeft = 10
+
+	diceCount = 5
+	diceLeft = diceCount
+
+	diceRerolls = 2
+	diceRerollsLeft = diceRerolls
+
+	typeChanges = 2
+	typeChangesLeft = typeChanges
+
+	gridWidth = 15
+	gridHeight = 5
+	mountainCount = 30
+	maxMountainCount = 70
 
 func nextRound():
 	rollsLeft -= 1
-	getBoni()
-	diceRerollsLeft = diceRerolls
-	typeChangesLeft = typeChanges
-	diceRollScreen.throwDice()
+	if rollsLeft <= 0 and money < getMoneyNeededForThisLevel():
+		TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
+	else:
+		getBoni()
+		diceRerollsLeft = diceRerolls
+		typeChangesLeft = typeChanges
+		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
 	return int(sqrt(level) * 10)
