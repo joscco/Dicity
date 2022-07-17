@@ -12,6 +12,9 @@ const TYPE = {
 
 var boardState
 
+func shuffleNewBoard(height, width, blockers = 0):
+	boardState = createEmptyBoardState(height, width, blockers)
+
 func createMatrix(width, height):
 	var matrix = []
 

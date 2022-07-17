@@ -24,7 +24,14 @@ var typeChangesLeft = typeChanges
 
 var gridWidth = 15
 var gridHeight = 5
-var mountainCount = 35
+var mountainCount = 30
+var maxMountainCount = 70
+
+var boardRenderer = null
+
+func setBoardRenderer(renderer):
+	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
+	boardRenderer = renderer
 
 func _ready():
 	ghostSprite = Sprite.new()
@@ -73,6 +80,10 @@ func updateStats():
 func levelUp():
 	showLevelUpScreen()
 	level += 1
+	mountainCount = clamp(mountainCount + 5, 0, maxMountainCount)
+	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
+	boardRenderer.refreshBoardState()
+	updateStats()
 	
 func showLevelUpScreen():
 	# Implement UI here

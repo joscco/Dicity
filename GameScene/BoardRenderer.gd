@@ -13,9 +13,8 @@ export (PackedScene) var tile
 
 onready var boardManager = BoardManager
 
-
 func _ready():
-	boardManager.boardState = boardManager.createEmptyBoardState(GameManager.gridHeight,GameManager.gridWidth,GameManager.mountainCount)
+	GameManager.setBoardRenderer(self)
 	for i in range(-1,7):
 		for j in range(4):
 			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
@@ -50,7 +49,6 @@ func drawboardState():
 			newTile.index = [row,column]
 			add_child(newTile)
 			indexToTileDict[[row,column]] = newTile
-
 
 func refreshBoardState():
 	var rows = BoardManager.boardState.size()

@@ -51,6 +51,7 @@ texture = ExtResource( 11 )
 [node name="LevelCount" type="Label" parent="MoneyBar/LevelCountBack"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 62, 62 )
 theme = ExtResource( 2 )
 custom_colors/font_color = Color( 0.984314, 0.964706, 0.835294, 1 )
 text = "42"
