@@ -38,3 +38,4 @@ func changeHighlightedSprite(newHighlight):
 	
 func toggleOverlay():
 	$Overlay.visible = !$Overlay.visible
+	$NextRoundSprite.visible = !$NextRoundSprite.visible

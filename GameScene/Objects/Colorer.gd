@@ -11,8 +11,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 		if get_rect().has_point(get_local_mouse_position()):
-			if event.pressed:
-				toggleState()
+			toggleState()
 
 func toggleState():
 	
