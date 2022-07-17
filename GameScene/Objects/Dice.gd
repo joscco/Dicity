@@ -71,14 +71,15 @@ func _input(event):
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
 			if $DiceSprite.get_rect().has_point(get_local_mouse_position()):
 				if event.pressed:
+					SoundManager.playSound("plop")
 					applyAction()
 
 func highlight():
-	scaleTween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	scaleTween.interpolate_property(self,'scale',null,Vector2(1.3,1.3), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	scaleTween.start()
 
 func delight():
-	scaleTween.interpolate_property(self,'scale',null,Vector2(1,1),0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	scaleTween.interpolate_property(self,'scale',null,Vector2(1,1), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	scaleTween.start()
 
 func toggleState():

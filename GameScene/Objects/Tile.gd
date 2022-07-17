@@ -34,6 +34,7 @@ func _input(event):
 						SoundManager.playSound('error')
 						print('cant place on existing die') 
 					else:
+						SoundManager.playSound("plop")
 						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
 						BoardManager.boardState[index[0]][index[1]] = value
 						BoardManager.negativeImpact(index[0],index[1])
