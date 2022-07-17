@@ -64,6 +64,10 @@ func refreshBoardState():
 	for row in range(rows):
 		for column in range(columns):
 			var tileToRefresh = indexToTileDict[[row,column]]
+			
+			tileToRefresh.multiplier = boardManager.indexToClusterSize(row,column)
+			tileToRefresh.updateMultiplier()
+			
 			var newState = boardManager.boardState[row][column]
 			
 			tileToRefresh.value = newState

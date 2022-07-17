@@ -4,6 +4,7 @@ extends Node2D
 var tween
 var value = [0,0]
 var index
+var multiplier = 0
 
 onready var sprite : Sprite = $Sprite
 onready var selectionOverlay : Sprite = $Sprite/SelectionOverlay
@@ -73,3 +74,10 @@ func _input(event):
 			highlight()
 	else:
 		delight()
+
+
+func updateMultiplier():
+	if multiplier > 1:
+		$Sprite/Multiplier.text = 'x'+str(multiplier)
+	else:
+		$Sprite/Multiplier.text = ''

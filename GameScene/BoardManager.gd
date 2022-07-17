@@ -214,3 +214,12 @@ func negativeImpact(i,j):
 					if boardState[member[0]][member[1]+1][1]!=clusterType[1]:
 						boardState[member[0]][member[1]+1][0] = max(0,boardState[member[0]][member[1]+1][0]-malus)
 
+func indexToClusterSize(i,j):
+	var valueAtIndex = boardState[i][j]
+	if valueAtIndex[0] < 1:
+		return 0
+	
+	var filteredByType = filterByType(boardState, valueAtIndex[1])
+	var filteredByNumber = filterByNumber(filteredByType, valueAtIndex[0])
+	var cluster = getOneConnectedComponent(filteredByNumber,i,j)
+	return cluster.size()
