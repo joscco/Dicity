@@ -20,10 +20,14 @@ func _on_Tween_tween_completed(_object, _key):
 	_start_tween()
 
 func highlight():
-	$Sprite.modulate = Color.blue
+	if GameManager.selectedDice != null:
+		if value[0]!=0:
+			$Sprite.texture = boardRenderer.typeToSlotDict[-1]
+		else: 
+			$Sprite.texture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
 	
 func  delight():
-	$Sprite.modulate = Color.white
+	$Sprite.texture  = boardRenderer.indexToSpriteDict[value]
 #Nils
 func _input(event):
 	if $Sprite.get_rect().has_point(get_local_mouse_position()):

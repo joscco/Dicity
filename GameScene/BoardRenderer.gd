@@ -6,6 +6,8 @@ var offset = 10
 var indexToSpriteDict = {}
 var indexToTileDict = {}
 
+var typeToSlotDict = {-1:load('res://Assets/Graphics/SlotSelection/notWorking.png'),0:load('res://Assets/Graphics/DiceGraphics/emptyField.png'),1:load('res://Assets/Graphics/SlotSelection/yellowSlot.png'),2:load('res://Assets/Graphics/SlotSelection/redSlot.png'),3:load('res://Assets/Graphics/SlotSelection/beigeSlot.png'),4:load('res://Assets/Graphics/SlotSelection/blackSlot.png')}
+
 
 export (PackedScene) var tile
 
