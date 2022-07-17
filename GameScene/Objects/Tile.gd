@@ -5,14 +5,14 @@ var tween
 var value = [0,0]
 var index
 
-onready var tween_values = [Vector2(1,1), Vector2(1.1,1.1)]
+onready var tween_values = [Vector2(1,1), Vector2(0.98, 1.05)]
 onready var boardRenderer = get_parent()
 
 func _ready():
 	tween = $Tween
 
 func _start_tween():
-	tween.interpolate_property(self,'scale',tween_values[0],tween_values[1],2,Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)    
+	tween.interpolate_property(self,'scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
 	tween.start()
 
 func _on_Tween_tween_completed(_object, _key):
@@ -26,7 +26,7 @@ func highlight():
 		else: 
 			$Sprite.texture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
 	
-func  delight():
+func delight():
 	$Sprite.texture  = boardRenderer.indexToSpriteDict[value]
 #Nils
 func _input(event):
@@ -50,10 +50,7 @@ func _input(event):
 						GameManager.diceRollScreen.moveUpDice()
 						boardRenderer.refreshBoardState()
 						_start_tween()
-						
-						
 
-						
 		else:
 			highlight()
 	else:

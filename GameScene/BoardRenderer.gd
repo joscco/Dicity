@@ -49,7 +49,9 @@ func drawboardState():
 	for row in range(rows):
 		for column in range(columns):
 			var newTile = tile.instance()
-			newTile.get_node('Sprite').texture = indexToSpriteDict[boardManager.boardState[row][column]]
+			var newTexture = indexToSpriteDict[boardManager.boardState[row][column]]
+			newTile.get_node('Sprite').texture = newTexture
+			newTile.get_node('Sprite').offset = Vector2(-newTexture.get_width() / 2, -newTexture.get_height())
 			newTile.position = indexToScreenPos(row, column)
 			newTile.value = boardManager.boardState[row][column]
 			newTile.index = [row,column]
@@ -64,7 +66,11 @@ func refreshBoardState():
 			var tileToRefresh = indexToTileDict[[row,column]]
 			var newState = boardManager.boardState[row][column]
 			
-			tileToRefresh.get_node('Sprite').texture = indexToSpriteDict[newState]
 			tileToRefresh.value = newState
-			if tileToRefresh.value[0]<1:
+			if tileToRefresh.value[0] < 1 :
 				tileToRefresh.tween.stop_all()
+			
+			var spriteToRefresh : Sprite = tileToRefresh.get_node('Sprite')
+			var newTexture : StreamTexture = indexToSpriteDict[newState]
+			spriteToRefresh.texture = newTexture
+			spriteToRefresh.offset = Vector2(-newTexture.get_width() / 2, -newTexture.get_height())

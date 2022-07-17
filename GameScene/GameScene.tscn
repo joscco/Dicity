@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 color = Color( 0.984314, 0.964706, 0.835294, 1 )
 
 [node name="BoardRenderer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 184, 217 )
+position = Vector2( 184, 275 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 

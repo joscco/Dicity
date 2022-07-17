@@ -29,7 +29,8 @@ func moveTo(newPosition: Vector2):
 
 func changeSprite():
 	var imgPathToLoad = 'res://Assets/Graphics/DiceGraphics/'+typeMap[type]+'/dice'+str(eyes)+'.png'
-	$DiceSprite.texture = load(imgPathToLoad)
+	var spriteTexture = load(imgPathToLoad)
+	$DiceSprite.texture = spriteTexture
 	SoundManager.playSound('diceroll')
 
 func reroll():
