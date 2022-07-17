@@ -81,22 +81,28 @@ func startNewGame():
 
 func nextRound():
 	rollsLeft -= 1
-	if rollsLeft <= 0 and money < getMoneyNeededForThisLevel():
+	
+	var moneyNotReachedOnEndOfTime: bool = rollsLeft <= 0 and money < getMoneyNeededForThisLevel()
+	var foodCrashed : bool = getFoodPercent() <= 0
+	var funCrashed : bool = getFoodPercent() <= 0
+	var educationCrashed : bool = getFoodPercent() <= 0
+	
+	if moneyNotReachedOnEndOfTime or foodCrashed or funCrashed or educationCrashed:
 		TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
 	else:
 		getBoni()
 		diceRerollsLeft = diceRerolls
 		typeChangesLeft = typeChanges
+		diceLeft = diceCount
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
 	return int(sqrt(level) * 10)
 
 func getBoni():
-	var currentScore = BoardManager.getPointsForAllTypes()
-	diceCount = int(currentScore[0]/20) + 2
-	diceRerolls = int(currentScore[1]/20) + 2
-	typeChanges = int(currentScore[2]/20) + 2
+	diceRerolls = int(getFunPercent()/20) + 1
+	diceCount = int(getFoodPercent()/20) + 1
+	typeChanges = int(getEducationPercent()/20) + 1
 	
 func updateStats():
 	var currentScore = BoardManager.getPointsForAllTypes()
@@ -127,21 +133,12 @@ func getMoneyPercent():
 	
 func getEducationPercent():
 	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3
-	if educationNeededForIndustry == 0:
-		return 50
-	else:
-		return clamp(50 + education - educationNeededForIndustry, 0, 100)
+	return clamp(50 + education - educationNeededForIndustry, 0, 100)
 	
 func getFunPercent():
 	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 2
-	if funNeededForIndustry == 0:
-		return 50
-	else:
-		return clamp(50 + fun - funNeededForIndustry, 0, 100)
+	return clamp(50 + fun - funNeededForIndustry, 0, 100)
 	
 func getFoodPercent():
 	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 4
-	if foodNeededForIndustry == 0:
-		return 50
-	else:
-		return clamp(50 + food - foodNeededForIndustry, 0, 100)
+	return clamp(50 + food - foodNeededForIndustry, 0, 100)

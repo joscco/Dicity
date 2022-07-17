@@ -42,7 +42,7 @@ func on_level_up():
 
 func _process(_delta):
 	
-	roundsLeftLabel.text = str(10 - GameManager.rollsLeft + 1) + "/10"
+	roundsLeftLabel.text = str(clamp(10 - GameManager.rollsLeft + 1, 0, 10)) + "/10"
 	percentageDisplay.text = str(GameManager.money) + "/" + str(GameManager.getMoneyNeededForThisLevel())
 	
 	foodEffectLabel.text = str(GameManager.diceCount)
