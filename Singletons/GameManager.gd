@@ -85,7 +85,6 @@ func nextRound():
 		TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
 	else:
 		getBoni()
-		rollsLeft = 10
 		diceRerollsLeft = diceRerolls
 		typeChangesLeft = typeChanges
 		diceRollScreen.throwDice()
@@ -117,6 +116,7 @@ func levelUp():
 	
 	# Update Stats and create new board
 	level += 1
+	rollsLeft = 10
 	mountainCount = clamp(mountainCount + 5, 0, maxMountainCount)
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
 	boardRenderer.refreshBoardState()
