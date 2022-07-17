@@ -7,6 +7,7 @@ var thrownDice = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Overlay.visible = false
 	throwDice()
 	GameManager.diceRollScreen = self
 
@@ -35,4 +36,5 @@ func changeHighlightedSprite(newHighlight):
 	currentActionSprite = newHighlight
 	currentActionSprite.highlight()
 	
-	
+func toggleOverlay():
+	$Overlay.visible = !$Overlay.visible

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Graphics/UI/nextThrowButton.png" type="Texture" id=1]
 [ext_resource path="res://GameScene/Objects/DiceRollScreen.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/red.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/black.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Graphics/SlotSelection/cancelButton.png" type="Texture" id=11]
+[ext_resource path="res://GameScene/Objects/Overlay.gd" type="Script" id=12]
 [ext_resource path="res://GameScene/Objects/NextRoundSprite.gd" type="Script" id=14]
 [ext_resource path="res://Assets/Graphics/UI/slotsBackground.png" type="Texture" id=15]
 [ext_resource path="res://GameScene/Objects/Dice.tscn" type="PackedScene" id=16]
@@ -56,15 +57,15 @@ position = Vector2( 853, -26 )
 texture = ExtResource( 1 )
 script = ExtResource( 14 )
 
-[node name="Overlay" type="Node" parent="."]
+[node name="Overlay" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource( 12 )
 
 [node name="OverlayBackground" type="Sprite" parent="Overlay"]
 modulate = Color( 1, 1, 1, 0.560784 )
-position = Vector2( 0, -445 )
-z_index = 1
+position = Vector2( 0, -713 )
 texture = ExtResource( 5 )
 
 [node name="CancelButton" type="Sprite" parent="Overlay"]
-position = Vector2( 890, 1 )
-z_index = 2
+position = Vector2( 730, -328 )
 texture = ExtResource( 11 )

@@ -15,6 +15,7 @@ func _input(event):
 				toggleState()
 				
 func toggleState():
+	diceRollScreen.toggleOverlay()
 	if GameManager.currentAction == 'changeNumber':
 		GameManager.currentAction = null
 		delight()

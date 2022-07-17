@@ -15,6 +15,9 @@ func _input(event):
 				toggleState()
 
 func toggleState():
+	
+	diceRollScreen.toggleOverlay()
+	
 	if GameManager.currentAction == methodName:
 		GameManager.currentAction = null
 		diceRollScreen.currentActionSprite = null
