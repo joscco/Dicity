@@ -6,6 +6,7 @@ var value = [0,0]
 var index
 
 onready var sprite : Sprite = $Sprite
+onready var selectionOverlay : Sprite = $Sprite/SelectionOverlay
 onready var crossOverlay: Sprite = $Sprite/CrossOverlay
 
 onready var tween_values = [Vector2(1,1), Vector2(0.98, 1.05)]
@@ -13,6 +14,8 @@ onready var boardRenderer = get_parent()
 
 func _ready():
 	tween = $Tween
+	crossOverlay.hide()
+	selectionOverlay.hide()
 
 func _start_tween():
 	tween.interpolate_property(self,'scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
@@ -23,13 +26,16 @@ func _on_Tween_tween_completed(_object, _key):
 	_start_tween()
 
 func highlight():
+	crossOverlay.hide()
+	selectionOverlay.hide()
+
 	if GameManager.selectedDice != null:
-		var tempTexture : StreamTexture 
+		selectionOverlay.show()
+		selectionOverlay.texture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
 		if value[0] != 0:
-			crossOverlay.texture = boardRenderer.typeToSlotDict[-1]
+			crossOverlay.show()
 		else: 
-			crossOverlay.texture = null
-			tempTexture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
+			var tempTexture : StreamTexture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
 			$Sprite.texture = tempTexture
 			$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
 	
@@ -37,6 +43,8 @@ func delight():
 	var tempTexture : StreamTexture = boardRenderer.indexToSpriteDict[value]
 	$Sprite.texture = tempTexture
 	$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
+	selectionOverlay.hide()
+	crossOverlay.hide()
 
 #Nils
 func _input(event):
