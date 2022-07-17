@@ -1,11 +1,14 @@
 extends Node2D
 
 var tween
+export var type = ""
 onready var tween_values = [Vector2(.5,.5), Vector2(1.2, 1.2)]
 
 func _ready():
 	tween = $Tween
 	_start_tween()
+	hide()
+	GameManager.warnings[type]=self
 
 
 

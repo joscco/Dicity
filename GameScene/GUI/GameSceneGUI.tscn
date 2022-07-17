@@ -290,6 +290,7 @@ margin_bottom = -241.0
 [node name="FoodWarning" type="Node2D" parent="."]
 position = Vector2( 503, 747 )
 script = ExtResource( 27 )
+type = "food"
 
 [node name="FoodWarningText" type="Label" parent="FoodWarning"]
 grow_horizontal = 2
@@ -305,6 +306,7 @@ valign = 1
 [node name="MoodWarning" type="Node2D" parent="."]
 position = Vector2( 1082, 747 )
 script = ExtResource( 27 )
+type = "mood"
 
 [node name="FoodWarningText" type="Label" parent="MoodWarning"]
 grow_horizontal = 2
@@ -320,6 +322,7 @@ valign = 1
 [node name="EducationWarning" type="Node2D" parent="."]
 position = Vector2( 1646, 748 )
 script = ExtResource( 27 )
+type = "education"
 
 [node name="FoodWarningText" type="Label" parent="EducationWarning"]
 grow_horizontal = 2

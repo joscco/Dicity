@@ -7,9 +7,7 @@ var diceRollScreen
 var showingDialogue = false
 var level = 1
 
-var foodWarning
-var moodWarning
-var educationWarning
+var warnings = {}
 
 var food = 0
 var fun = 0
@@ -59,6 +57,21 @@ func _process(_delta):
 			ghostSprite.texture = null
 		else:
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
+			
+	if not warnings.empty():
+		if is_instance_valid(warnings['food']) and is_instance_valid(warnings['mood']) and is_instance_valid(warnings['education']):
+			if getFoodPercent() == 0:
+				warnings['food'].show()
+			else:
+				warnings['food'].hide()
+			if getFunPercent() == 0:
+				warnings['mood'].show()
+			else:
+				warnings['mood'].hide()
+			if getEducationPercent() == 0:
+				warnings['education'].show()
+			else:
+				warnings['education'].hide()
 			
 func startNewGame():
 	level = 1
