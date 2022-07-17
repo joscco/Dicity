@@ -4,6 +4,7 @@ export (PackedScene) var die
 
 var currentActionSprite = null
 var thrownDice = []
+var overlayActive = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -39,8 +40,14 @@ func changeHighlightedSprite(newHighlight):
 	currentActionSprite = newHighlight
 	currentActionSprite.highlight()
 	
+func toggleOverlay():
+	if overlayActive:
+		deactivateOverlay()
+	else:
+		activateOverlay()
 	
 func deactivateOverlay():
+	overlayActive = false
 	$NextRoundSprite.active = true
 	$Overlay/CancelButton.active = false
 	$NextRoundSprite.highlight()
@@ -48,6 +55,7 @@ func deactivateOverlay():
 	$Overlay/OverlayBackground.delight()
 	
 func activateOverlay():
+	overlayActive = true
 	$NextRoundSprite.active = false
 	$Overlay/CancelButton.active = true
 	$NextRoundSprite.delight()
