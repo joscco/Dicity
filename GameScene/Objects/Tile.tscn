@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Food/dice1.png" type="Texture" id=1]
 [ext_resource path="res://GameScene/Objects/Tile.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Graphics/SlotSelection/notWorking.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Graphics/SlotSelection/yellowSlot.png" type="Texture" id=4]
 
 [node name="Tile" type="Node2D"]
 script = ExtResource( 2 )
@@ -11,6 +13,19 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="CrossOverlay" type="Sprite" parent="Sprite"]
+visible = false
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -43, -92 )
+
+[node name="SelectionOverlay" type="Sprite" parent="Sprite"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( -50, -100 )
 
 [node name="Tween" type="Tween" parent="."]
 
