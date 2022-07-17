@@ -4,6 +4,7 @@ var tutorialState = 0
 var tutorialOver = false
 var lastHint = null
 
+
 func _ready():
 	GameManager.showingDialogue = true
 	$TutorialText.text = tutorialTexts[0]
@@ -11,7 +12,7 @@ func _ready():
 	$HintSpeechbubble.hide()
 	$HintNextButton.hide()
 
-
+	
 var tutorialTexts = [\
 "Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but alas my family keeps assigning me project after project.",\
 "Would you mind taking over for me? At least for a little while, so I can hone my Yahtzee skills.",\
@@ -20,7 +21,9 @@ var tutorialTexts = [\
 "Black buildings produce money. As a rule of thumb the larger the number, the larger the yield. Building a cluster of the same building will increase the yield of all buildings in the cluster.",\
 "But don't just go building huge clusters of factories. Firstly because you need food, entertainment and education to improve your luck with the dice and secondly because large clusters will negatively impact neighboring tiles.",\
 "Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either. Everything in moderation, I guess.",\
-"I'm sure you'll get the hang of it in no time."\
+"I'm sure you'll get the hang of it in no time.",\
+"Oh and one more thing: Use these buttons to change the color of a die or to reroll it. How often you can do that is governed by your city's education and entertainment level respectively. Your city's food influences how many dice you get each round.",\
+"Thank you so much, I'll be off practicing. Good luck!"\
 ]
 
 
