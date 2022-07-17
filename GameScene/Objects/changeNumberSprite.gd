@@ -16,13 +16,14 @@ func _input(event):
 				toggleState()
 				
 func toggleState():
-	diceRollScreen.toggleOverlay()
 	if GameManager.currentAction == 'changeNumber':
 		GameManager.currentAction = null
 		delight()
+		diceRollScreen.deactivateOverlay()
 	else:
 		GameManager.currentAction = 'changeNumber'
 		diceRollScreen.changeHighlightedSprite(self)
+		diceRollScreen.activateOverlay()
 
 
 func highlight():

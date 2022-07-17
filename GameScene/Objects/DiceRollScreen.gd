@@ -39,17 +39,17 @@ func changeHighlightedSprite(newHighlight):
 	currentActionSprite = newHighlight
 	currentActionSprite.highlight()
 	
-func toggleOverlay():
-	$NextRoundSprite.active = !$NextRoundSprite.active
-	$Overlay/CancelButton.active = !$Overlay/CancelButton.active
 	
-	if $NextRoundSprite.active:
-		$NextRoundSprite.highlight()
-		$Overlay/CancelButton.delight()
-		$Overlay/OverlayBackground.delight()
-	else:
-		$NextRoundSprite.delight()
-		$Overlay/CancelButton.highlight()
-		$Overlay/OverlayBackground.highlight()
+func deactivateOverlay():
+	$NextRoundSprite.active = true
+	$Overlay/CancelButton.active = false
+	$NextRoundSprite.highlight()
+	$Overlay/CancelButton.delight()
+	$Overlay/OverlayBackground.delight()
 	
-	
+func activateOverlay():
+	$NextRoundSprite.active = false
+	$Overlay/CancelButton.active = true
+	$NextRoundSprite.delight()
+	$Overlay/CancelButton.highlight()
+	$Overlay/OverlayBackground.highlight()

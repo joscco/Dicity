@@ -15,17 +15,18 @@ func _input(event):
 			toggleState()
 
 func toggleState():
-	
-	diceRollScreen.toggleOverlay()
+
 	
 	if GameManager.currentAction == methodName:
 		GameManager.currentAction = null
 		diceRollScreen.currentActionSprite = null
+		diceRollScreen.deactivateOverlay()
 		delight()
 	else:
 		GameManager.currentAction = methodName
 		GameManager.selectedDice = null
 		diceRollScreen.changeHighlightedSprite(self)
+		diceRollScreen.activateOverlay()
 
 func highlight():
 	# Put that thingy to the front
