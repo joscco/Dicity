@@ -80,3 +80,28 @@ func levelUp():
 func showLevelUpScreen():
 	# Implement UI here
 	pass
+	
+func getMoneyPercent():
+	return 100 * money / getMoneyNeededForThisLevel()
+	
+func getEducationPercent():
+	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	print(BoardManager.getIndustryPointsWithoutClusters())
+	if educationNeededForIndustry == 0:
+		return 50
+	else:
+		return clamp(50 + education - educationNeeded, 0, 100)
+	
+func getFunPercent():
+	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	if funNeededForIndustry == 0:
+		return 50
+	else:
+		return clamp(50 + fun - funNeeded, 0, 100)
+	
+func getFoodPercent():
+	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	if foodNeededForIndustry == 0:
+		return 50
+	else:
+		return clamp(50 + food - foodNeeded, 0, 100)

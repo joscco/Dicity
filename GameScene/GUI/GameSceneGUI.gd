@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+const adaptationSpeed = 0.1
+
 onready var moneyBar: TextureProgress = $MoneyBar
 onready var LevelCount: Label = $MoneyBar/LevelCountBack/LevelCount
 
@@ -8,8 +10,15 @@ onready var educationBar: TextureProgress = $HBoxContainer/EducationBar
 onready var funBar: TextureProgress = $HBoxContainer/FunBar
 
 func _process(_delta):
-	moneyBar.value = lerp(moneyBar.value, 100 * GameManager.money / GameManager.getMoneyNeededForThisLevel(), 0.1)
-	foodBar.value = lerp(foodBar.value, 100 * GameManager.food / GameManager.foodNeeded, 0.1)
-	educationBar.value = lerp(educationBar.value, 100 * GameManager.education / GameManager.educationNeeded, 0.1)
-	funBar.value = lerp(funBar.value, 100 * GameManager.fun / GameManager.funNeeded, 0.1)
+	var desiredMoneyBarValue = GameManager.getMoneyPercent()
+	var desiredFoodBarValue = GameManager.getFoodPercent()
+	var desiredEducationBarValue = GameManager.getEducationPercent()
+	var desiredFunBarValue = GameManager.getFunPercent()
+	
+	print(desiredFoodBarValue)
+
+	moneyBar.value = lerp(moneyBar.value, desiredMoneyBarValue, adaptationSpeed)
+	foodBar.value = lerp(foodBar.value, desiredFoodBarValue, adaptationSpeed)
+	educationBar.value = lerp(educationBar.value, desiredEducationBarValue, adaptationSpeed)
+	funBar.value = lerp(funBar.value, desiredFunBarValue, adaptationSpeed)
 	

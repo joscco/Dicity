@@ -2,6 +2,14 @@ extends Node
 
 var dummyGameState = []
 
+# Remember: 0 = Food, 1 = Fun, 2 = Education, 3 = Industry
+const TYPE = {
+	FOOD = 0,
+	FUN = 1,
+	EDUCATION = 2,
+	INDUSTRY = 3
+}
+
 var boardState
 
 func createMatrix(width, height):
@@ -52,8 +60,8 @@ func prettyPrint(matrix):
 	for i in range(matrix.size()):
 		print(matrix[i])
 	
-
-func filterByType(matrix,type):
+# Returns 2D Array
+func filterByType(matrix,type) :
 	var rows = matrix.size()
 	var columns = matrix[0].size()
 	
@@ -146,6 +154,33 @@ func getPointsForAllTypes(matrix = boardState):
 		allPoints[i] = getPointsForOneType(filterByType(matrix,i))
 	return allPoints
 
+func getIndustryPointsWithoutClusters() -> int:
+	var filteredByType = filterByType(boardState, TYPE.INDUSTRY)
+	return getSumOfNonNullEntries(filteredByType)
+
+func getNumberOfIndustryBuildings() -> int:
+	var filteredByType = filterByType(boardState, TYPE.INDUSTRY)
+	return getNumberOfNonNullEntries(filteredByType)
+	
+func getNumberOfNonNullEntries(matrix) -> int:
+	var result = 0
+	var rows = matrix.size()
+	var columns = matrix[0].size()
+	for row in range(rows):
+		for column in range(columns):
+			if matrix[row][column] != 0:
+				result += 1
+	return result
+	
+func getSumOfNonNullEntries(matrix) -> int:
+	var result = 0
+	var rows = matrix.size()
+	var columns = matrix[0].size()
+	for row in range(rows):
+		for column in range(columns):
+			if matrix[row][column] != 0:
+				result += matrix[row][column]
+	return result
 
 func negativeImpact(i,j):
 	
