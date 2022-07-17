@@ -68,16 +68,16 @@ custom_colors/font_color = Color( 0.988235, 0.968627, 0.847059, 1 )
 text = "23"
 
 [node name="PointsCount" type="Label" parent="."]
-margin_left = 1613.0
+margin_left = 1605.0
 margin_top = 669.0
-margin_right = 1721.0
+margin_right = 1821.0
 margin_bottom = 792.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 0, 61 )
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 0.988235, 0.968627, 0.847059, 1 )
-text = "14"
+text = "1042"
 align = 1
 valign = 1
 
