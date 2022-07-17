@@ -5,6 +5,7 @@ var selectedDice = null
 var ghostSprite = null
 var diceRollScreen
 
+var level = 1
 var food = 0
 var fun = 0
 var education = 0
@@ -25,7 +26,6 @@ var gridWidth = 15
 var gridHeight = 5
 var mountainCount = 35
 
-var moneyToEarn = 100
 var foodNeeded = 100
 var educationNeeded = 100
 var funNeeded = 100
@@ -39,15 +39,23 @@ func _ready():
 func _process(_delta):
 	if selectedDice != null:
 		ghostSprite.texture = selectedDice.get_node('DiceSprite').texture
+		## Make the ghost follow smoothly
 		ghostSprite.position = get_local_mouse_position()
+		ghostSprite.scale = lerp(ghostSprite.scale, Vector2(1,1), 0.3)
 	else:
-		ghostSprite.texture = null
+		if ghostSprite.scale == Vector2(0, 0):
+			ghostSprite.texture = null
+		else:
+			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
 
 func nextRound():
 	rollsLeft -= 1
 	getBoni()
 	diceRerollsLeft = diceRerolls
 	typeChangesLeft = typeChanges
+	
+func getMoneyNeededForThisLevel() -> int:
+	return int(sqrt(level) * 30)
 
 func getBoni():
 	var currentScore = BoardManager.getPointsForAllTypes()
@@ -61,3 +69,14 @@ func updateStats():
 	fun = currentScore[1]
 	education = currentScore[2]
 	money = currentScore[3]
+	
+	if money >= getMoneyNeededForThisLevel():
+		levelUp()
+
+func levelUp():
+	showLevelUpScreen()
+	level += 1
+	
+func showLevelUpScreen():
+	# Implement UI here
+	pass

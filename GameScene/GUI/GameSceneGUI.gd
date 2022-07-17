@@ -8,8 +8,8 @@ onready var educationBar: TextureProgress = $HBoxContainer/EducationBar
 onready var funBar: TextureProgress = $HBoxContainer/FunBar
 
 func _process(_delta):
-	moneyBar.value = 100 * GameManager.money / GameManager.moneyToEarn
-	foodBar.value = 100 * GameManager.food / GameManager.foodNeeded
-	educationBar.value = 100 * GameManager.education / GameManager.educationNeeded
-	funBar.value = 100 * GameManager.fun / GameManager.funNeeded
+	moneyBar.value = lerp(moneyBar.value, 100 * GameManager.money / GameManager.getMoneyNeededForThisLevel(), 0.1)
+	foodBar.value = lerp(foodBar.value, 100 * GameManager.food / GameManager.foodNeeded, 0.1)
+	educationBar.value = lerp(educationBar.value, 100 * GameManager.education / GameManager.educationNeeded, 0.1)
+	funBar.value = lerp(funBar.value, 100 * GameManager.fun / GameManager.funNeeded, 0.1)
 	
