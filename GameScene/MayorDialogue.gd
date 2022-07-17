@@ -2,6 +2,7 @@ extends Node2D
 
 var tutorialState = 0
 var tutorialOver = false
+var lastHint = null
 
 var tutorialTexts = [\
 "Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but alas my family keeps assigning me project after project.",\
@@ -37,9 +38,19 @@ var hintTexts =[\
 
 func next():
 	tutorialState += 1
-	if tutorialState < tutorialTexts.size() and not tutorialOver:
+	if not tutorialOver and tutorialState < tutorialTexts.size():
 		$Speechbubble/Text.text = tutorialTexts[tutorialState]
 	else:
 		tutorialOver = true
 		$Speechbubble.hide()
 		$NextButton.hide()
+
+func hint():
+	if tutorialOver:
+		var hintIndex = randi() % hintTexts.size()
+		while hintIndex == lastHint:
+			hintIndex = randi() % hintTexts.size()
+		lastHint = hintIndex
+		$Speechbubble.show()
+		$NextButton.show()
+		$Speechbubble/Text.text = hintTexts[hintIndex]
