@@ -20,14 +20,14 @@ script = ExtResource( 8 )
 script = ExtResource( 6 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 2000, 1200 )
+motion_mirroring = Vector2( 2000, 1600 )
 
 [node name="BackgroundPattern" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 z_as_relative = false
 texture = ExtResource( 4 )
 centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 2000, 1200 )
+region_rect = Rect2( 0, 0, 2000, 1600 )
 
 [node name="Game" type="Sprite" parent="."]
 position = Vector2( 954.5, 315.5 )
