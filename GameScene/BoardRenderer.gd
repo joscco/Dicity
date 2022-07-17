@@ -6,8 +6,14 @@ var offset = 10
 var indexToSpriteDict = {}
 var indexToTileDict = {}
 
-var typeToSlotDict = {-1:load('res://Assets/Graphics/SlotSelection/notWorking.png'),0:load('res://Assets/Graphics/DiceGraphics/emptyField.png'),1:load('res://Assets/Graphics/SlotSelection/yellowSlot.png'),2:load('res://Assets/Graphics/SlotSelection/redSlot.png'),3:load('res://Assets/Graphics/SlotSelection/beigeSlot.png'),4:load('res://Assets/Graphics/SlotSelection/blackSlot.png')}
-
+var typeToSlotDict = {
+	-1:load('res://Assets/Graphics/SlotSelection/notWorking.png'),
+	0:load('res://Assets/Graphics/DiceGraphics/emptyField.png'),
+	1:load('res://Assets/Graphics/SlotSelection/yellowSlot.png'),
+	2:load('res://Assets/Graphics/SlotSelection/redSlot.png'),
+	3:load('res://Assets/Graphics/SlotSelection/beigeSlot.png'),
+	4:load('res://Assets/Graphics/SlotSelection/blackSlot.png')
+}
 
 export (PackedScene) var tile
 
@@ -30,9 +36,9 @@ func screnPosToIndex(mousePosition):
 	return [i,j]
 
 func elementToSpritePath(element):
-	if element[0]==0:
+	if element[0] == 0:
 		return 'res://Assets/Graphics/DiceGraphics/emptyField.png'
-	if element[0]==-1:
+	if element[0] == -1:
 		return 'res://Assets/Graphics/DiceGraphics/blocker'+str(element[1]%2+1)+'.png'
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
