@@ -23,10 +23,10 @@ var tutorialTexts = [\
 "Basically if the city doesn't produce enough money after a certain amount of dice rolls they will come check up on me and then we are busted.",\
 "Black buildings produce money. As a rule of thumb the larger the number, the larger the yield. Building a cluster of the same building will increase the yield of all buildings in the cluster.",\
 "But don't just go building huge clusters of factories. Firstly because you need food, entertainment and education to improve your luck with the dice and secondly because large clusters will negatively impact neighboring tiles.",\
-"Also if your city has no food, entertainment or education at the end of the turn my family will know right away.",\
 "Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either. Everything in moderation, I guess.",\
+"Also if your city has no food, entertainment or education at the end of the turn my family will know right away.",\
+"Use the buttons on the left to change the color of a die or to reroll it. How often you can do that is governed by your city's education and entertainment level respectively. Your city's food influences how many dice you get each round.",\
 "I'm sure you'll get the hang of it in no time.",\
-"Oh and one more thing: Use these buttons to change the color of a die or to reroll it. How often you can do that is governed by your city's education and entertainment level respectively. Your city's food influences how many dice you get each round.",\
 "Thank you so much, I'll be off practicing. Good luck!"
 ]
 
