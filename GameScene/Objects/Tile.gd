@@ -5,6 +5,9 @@ var tween
 var value = [0,0]
 var index
 
+onready var sprite : Sprite = $Sprite
+onready var crossOverlay: Sprite = $Sprite/CrossOverlay
+
 onready var tween_values = [Vector2(1,1), Vector2(0.98, 1.05)]
 onready var boardRenderer = get_parent()
 
@@ -21,13 +24,20 @@ func _on_Tween_tween_completed(_object, _key):
 
 func highlight():
 	if GameManager.selectedDice != null:
-		if value[0]!=0:
-			$Sprite.texture = boardRenderer.typeToSlotDict[-1]
+		var tempTexture : StreamTexture 
+		if value[0] != 0:
+			crossOverlay.texture = boardRenderer.typeToSlotDict[-1]
 		else: 
-			$Sprite.texture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
+			crossOverlay.texture = null
+			tempTexture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
+			$Sprite.texture = tempTexture
+			$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
 	
 func delight():
-	$Sprite.texture  = boardRenderer.indexToSpriteDict[value]
+	var tempTexture : StreamTexture = boardRenderer.indexToSpriteDict[value]
+	$Sprite.texture = tempTexture
+	$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
+
 #Nils
 func _input(event):
 	if $Sprite.get_rect().has_point(get_local_mouse_position()):
