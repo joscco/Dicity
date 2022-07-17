@@ -6,6 +6,7 @@ var ghostSprite = null
 var diceRollScreen
 
 var level = 1
+
 var food = 0
 var fun = 0
 var education = 0
@@ -28,10 +29,14 @@ var mountainCount = 30
 var maxMountainCount = 70
 
 var boardRenderer = null
+var guiManager = null
 
 func setBoardRenderer(renderer):
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
 	boardRenderer = renderer
+	
+func setGUIManager(manager):
+	guiManager = manager
 
 func _ready():
 	ghostSprite = Sprite.new()
@@ -59,7 +64,7 @@ func nextRound():
 	diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
-	return int(sqrt(level) * 30)
+	return int(sqrt(level) * 10)
 
 func getBoni():
 	var currentScore = BoardManager.getPointsForAllTypes()
@@ -78,16 +83,17 @@ func updateStats():
 		levelUp()
 
 func levelUp():
-	showLevelUpScreen()
+	# Give some Player feedback
+	SoundManager.playSound("success")
+	guiManager.on_level_up()
+	yield(guiManager, "level_up_screen_done")
+	
+	# Update Stats and create new board
 	level += 1
 	mountainCount = clamp(mountainCount + 5, 0, maxMountainCount)
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
 	boardRenderer.refreshBoardState()
 	updateStats()
-	
-func showLevelUpScreen():
-	# Implement UI here
-	pass
 	
 func getMoneyPercent():
 	return 100 * money / getMoneyNeededForThisLevel()
