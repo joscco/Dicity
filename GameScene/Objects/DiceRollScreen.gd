@@ -9,6 +9,7 @@ var thrownDice = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Overlay/OverlayBackground.delight()
+	$Overlay/CancelButton.delight()
 	throwDice()
 	GameManager.diceRollScreen = self
 
