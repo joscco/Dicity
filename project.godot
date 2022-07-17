@@ -10,10 +10,11 @@ config_version=4
 
 [application]
 
-config/name="GMTK 2022 Team Jolex"
-config/description="The GMTK 2022 entry of team Jolex"
+config/name="Dicity"
+config/description="The GMTK 2022 entry of team joscco & exla"
 run/main_scene="res://StartScene/StartScene.tscn"
-config/icon="res://icon.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://Assets/Graphics/StartScreen/titleDice.png"
 
 [autoload]
 

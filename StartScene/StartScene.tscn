@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://StartScene/GUI/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Graphics/StartScreen/startButton.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Graphics/StartScreen/title.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Graphics/StartScreen/topSubTitle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Graphics/StartScreen/a game by joscco & exla.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Graphics/StartScreen/titleDice.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Graphics/StartScreen/DICIT.png" type="Texture" id=5]
 [ext_resource path="res://GeneralScene/GUI/ParallaxBackground.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Graphics/StartScreen/Pattern1.png" type="Texture" id=9]
 
@@ -23,12 +24,17 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2000, 1200 )
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 954.5, 449 )
-texture = ExtResource( 3 )
+position = Vector2( 918, 576 )
+texture = ExtResource( 5 )
+offset = Vector2( -95.5, -127 )
+
+[node name="TitleDice" type="Sprite" parent="Title"]
+position = Vector2( 440, -148 )
+texture = ExtResource( 4 )
 
 [node name="Subtitle" type="Sprite" parent="."]
 position = Vector2( 956.5, 247 )
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 
 [node name="StartButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -36,9 +42,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -267.5
-margin_top = 168.0
+margin_top = 139.0
 margin_right = 267.5
-margin_bottom = 346.0
+margin_bottom = 317.0
 rect_pivot_offset = Vector2( 267, 89 )
 texture_normal = ExtResource( 2 )
 script = ExtResource( 1 )
