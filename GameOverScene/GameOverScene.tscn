@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Graphics/GameOverScreen/againButton.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/game.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Graphics/GameOverScreen/pointsScored.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/levelAchieved.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Themes/NunitoBold90.tres" type="Theme" id=11]
+[ext_resource path="res://GeneralScene/GUI/SquishyTitle.gd" type="Script" id=12]
 
 [node name="GameOverScene" type="Node"]
 script = ExtResource( 8 )
@@ -31,10 +32,13 @@ region_rect = Rect2( 0, 0, 2000, 1200 )
 [node name="Game" type="Sprite" parent="."]
 position = Vector2( 954.5, 315.5 )
 texture = ExtResource( 2 )
+script = ExtResource( 12 )
+offsetSquish = 1.0
 
 [node name="Over" type="Sprite" parent="."]
 position = Vector2( 956.5, 530.5 )
 texture = ExtResource( 7 )
+script = ExtResource( 12 )
 
 [node name="Subtitle" type="Sprite" parent="."]
 position = Vector2( 941, 119.5 )
