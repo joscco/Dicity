@@ -8,12 +8,14 @@ var muted = false
 var mainMusicIntro = preload("res://Assets/Music/Intro.ogg")
 var mainMusic = preload("res://Assets/Music/Main.ogg")
 
-var HitSound = preload("res://Assets/Sounds/hit.mp3")
-var ShellSound = preload("res://Assets/Sounds/shells.mp3")
-var ShootSound = preload("res://Assets/Sounds/shoot.mp3")
-var BlipSound = preload("res://Assets/Sounds/blip.wav")
-var DiceSound = preload("res://Assets/Sounds/diceroll.wav")
-var ErrorSound = preload("res://Assets/Sounds/error.mp3")
+var noSound1 = preload("res://Assets/Sounds/noSound1.ogg")
+var noSound2 = preload("res://Assets/Sounds/noSound2.ogg")
+var noSound3 = preload("res://Assets/Sounds/noSound3.ogg")
+var noSounds = [noSound1, noSound2, noSound3]
+var ohSound = preload("res://Assets/Sounds/ohSound.ogg")
+var agreeSound = preload("res://Assets/Sounds/agreeSound.ogg")
+var plopSound = preload("res://Assets/Sounds/plopSound.ogg")
+var diceSound = preload("res://Assets/Sounds/diceroll.ogg")
 
 var musicPlaying: bool
 var introPlaying: bool
@@ -48,8 +50,14 @@ func unmute():
 	soundPlayer.stream_paused = false
 	
 func playSound(sfx: String):
+	if sfx == "plop":
+		soundPlayer.stream = plopSound
+	if sfx == "oh":
+		soundPlayer.stream = ohSound
+	if sfx == "success":
+		soundPlayer.stream = agreeSound
 	if sfx == "diceroll":
-		soundPlayer.stream = DiceSound
+		soundPlayer.stream = diceSound
 	if sfx == "error":
-		soundPlayer.stream = ErrorSound
+		soundPlayer.stream = noSounds[randi() % 3]
 	soundPlayer.play()
