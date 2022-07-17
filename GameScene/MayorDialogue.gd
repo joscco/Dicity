@@ -27,7 +27,7 @@ var tutorialTexts = [\
 "Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either. Everything in moderation, I guess.",\
 "I'm sure you'll get the hang of it in no time.",\
 "Oh and one more thing: Use these buttons to change the color of a die or to reroll it. How often you can do that is governed by your city's education and entertainment level respectively. Your city's food influences how many dice you get each round.",\
-"Thank you so much, I'll be off practicing. Good luck!"\
+"Thank you so much, I'll be off practicing. Good luck!"
 ]
 
 
@@ -49,6 +49,10 @@ var hintTexts =[\
 "Nothing beats playing dice for hours on end.",\
 "The average Yahtzee score when using the perfect strategy is 254.59.",\
 "The highest possible Yahtzee score is 1,575.",\
+"Industry has the highest impact on food and the lowest on entertainment.",\
+"Forming a cluster will decrease the yield of neighboring buildings of a different color.",\
+"Hi there Mark Brown.",\
+"Every new city my family assigns me has more mountains and a higher quota. It's like they want me to fail eventually."
 ]
 
 var hintAnswers=[\

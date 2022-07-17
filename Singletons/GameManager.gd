@@ -27,8 +27,8 @@ var typeChangesLeft = typeChanges
 
 var gridWidth = 14
 var gridHeight = 5
-var mountainCount = 30
-var maxMountainCount = 70
+var mountainCount = 15
+var maxMountainCount = 50
 
 var boardRenderer = null
 var guiManager = null
@@ -114,7 +114,7 @@ func nextRound():
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
-	return 1000#int(sqrt(level) * 10)
+	return 65 + 10*level 
 
 func getBoni():
 	diceRerolls = int(getFunPercent()/20) + 1
