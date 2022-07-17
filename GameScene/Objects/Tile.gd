@@ -59,6 +59,7 @@ func _input(event):
 						print('cant place on existing die') 
 					else:
 						SoundManager.playSound("plop")
+						$DustParticles.emitting = true
 						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
 						BoardManager.boardState[index[0]][index[1]] = value
 						BoardManager.negativeImpact(index[0],index[1])
