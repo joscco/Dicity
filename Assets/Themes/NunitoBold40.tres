@@ -3,8 +3,7 @@
 [ext_resource path="res://Assets/Fonts/Nunito-Bold.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 35
-outline_color = Color( 0, 0, 0, 1 )
+size = 40
 font_data = ExtResource( 1 )
 
 [resource]

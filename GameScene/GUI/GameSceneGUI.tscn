@@ -72,25 +72,27 @@ script = ExtResource( 19 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 67.0
 margin_top = -354.0
+margin_right = 67.0
 margin_bottom = -252.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_constants/separation = 30
+custom_constants/separation = 15
 alignment = 1
 
 [node name="FoodIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 87.0
-margin_right = 189.0
+margin_left = 125.0
+margin_right = 227.0
 margin_bottom = 102.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 21 )
 
 [node name="FoodBar" type="TextureProgress" parent="HBoxContainer"]
-margin_left = 219.0
+margin_left = 242.0
 margin_top = 27.0
-margin_right = 648.0
+margin_right = 671.0
 margin_bottom = 75.0
 rect_pivot_offset = Vector2( 215, 24 )
 size_flags_vertical = 4
@@ -100,17 +102,17 @@ texture_over = ExtResource( 14 )
 texture_progress = ExtResource( 9 )
 
 [node name="EducationIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 678.0
-margin_right = 780.0
+margin_left = 686.0
+margin_right = 788.0
 margin_bottom = 102.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 20 )
 
 [node name="EducationBar" type="TextureProgress" parent="HBoxContainer"]
-margin_left = 810.0
+margin_left = 803.0
 margin_top = 26.0
-margin_right = 1241.0
+margin_right = 1234.0
 margin_bottom = 75.0
 rect_pivot_offset = Vector2( 215, 25 )
 size_flags_vertical = 4
@@ -120,17 +122,17 @@ texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 8 )
 
 [node name="FunIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 1271.0
-margin_right = 1373.0
+margin_left = 1249.0
+margin_right = 1351.0
 margin_bottom = 102.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 22 )
 
 [node name="FunBar" type="TextureProgress" parent="HBoxContainer"]
-margin_left = 1403.0
+margin_left = 1366.0
 margin_top = 27.0
-margin_right = 1832.0
+margin_right = 1795.0
 margin_bottom = 75.0
 rect_pivot_offset = Vector2( 215, 24 )
 size_flags_vertical = 4
