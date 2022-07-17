@@ -1,6 +1,6 @@
 extends Sprite
 
-onready var mayor = get_parent()
+onready var mayor = get_parent().get_parent()
 
 func _input(event):
 	if visible:

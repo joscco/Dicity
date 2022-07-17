@@ -4,14 +4,16 @@ var tutorialState = 0
 var tutorialOver = false
 var lastHint = null
 
+var speechBubbleTween = Tween.new()
+var hintBubbleTween = Tween.new()
 
 func _ready():
 	GameManager.showingDialogue = true
-	$TutorialText.text = tutorialTexts[0]
-	$HintText.hide()
+	$TutorialSpeechbubble/TutorialText.text = tutorialTexts[0]
 	$HintSpeechbubble.hide()
-	$HintNextButton.hide()
-	$HintAnswer.hide()
+	
+	add_child(speechBubbleTween)
+	add_child(hintBubbleTween)
 
 	
 var tutorialTexts = [\
@@ -50,7 +52,7 @@ var hintTexts =[\
 
 var hintAnswers=[\
 '[center]ahh...[/center]',\
-'[center]facinating[/center]',\
+'[center]fascinating[/center]',\
 "[center]damn that's crazy[/center]",\
 '[center]cool cool cool[/center]',\
 '[center]wow[/center]',\
@@ -58,22 +60,23 @@ var hintAnswers=[\
 '[center]whatever[/center]',\
 ]
 
+
+
 func next():
 	tutorialState += 1
 	if not tutorialOver and tutorialState < tutorialTexts.size():
 		GameManager.showingDialogue = true
-		$TutorialText.text = tutorialTexts[tutorialState]
+		$TutorialSpeechbubble/TutorialText.text = tutorialTexts[tutorialState]
 	else:
 		tutorialOver = true
-		$TutorialText.hide()
-		$TutorialSpeechbubble.hide()
-		$TutorialNextButton.hide()
-		$SkipTutorial.hide()
 		
-		$HintText.hide()
+		speechBubbleTween.interpolate_property($TutorialSpeechbubble, "scale", null, Vector2(0,0), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		speechBubbleTween.start()
+		hintBubbleTween.interpolate_property($HintSpeechbubble, "scale", null, Vector2(0,0), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		hintBubbleTween.start()
+		yield(speechBubbleTween, "tween_completed")
+		$TutorialSpeechbubble.hide()
 		$HintSpeechbubble.hide()
-		$HintNextButton.hide()
-		$HintAnswer.hide()
 
 		GameManager.showingDialogue = false
 
@@ -85,10 +88,12 @@ func hint():
 		while hintIndex == lastHint:
 			hintIndex = randi() % hintTexts.size()
 		lastHint = hintIndex
-		$HintText.show()
+		
 		$HintSpeechbubble.show()
-		$HintNextButton.show()
-		$HintAnswer.show()
-		$HintText.text = hintTexts[hintIndex]
-		$HintAnswer.bbcode_text = hintAnswers[randi()%hintAnswers.size()]
+		$HintSpeechbubble/HintText.text = hintTexts[hintIndex]
+		$HintSpeechbubble/HintNextButton/HintAnswer.bbcode_text = hintAnswers[randi()%hintAnswers.size()]
+		speechBubbleTween.interpolate_property($TutorialSpeechbubble, "scale", null, Vector2(1,1), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		hintBubbleTween.interpolate_property($HintSpeechbubble, "scale", null, Vector2(1,1), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+		speechBubbleTween.start()
+		hintBubbleTween.start()
 		
