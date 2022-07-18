@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Graphics/GameOverScreen/againButton.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/game.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Graphics/GameOverScreen/ohNo.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Themes/NunitoBold80.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/Graphics/GameOverScreen/Pattern2.png" type="Texture" id=4]
 [ext_resource path="res://GameOverScene/GUI/AgainButton.gd" type="Script" id=5]
 [ext_resource path="res://GeneralScene/GUI/ParallaxBackground.gd" type="Script" id=6]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/Graphics/GameOverScreen/levelAchieved.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Themes/NunitoBold90.tres" type="Theme" id=11]
 [ext_resource path="res://GeneralScene/GUI/SquishyTitle.gd" type="Script" id=12]
+[ext_resource path="res://GameOverScene/ReasonForDeath.gd" type="Script" id=13]
 
 [node name="GameOverScene" type="Node"]
 script = ExtResource( 8 )
@@ -30,19 +31,28 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 2000, 1600 )
 
 [node name="Game" type="Sprite" parent="."]
-position = Vector2( 954.5, 315.5 )
+position = Vector2( 954.5, 342.5 )
 texture = ExtResource( 2 )
 script = ExtResource( 12 )
 offsetSquish = 1.0
 
 [node name="Over" type="Sprite" parent="."]
-position = Vector2( 956.5, 530.5 )
+position = Vector2( 956.5, 557.5 )
 texture = ExtResource( 7 )
 script = ExtResource( 12 )
 
-[node name="Subtitle" type="Sprite" parent="."]
-position = Vector2( 941, 119.5 )
-texture = ExtResource( 3 )
+[node name="ReasonForDeath" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -640.5
+margin_top = 76.0
+margin_right = 640.5
+margin_bottom = 199.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.87451, 0.678431, 0.521569, 1 )
+text = "You didn't supply enough food."
+align = 1
+script = ExtResource( 13 )
 
 [node name="AgainButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -50,18 +60,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -257.5
-margin_top = 290.0
+margin_top = 317.0
 margin_right = 257.5
-margin_bottom = 408.0
+margin_bottom = 435.0
 rect_pivot_offset = Vector2( 260, 59 )
 texture_normal = ExtResource( 1 )
 script = ExtResource( 5 )
 
 [node name="LevelCount" type="Label" parent="."]
 margin_left = 804.0
-margin_top = 669.0
+margin_top = 696.0
 margin_right = 912.0
-margin_bottom = 792.0
+margin_bottom = 819.0
 rect_pivot_offset = Vector2( 0, 61 )
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 0.988235, 0.968627, 0.847059, 1 )
@@ -69,9 +79,9 @@ text = "23"
 
 [node name="PointsCount" type="Label" parent="."]
 margin_left = 1605.0
-margin_top = 669.0
+margin_top = 696.0
 margin_right = 1821.0
-margin_bottom = 792.0
+margin_bottom = 819.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 0, 61 )
@@ -87,9 +97,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -753.0
-margin_top = 152.0
+margin_top = 179.0
 margin_right = 623.0
-margin_bottom = 213.0
+margin_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

@@ -41,7 +41,7 @@ width = 1700
 numberOfStuffs = 60
 
 [node name="BoardRenderer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 241, 275 )
+position = Vector2( 975, 450 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 

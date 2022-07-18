@@ -3,6 +3,7 @@ extends Node
 var boardState
 var typeMap = ['Food','Fun','Education','Industry']
 var offset = 10
+var tileWidth = 100
 var indexToSpriteDict = {}
 var indexToTileDict = {}
 
@@ -25,14 +26,13 @@ func _ready():
 		for j in range(4):
 			indexToSpriteDict[[i,j]] = load(elementToSpritePath([i,j]))
 
-func indexToScreenPos(i,j):
-	return $BoardAnchor.position + Vector2(i*(100+offset),j*(100+offset))
-
-func screnPosToIndex(mousePosition):
-	mousePosition -= $BoardAnchor.position
-	var i = int(mousePosition[0]/(100+offset))
-	var j = int(mousePosition[1]/(100+offset))
-	return [i,j]
+func indexToScreenPos(row, column, totalRows, totalColumns):
+	var val = Vector2(
+		(row - (totalRows)/2.0) * (tileWidth + offset),
+		(column - (totalColumns)/2.0) * (tileWidth + offset) + tileWidth
+	)
+	print(val)
+	return val
 
 func elementToSpritePath(element):
 	if element[0] == 0:
@@ -41,7 +41,12 @@ func elementToSpritePath(element):
 		return 'res://Assets/Graphics/DiceGraphics/blocker'+str(element[1]%2+1)+'.png'
 	return 'res://Assets/Graphics/DiceGraphics/'+typeMap[element[1]]+'/dice'+str(element[0])+'.png'
 
-func drawboardState():
+func drawNewBoard():
+	# Remove old tiles:
+	for tile in indexToTileDict.values():
+		tile.queue_free()
+
+	# And draw the new ones
 	var rows = BoardManager.boardState.size()
 	var columns = BoardManager.boardState[0].size()
 	
@@ -51,7 +56,7 @@ func drawboardState():
 			var newTexture = indexToSpriteDict[boardManager.boardState[row][column]]
 			newTile.get_node('Sprite').texture = newTexture
 			newTile.get_node('Sprite').offset = Vector2(-newTexture.get_width() / 2, -newTexture.get_height())
-			newTile.position = indexToScreenPos(row, column)
+			newTile.position = indexToScreenPos(row, column, rows, columns)
 			newTile.value = boardManager.boardState[row][column]
 			newTile.index = [row,column]
 			add_child(newTile)

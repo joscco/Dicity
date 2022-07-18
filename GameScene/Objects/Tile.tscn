@@ -69,8 +69,7 @@ position = Vector2( 0, -43 )
 position = Vector2( 0, -146 )
 
 [node name="DustParticles" type="CPUParticles2D" parent="."]
-position = Vector2( 2, -9 )
-rotation = -0.0508156
+position = Vector2( 0, -9 )
 z_index = 1
 emitting = false
 amount = 6

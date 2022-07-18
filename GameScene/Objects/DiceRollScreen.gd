@@ -6,9 +6,10 @@ var currentActionSprite = null
 var thrownDice = []
 var overlayActive = false
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# show in case we turned it hidden for GUI modification
+	$Overlay.show()
 	$Overlay/OverlayBackground.delight()
 	$Overlay/CancelButton.delight()
 	throwDice()

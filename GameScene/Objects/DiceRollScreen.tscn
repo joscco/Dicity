@@ -59,6 +59,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 14 )
 
 [node name="Overlay" type="Node2D" parent="."]
+visible = false
 z_index = 1
 
 [node name="OverlayBackground" type="Sprite" parent="Overlay"]

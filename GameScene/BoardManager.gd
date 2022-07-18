@@ -12,7 +12,7 @@ const TYPE = {
 
 var boardState
 
-func shuffleNewBoard(height, width, blockers = 0):
+func shuffleNewBoard(height: int, width: int, blockers: int = 0):
 	boardState = createEmptyBoardState(height, width, blockers)
 
 func createMatrix(width, height):
@@ -40,7 +40,7 @@ func createDummyBoardState(width, height):
 
 	return matrix
 
-func createEmptyBoardState(width, height, blocker = 0):
+func createEmptyBoardState(width: int, height: int, blocker: int = 0):
 	randomize()
 	var matrix = []
 

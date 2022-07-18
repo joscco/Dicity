@@ -35,10 +35,10 @@ func changeSprite():
 	SoundManager.playSound('diceroll')
 
 func reroll():
-	if GameManager.diceRerollsLeft > 0:
+	if GameManager.numberChangesLeft > 0:
 		eyes = randi() % 6 + 1
 		changeSprite()
-		GameManager.diceRerollsLeft -= 1
+		GameManager.numberChangesLeft -= 1
 	else:
 		print('no more rerolls')
 		SoundManager.playSound('error')

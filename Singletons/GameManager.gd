@@ -3,35 +3,44 @@ extends Node2D
 var currentAction = null
 var selectedDice = null
 var ghostSprite = null
-var diceRollScreen
+var diceRollScreen = null
 var showingDialogue = false
-var level = 1
+var boardRenderer = null
+var guiManager = null
+
+const maxGridWidth = 14
+const maxGridHeight = 5
+const maxMountainCount = 50
+
+var level:int
+var inLevelUpMode:bool = false
+
+enum GAME_OVER_REASON {
+	NOT_ENOUGH_POINTS,
+	NO_EDUCATION,
+	NO_FOOD,
+	NO_FUN
+}
+var reasonForGameOver:int
 
 var warnings = {}
 
-var food = 0
-var fun = 0
-var education = 0
-var money = 0
+var food :int
+var fun :int
+var education:int
+var money:int
 
-var rollsLeft = 10
+var rollsLeft:int
+var diceCount:int
+var diceLeft:int
+var numberChanges:int
+var numberChangesLeft:int
+var typeChanges:int
+var typeChangesLeft:int
 
-var diceCount = 5
-var diceLeft = diceCount
-
-var diceRerolls = 2
-var diceRerollsLeft = diceRerolls
-
-var typeChanges = 2
-var typeChangesLeft = typeChanges
-
-var gridWidth = 14
-var gridHeight = 5
-var mountainCount = 15
-var maxMountainCount = 50
-
-var boardRenderer = null
-var guiManager = null
+var gridWidth
+var gridHeight
+var mountainCount 
 
 func setBoardRenderer(renderer):
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
@@ -45,6 +54,7 @@ func _ready():
 	ghostSprite.modulate.a = 0.5
 	ghostSprite.z_index = 1
 	add_child(ghostSprite)
+	startNewGame()
 
 func _process(_delta):
 	if selectedDice != null:
@@ -59,42 +69,46 @@ func _process(_delta):
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
 			
 	if not warnings.empty():
-		if is_instance_valid(warnings['food']) and is_instance_valid(warnings['mood']) and is_instance_valid(warnings['education']):
-			if getFoodPercent() == 0:
+		if (is_instance_valid(warnings['food']) 
+			and is_instance_valid(warnings['mood']) 
+			and is_instance_valid(warnings['education'])):
+			if !inLevelUpMode and getFoodPercent() <= 25:
 				warnings['food'].show()
 			else:
 				warnings['food'].hide()
-			if getFunPercent() == 0:
+			if !inLevelUpMode and getFunPercent() <= 25:
 				warnings['mood'].show()
 			else:
 				warnings['mood'].hide()
-			if getEducationPercent() == 0:
+			if !inLevelUpMode and getEducationPercent() <= 25:
 				warnings['education'].show()
 			else:
 				warnings['education'].hide()
 			
 func startNewGame():
 	level = 1
+	
+	gridWidth = 1
+	gridHeight = 1
+	mountainCount = 0
+	
+	resetTownStats()
+	resetDiceStats()
+	
+func resetTownStats():
 	food = 0
 	fun = 0
 	education = 0
 	money = 0
 
+func resetDiceStats():
 	rollsLeft = 10
-
 	diceCount = 5
 	diceLeft = diceCount
-
-	diceRerolls = 2
-	diceRerollsLeft = diceRerolls
-
+	numberChanges = 2
+	numberChangesLeft = numberChanges
 	typeChanges = 2
 	typeChangesLeft = typeChanges
-
-	gridWidth = 15
-	gridHeight = 5
-	mountainCount = 30
-	maxMountainCount = 70
 
 func nextRound():
 	rollsLeft -= 1
@@ -105,19 +119,27 @@ func nextRound():
 	var educationCrashed : bool = getFoodPercent() <= 0
 	
 	if moneyNotReachedOnEndOfTime or foodCrashed or funCrashed or educationCrashed:
+		if moneyNotReachedOnEndOfTime:
+			reasonForGameOver = GAME_OVER_REASON.NOT_ENOUGH_POINTS
+		elif foodCrashed:
+			reasonForGameOver = GAME_OVER_REASON.NO_FOOD
+		elif funCrashed: 
+			reasonForGameOver = GAME_OVER_REASON.NO_FUN
+		elif educationCrashed:
+			reasonForGameOver = GAME_OVER_REASON.NO_EDUCATION
 		TransitionManager.transitionTo("res://GameOverScene/GameOverScene.tscn")
 	else:
 		getBoni()
-		diceRerollsLeft = diceRerolls
+		numberChangesLeft = numberChanges
 		typeChangesLeft = typeChanges
 		diceLeft = diceCount
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
-	return 65 + 10*level 
+	return  -5 + 10*level 
 
 func getBoni():
-	diceRerolls = int(getFunPercent()/20) + 1
+	numberChanges = int(getFunPercent()/20) + 1
 	diceCount = int(getFoodPercent()/20) + 1
 	typeChanges = int(getEducationPercent()/20) + 1
 	
@@ -135,27 +157,36 @@ func levelUp():
 	# Give some Player feedback
 	SoundManager.playSound("success")
 	guiManager.on_level_up()
+	inLevelUpMode = true
 	yield(guiManager, "level_up_screen_done")
+	inLevelUpMode = false
 	
 	# Update Stats and create new board
 	level += 1
-	rollsLeft = 10
-	mountainCount = clamp(mountainCount + 5, 0, maxMountainCount)
+	
+	resetTownStats()
+	resetDiceStats()
+
+	gridWidth = min(maxGridWidth, gridWidth + (1 - (level % 2)) * 2)
+	gridHeight = min(maxGridHeight, gridHeight + (level % 2) * 2)
+	if level > 2:
+		mountainCount = clamp(mountainCount + 1, 0, min(maxMountainCount, gridHeight * gridWidth / 3))
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
-	boardRenderer.refreshBoardState()
-	updateStats()
+	boardRenderer.drawNewBoard()
+	
+	diceRollScreen.throwDice()
 	
 func getMoneyPercent():
-	return 100 * money / getMoneyNeededForThisLevel()
+	return 100.0 * money / getMoneyNeededForThisLevel()
 	
 func getEducationPercent():
-	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3
-	return clamp(50 + education - educationNeededForIndustry, 0, 100)
+	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3.0
+	return clamp(50.0 + education - educationNeededForIndustry, 0, 100)
 	
 func getFunPercent():
-	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 2
-	return clamp(50 + fun - funNeededForIndustry, 0, 100)
+	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 2.0
+	return clamp(50.0 + fun - funNeededForIndustry, 0, 100)
 	
 func getFoodPercent():
-	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 4
-	return clamp(50 + food - foodNeededForIndustry, 0, 100)
+	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 4.0
+	return clamp(50.0 + food - foodNeededForIndustry, 0, 100)
