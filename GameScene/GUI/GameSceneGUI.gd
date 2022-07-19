@@ -13,6 +13,10 @@ onready var foodBar: TextureProgress = $HBoxContainer/Food/FoodBar
 onready var educationBar: TextureProgress = $HBoxContainer/Education/EducationBar
 onready var funBar: TextureProgress = $HBoxContainer/Fun/FunBar
 
+onready var foodPercentLabel: Label = $HBoxContainer/Food/FoodBar/PointsDisplay
+onready var educationPercentLabel: Label = $HBoxContainer/Education/EducationBar/PointsDisplay
+onready var funPercentLabel: Label= $HBoxContainer/Fun/FunBar/PointsDisplay
+
 onready var foodEffectLabel: Label = $HBoxContainer/Food/Effects/Num
 onready var educationEffectLabel: Label = $HBoxContainer/Education/Effects/Num
 onready var funEffectLabel: Label= $HBoxContainer/Fun/Effects/Num
@@ -56,10 +60,14 @@ func _process(_delta):
 	educationEffectLabel.text = str(GameManager.typeChangesLeft)
 	funEffectLabel.text = str(GameManager.numberChangesLeft)
 	
-	var desiredMoneyBarValue = GameManager.getMoneyPercent()
-	var desiredFoodBarValue = GameManager.getFoodPercent()
-	var desiredEducationBarValue = GameManager.getEducationPercent()
-	var desiredFunBarValue = GameManager.getFunPercent()
+	foodPercentLabel.text = str(int(GameManager.getFoodPercent())) + "/100"
+	educationPercentLabel.text = str(int(GameManager.getEducationPercent())) + "/100"
+	funPercentLabel.text = str(int(GameManager.getFunPercent())) + "/100"
+	
+	var desiredMoneyBarValue = clamp(GameManager.getMoneyPercent(), 0, 100)
+	var desiredFoodBarValue = clamp(GameManager.getFoodPercent(), 0, 100)
+	var desiredEducationBarValue = clamp(GameManager.getEducationPercent(), 0, 100)
+	var desiredFunBarValue = clamp(GameManager.getFunPercent(), 0, 100)
 
 	moneyBarFloatValue = lerp(moneyBarFloatValue, desiredMoneyBarValue, adaptationSpeed)
 	foodBarFloatValue = lerp(foodBarFloatValue, desiredFoodBarValue, adaptationSpeed)

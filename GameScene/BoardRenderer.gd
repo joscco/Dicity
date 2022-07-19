@@ -31,7 +31,6 @@ func indexToScreenPos(row, column, totalRows, totalColumns):
 		(row - (totalRows)/2.0) * (tileWidth + offset),
 		(column - (totalColumns)/2.0) * (tileWidth + offset) + tileWidth
 	)
-	print(val)
 	return val
 
 func elementToSpritePath(element):

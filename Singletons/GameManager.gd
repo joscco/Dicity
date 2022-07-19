@@ -86,10 +86,10 @@ func _process(_delta):
 				warnings['education'].hide()
 			
 func startNewGame():
-	level = 1
+	level = 7
 	
-	gridWidth = 1
-	gridHeight = 1
+	gridWidth = 6
+	gridHeight = 5
 	mountainCount = 0
 	
 	resetTownStats()
@@ -180,13 +180,13 @@ func getMoneyPercent():
 	return 100.0 * money / getMoneyNeededForThisLevel()
 	
 func getEducationPercent():
-	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 3.0
-	return clamp(50.0 + education - educationNeededForIndustry, 0, 100)
+	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.8
+	return 50.0 + education - educationNeededForIndustry
 	
 func getFunPercent():
-	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 2.0
-	return clamp(50.0 + fun - funNeededForIndustry, 0, 100)
+	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	return 50.0 + fun - funNeededForIndustry
 	
 func getFoodPercent():
-	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 4.0
-	return clamp(50.0 + food - foodNeededForIndustry, 0, 100)
+	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 1.0
+	return 50.0 + food - foodNeededForIndustry
