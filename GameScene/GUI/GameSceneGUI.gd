@@ -3,7 +3,7 @@ extends CanvasLayer
 const adaptationSpeed = 0.1
 signal level_up_screen_done
 
-onready var roundsLeftLabel : Label = $MoneyBar/Num
+onready var roundsLeftLabel : Label = $Num
 onready var percentageDisplay : Label = $MoneyBar/PointsDisplay
 
 onready var moneyBar: TextureProgress = $MoneyBar

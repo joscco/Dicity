@@ -55,18 +55,6 @@ var hintTexts =[\
 "Every new city my family assigns me has more mountains and a higher quota. It's like they want me to fail eventually."
 ]
 
-var hintAnswers=[\
-'ahh...',\
-'fascinating',\
-"damn that's crazy",\
-'cool cool cool',\
-'wow',\
-'ok',\
-'whatever',\
-]
-
-
-
 func next():
 	tutorialState += 1
 	if not tutorialOver and tutorialState < tutorialTexts.size():
@@ -96,7 +84,6 @@ func hint():
 		
 		$HintSpeechbubble.show()
 		$HintSpeechbubble/HintText.text = hintTexts[hintIndex]
-		$HintSpeechbubble/HintNextButton/HintAnswer.text = hintAnswers[randi()%hintAnswers.size()]
 		speechBubbleTween.interpolate_property($TutorialSpeechbubble, "rect_scale", null, Vector2(1,1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_scale", null, Vector2(1,1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 		speechBubbleTween.start()

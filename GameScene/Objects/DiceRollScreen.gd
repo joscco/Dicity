@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 export (PackedScene) var die
 
@@ -6,12 +6,23 @@ var currentActionSprite = null
 var thrownDice = []
 var overlayActive = false
 
+onready var gameOverlay : TextureRect = $DiceOverlay
+onready var bulldozerOverlay : TextureRect = $BulldozerOverlay
+onready var cancelButton : TextureRect = $CancelButton
+onready var diceAnchor : TextureRect = $SlotsBackground/DiceAnchor
+
+onready var nextRoundButton: TextureRect = $Buttons/NextRoundSprite
+onready var bulldozerButton : TextureRect = $Buttons/BulldozerButton
+onready var colorChangeButton: TextureRect = $Buttons/ChangeColorSprite
+onready var numberChangeButton : TextureRect = $Buttons/ChangeNumberSprite
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# show in case we turned it hidden for GUI modification
-	$Overlay.show()
-	$Overlay/OverlayBackground.delight()
-	$Overlay/CancelButton.delight()
+	bulldozerOverlay.delight()
+	gameOverlay.delight()
+	cancelButton.delight()
+	
+	diceAnchor.hide()
 	throwDice()
 	GameManager.diceRollScreen = self
 
@@ -24,7 +35,7 @@ func throwDice():
 		var dieInstance: Node2D = die.instance()
 		add_child(dieInstance)
 		thrownDice.append(dieInstance)
-		dieInstance.position = $DiceAnchor.position + Vector2(i* 110, 0)
+		dieInstance.position = diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100)
 
 func moveUpDice():
 	for i in range(thrownDice.size() - 1, -1, -1):
@@ -33,7 +44,7 @@ func moveUpDice():
 
 	var diceLeftInArray = thrownDice.size()
 	for i in range(diceLeftInArray):
-		thrownDice[i].moveTo($DiceAnchor.position + Vector2(i* 110, 0))
+		thrownDice[i].moveTo(diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100))
 
 func changeHighlightedSprite(newHighlight):
 	if currentActionSprite != null:
@@ -43,22 +54,22 @@ func changeHighlightedSprite(newHighlight):
 	
 func toggleOverlay():
 	if overlayActive:
-		deactivateOverlay()
+		deactivateGameOverlay()
 	else:
-		activateOverlay()
+		activateGameOverlay()
 	
-func deactivateOverlay():
+func deactivateGameOverlay():
 	overlayActive = false
-	$NextRoundSprite.active = true
-	$Overlay/CancelButton.active = false
-	$NextRoundSprite.highlight()
-	$Overlay/CancelButton.delight()
-	$Overlay/OverlayBackground.delight()
+	nextRoundButton.active = true
+	cancelButton.active = false
+	nextRoundButton.highlight()
+	cancelButton.delight()
+	gameOverlay.delight()
 	
-func activateOverlay():
+func activateGameOverlay():
 	overlayActive = true
-	$NextRoundSprite.active = false
-	$Overlay/CancelButton.active = true
-	$NextRoundSprite.delight()
-	$Overlay/CancelButton.highlight()
-	$Overlay/OverlayBackground.highlight()
+	nextRoundButton.active = false
+	cancelButton.active = true
+	nextRoundButton.delight()
+	cancelButton.highlight()
+	gameOverlay.highlight()

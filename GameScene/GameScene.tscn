@@ -4,34 +4,12 @@
 [ext_resource path="res://GameScene/GameScene.gd" type="Script" id=2]
 [ext_resource path="res://GameScene/BoardRenderer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameScene/GUI/GameSceneGUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GameScene/BackgroundStuffRenderer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GameScene/GameSceneBackground.tscn" type="PackedScene" id=6]
 
 [node name="MainGameScene" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -100
-
-[node name="ColorRect" type="ColorRect" parent="Background"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.984314, 0.964706, 0.835294, 1 )
-
-[node name="StuffRenderers" type="Node2D" parent="Background"]
-
-[node name="VerticalStuffRendererLeft" parent="Background/StuffRenderers" instance=ExtResource( 6 )]
-margin_right = 278.0
-margin_bottom = 847.0
-
-[node name="VerticalStuffRendererLeft2" parent="Background/StuffRenderers" instance=ExtResource( 6 )]
-margin_left = 271.0
-margin_right = 1654.0
-margin_bottom = 217.0
-
-[node name="VerticalStuffRendererLeft3" parent="Background/StuffRenderers" instance=ExtResource( 6 )]
-margin_left = 1650.0
-margin_right = 1917.0
-margin_bottom = 867.0
+[node name="Background" parent="." instance=ExtResource( 6 )]
 
 [node name="BoardRenderer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 975, 450 )

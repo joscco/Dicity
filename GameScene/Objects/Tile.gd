@@ -1,14 +1,15 @@
 extends Node2D
 
-
-var tween
-var value = [0,0]
+var tween : Tween
+var value = [0, 0]
 var index
 var multiplier = 0
+var tweening: bool
 
 onready var sprite : Sprite = $Sprite
 onready var selectionOverlay : Sprite = $Sprite/SelectionOverlay
 onready var crossOverlay: Sprite = $Sprite/CrossOverlay
+onready var bulldozeOverlay: Sprite = $Sprite/BulldozeOverlay
 
 onready var tween_values = [Vector2(1,1), Vector2(0.98, 1.05)]
 onready var boardRenderer = get_parent()
@@ -17,18 +18,41 @@ func _ready():
 	tween = $Tween
 	$NegativeImpact.hide()
 	crossOverlay.hide()
+	bulldozeOverlay.hide()
 	selectionOverlay.hide()
+	
+	$Tween.connect("tween_completed", self, "retween")
 
-func _start_tween():
-	tween.interpolate_property(self,'scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
+func startTweening():
+	tweening = true
+	doTween()
+	
+func doTween():
+	if tweening:
+		tween.interpolate_property(self, 'scale', tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
+		tween.start()
+	
+func stopTweening():
+	tween.interpolate_property(self, 'scale', null, Vector2(1, 1), 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
 	tween.start()
+	tweening = false
 
-func _on_Tween_tween_completed(_object, _key):
-	tween_values.invert()
-	_start_tween()
-
+func retween(_object, _key):
+	if tweening:
+		tween_values.invert()
+		doTween()
+		
+func shrinkAway():
+	tween.interpolate_property(self,'scale', null, Vector2(1.1, 0), 0.3, Tween.TRANS_QUART, Tween.EASE_OUT)    
+	tween.start()
+	
+func growIn():
+	tween.interpolate_property(self,'scale', null, Vector2(1, 1), 0.3, Tween.TRANS_QUART, Tween.EASE_OUT)    
+	tween.start()
+	
 func highlight():
 	crossOverlay.hide()
+	bulldozeOverlay.hide()
 	selectionOverlay.hide()
 
 	if GameManager.selectedDice != null:
@@ -40,6 +64,10 @@ func highlight():
 			var tempTexture : StreamTexture = boardRenderer.typeToSlotDict[GameManager.selectedDice.type+1]
 			$Sprite.texture = tempTexture
 			$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
+			
+	if GameManager.currentAction == "bulldoze" and value[0] != 0:
+		selectionOverlay.show()
+		bulldozeOverlay.show()
 	
 func delight():
 	var tempTexture : StreamTexture = boardRenderer.indexToSpriteDict[value]
@@ -47,6 +75,7 @@ func delight():
 	$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
 	selectionOverlay.hide()
 	crossOverlay.hide()
+	bulldozeOverlay.hide()
 
 #Nils
 func _input(event):
@@ -60,7 +89,7 @@ func _input(event):
 					else:
 						SoundManager.playSound("plop")
 						$DustParticles.emitting = true
-						value = [GameManager.selectedDice.eyes,GameManager.selectedDice.type]
+						value = [GameManager.selectedDice.eyes, GameManager.selectedDice.type]
 						BoardManager.boardState[index[0]][index[1]] = value
 						BoardManager.negativeImpact(index[0],index[1])
 						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
@@ -70,8 +99,25 @@ func _input(event):
 						GameManager.updateStats()
 						GameManager.diceRollScreen.moveUpDice()
 						boardRenderer.refreshBoardState()
-						_start_tween()
-
+						startTweening()
+			elif GameManager.currentAction == "bulldoze":
+				if value[0] != 0:
+					SoundManager.playSound("plop")
+					$DustParticles.emitting = true
+					# Fun part: build a copy of the current tile, add it on top and fade it away
+					var newTile = self.duplicate()
+					get_parent().add_child(newTile)
+					$Sprite.texture = boardRenderer.indexToSpriteDict[[0, 0]]
+					$Sprite.offset = Vector2(-$Sprite.texture.get_width() / 2, -$Sprite.texture.get_height())
+					newTile.shrinkAway()
+					stopTweening()
+					delight()
+					yield(newTile.tween, "tween_completed")
+					# Once it's faded out, just act normally
+					BoardManager.boardState[index[0]][index[1]] = [0, 0]
+					GameManager.updateStats()
+					boardRenderer.refreshBoardState()
+					
 		else:
 			highlight()
 	else:
@@ -83,7 +129,6 @@ func updateMultiplier():
 		$Sprite/Multiplier.text = 'x'+str(multiplier)
 	else:
 		$Sprite/Multiplier.text = ''
-
 
 func showNegativeImpact(dmg):
 	$NegativeImpact/NegativeImpactText.text = '-'+str(dmg)

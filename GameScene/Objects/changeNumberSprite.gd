@@ -1,7 +1,7 @@
-extends Sprite
+extends TextureRect
 
 
-onready var diceRollScreen = get_owner()
+onready var diceRollScreen = get_parent().get_parent()
 var tween
 
 func _ready():
@@ -11,7 +11,7 @@ func _ready():
 func _input(event):
 	if not GameManager.showingDialogue:
 		if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-			if get_rect().has_point(get_local_mouse_position()):
+			if get_global_rect().has_point(get_global_mouse_position()):
 				if event.pressed:
 					SoundManager.playSound("plop")
 					toggleState()
@@ -20,17 +20,17 @@ func toggleState():
 	if GameManager.currentAction == 'changeNumber':
 		GameManager.currentAction = null
 		delight()
-		diceRollScreen.deactivateOverlay()
+		diceRollScreen.deactivateGameOverlay()
 	else:
 		GameManager.currentAction = 'changeNumber'
 		diceRollScreen.changeHighlightedSprite(self)
-		diceRollScreen.activateOverlay()
+		diceRollScreen.activateGameOverlay()
 
 
 func highlight():
-	tween.interpolate_property(self,'scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self,'rect_scale',null,Vector2(1.3,1.3),0.3,Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
 
 func delight():
-	tween.interpolate_property(self,'scale',null,Vector2(1,1),0.3,Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self,'rect_scale',null,Vector2(1,1),0.3,Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()

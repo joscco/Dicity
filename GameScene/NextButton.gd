@@ -15,8 +15,8 @@ func _input(event):
 					SoundManager.playSound('plop')
 					
 func wiggleInSize():
-	scaleTween.interpolate_property(self, "scale", null, Vector2(1.1, 1.1), 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	scaleTween.interpolate_property(self, "scale", null, Vector2(1.2, 1.2), 0.15, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	scaleTween.start()
 	yield(scaleTween, "tween_completed")
-	scaleTween.interpolate_property(self, "scale", null, Vector2(1, 1), 0.3, Tween.TRANS_QUAD, Tween.EASE_IN)
+	scaleTween.interpolate_property(self, "scale", null, Vector2(1, 1), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	scaleTween.start()

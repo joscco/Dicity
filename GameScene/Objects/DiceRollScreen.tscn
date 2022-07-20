@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Assets/Graphics/UI/nextThrowButton.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/changeNumberButton.png" type="Texture" id=1]
 [ext_resource path="res://GameScene/Objects/DiceRollScreen.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Graphics/UI/changeNumberButton.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/brickSlotBackground.png" type="Texture" id=3]
 [ext_resource path="res://GameScene/Objects/ColorChanger.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Graphics/SlotSelection/overlay.png" type="Texture" id=5]
 [ext_resource path="res://GameScene/Objects/changeNumberSprite.gd" type="Script" id=6]
@@ -14,62 +14,135 @@
 [ext_resource path="res://GameScene/Objects/OverlayBackground.gd" type="Script" id=12]
 [ext_resource path="res://GameScene/Objects/CancelButton.gd" type="Script" id=13]
 [ext_resource path="res://GameScene/Objects/NextRoundSprite.gd" type="Script" id=14]
-[ext_resource path="res://Assets/Graphics/UI/slotsBackground.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/nextThrowButton.png" type="Texture" id=15]
 [ext_resource path="res://GameScene/Objects/Dice.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/slotsBackground.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/bulldozerButton.png" type="Texture" id=18]
+[ext_resource path="res://GameScene/GUI/BulldozerButton.gd" type="Script" id=19]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/bulldozerOverlay.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/emptyField.png" type="Texture" id=21]
 
-[node name="DiceRollScreen" type="Node2D"]
+[node name="DiceRollScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
 die = ExtResource( 16 )
 
-[node name="SlotsBackground" type="Sprite" parent="."]
-texture = ExtResource( 15 )
-
-[node name="DiceAnchor" type="Node2D" parent="."]
-position = Vector2( -584, 28 )
-
-[node name="ChangeColorSprite" type="Sprite" parent="."]
-position = Vector2( -888, -24 )
-texture = ExtResource( 8 )
-
-[node name="Yellow" parent="ChangeColorSprite" instance=ExtResource( 4 )]
-
-[node name="Red" parent="ChangeColorSprite" instance=ExtResource( 4 )]
-position = Vector2( 19, -21 )
-texture = ExtResource( 9 )
-methodName = "changeStateToRed"
-
-[node name="Beige" parent="ChangeColorSprite" instance=ExtResource( 4 )]
-position = Vector2( -19, 17 )
-texture = ExtResource( 7 )
-methodName = "changeStateToBeige"
-
-[node name="Black" parent="ChangeColorSprite" instance=ExtResource( 4 )]
-position = Vector2( 20, 17 )
-texture = ExtResource( 10 )
-methodName = "changeStateToBlack"
-
-[node name="ChangeNumberSprite" type="Sprite" parent="."]
-position = Vector2( -755, -24 )
-texture = ExtResource( 3 )
-script = ExtResource( 6 )
-
-[node name="NextRoundSprite" type="Sprite" parent="."]
-position = Vector2( 853, -26 )
-texture = ExtResource( 1 )
-script = ExtResource( 14 )
-
-[node name="Overlay" type="Node2D" parent="."]
-visible = false
-z_index = 1
-
-[node name="OverlayBackground" type="Sprite" parent="Overlay"]
+[node name="DiceOverlay" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.560784 )
-position = Vector2( 0, -713 )
+margin_left = -47.0
+margin_top = -57.0
+margin_right = 1953.0
+margin_bottom = 1103.0
 texture = ExtResource( 5 )
 script = ExtResource( 12 )
 
-[node name="CancelButton" type="Sprite" parent="Overlay"]
-position = Vector2( 855, -22 )
-scale = Vector2( 0.9, 0.9 )
+[node name="Background" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -226.0
+texture = ExtResource( 17 )
+
+[node name="SlotsBackground" type="TextureRect" parent="."]
+margin_left = 665.0
+margin_top = 897.5
+margin_right = 1875.0
+margin_bottom = 1036.5
+texture = ExtResource( 3 )
+
+[node name="DiceAnchor" type="TextureRect" parent="SlotsBackground"]
+anchor_right = 1.0
+margin_left = 21.0
+margin_top = 18.5
+margin_right = -1089.0
+margin_bottom = -20.5
+rect_pivot_offset = Vector2( 0, 100 )
+texture = ExtResource( 21 )
+
+[node name="BulldozerOverlay" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.560784 )
+margin_left = -40.0
+margin_top = -62.0
+margin_right = 1960.0
+margin_bottom = 1098.0
+texture = ExtResource( 20 )
+script = ExtResource( 12 )
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = 360.0
+margin_right = 677.0
+margin_bottom = 499.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="NextRoundSprite" type="TextureRect" parent="Buttons"]
+margin_left = 43.0
+margin_right = 168.0
+margin_bottom = 139.0
+rect_pivot_offset = Vector2( 62, 62 )
+texture = ExtResource( 15 )
+script = ExtResource( 14 )
+
+[node name="BulldozerButton" type="TextureRect" parent="Buttons"]
+margin_left = 198.0
+margin_right = 323.0
+margin_bottom = 139.0
+rect_pivot_offset = Vector2( 62, 62 )
+texture = ExtResource( 18 )
+script = ExtResource( 19 )
+
+[node name="ChangeColorSprite" type="TextureRect" parent="Buttons"]
+margin_left = 353.0
+margin_right = 478.0
+margin_bottom = 139.0
+texture = ExtResource( 8 )
+
+[node name="Yellow" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
+margin_left = 19.0
+margin_top = 19.5
+margin_right = 58.0
+margin_bottom = 58.5
+
+[node name="Red" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
+margin_left = 67.0
+margin_top = 19.5
+margin_right = 106.0
+margin_bottom = 58.5
+texture = ExtResource( 9 )
+methodName = "changeStateToRed"
+
+[node name="Beige" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
+margin_left = 19.0
+margin_top = 66.5
+margin_right = 58.0
+margin_bottom = 105.5
+texture = ExtResource( 7 )
+methodName = "changeStateToBeige"
+
+[node name="Black" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
+margin_left = 67.0
+margin_top = 66.5
+margin_right = 106.0
+margin_bottom = 105.5
+texture = ExtResource( 10 )
+methodName = "changeStateToBlack"
+
+[node name="ChangeNumberSprite" type="TextureRect" parent="Buttons"]
+margin_left = 508.0
+margin_right = 633.0
+margin_bottom = 139.0
+rect_pivot_offset = Vector2( 62, 62 )
+texture = ExtResource( 1 )
+script = ExtResource( 6 )
+
+[node name="CancelButton" type="TextureRect" parent="."]
+margin_left = 44.0
+margin_top = 899.0
+margin_right = 169.0
+margin_bottom = 1024.0
+rect_pivot_offset = Vector2( 62, 62 )
 texture = ExtResource( 11 )
 script = ExtResource( 13 )

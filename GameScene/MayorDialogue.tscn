@@ -1,17 +1,15 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Graphics/MayorDialog/dialogBubble.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Graphics/MayorDialog/nextButton.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/MayorDialog/skip.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Graphics/MayorDialog/major.png" type="Texture" id=4]
 [ext_resource path="res://GameScene/MayorDialogue.gd" type="Script" id=5]
 [ext_resource path="res://GameScene/NextButton.gd" type="Script" id=6]
 [ext_resource path="res://GameScene/MayorSprite.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Graphics/MayorDialog/eyesSpritesheet.png" type="Texture" id=8]
 [ext_resource path="res://GameScene/EyeSprite.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Graphics/SlotSelection/notWorking.png" type="Texture" id=10]
 [ext_resource path="res://GameScene/SkipTutorial.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Themes/NunitoBold20.tres" type="Theme" id=12]
-[ext_resource path="res://Assets/Graphics/MayorDialog/answerButton.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Graphics/MayorDialog/hintBubble.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Themes/NunitoBold30.tres" type="Theme" id=15]
 
@@ -46,12 +44,12 @@ patch_margin_right = 30
 patch_margin_bottom = 30
 
 [node name="SkipTutorial" type="Sprite" parent="TutorialSpeechbubble"]
-position = Vector2( 849.5, 81.8124 )
-texture = ExtResource( 10 )
+position = Vector2( 917, 0.999992 )
+texture = ExtResource( 3 )
 script = ExtResource( 11 )
 
 [node name="TutorialNextButton" type="Sprite" parent="TutorialSpeechbubble"]
-position = Vector2( 850.5, 218.812 )
+position = Vector2( 836, 222 )
 texture = ExtResource( 2 )
 script = ExtResource( 6 )
 
@@ -60,12 +58,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 40.0
 margin_top = 30.0
-margin_right = -149.0
+margin_right = -166.0
 margin_bottom = -36.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 15 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
+custom_colors/font_color = Color( 0.984314, 0.964706, 0.835294, 1 )
 text = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 valign = 1
 autowrap = true
@@ -80,31 +78,20 @@ rect_pivot_offset = Vector2( 0, 220 )
 texture = ExtResource( 14 )
 
 [node name="HintNextButton" type="Sprite" parent="HintSpeechbubble"]
-position = Vector2( 796, 167 )
-texture = ExtResource( 13 )
+position = Vector2( 919, 1 )
+texture = ExtResource( 3 )
 region_rect = Rect2( 13.0213, 14.9036, 81.4506, 69.9822 )
 script = ExtResource( 6 )
 
-[node name="HintAnswer" type="Label" parent="HintSpeechbubble/HintNextButton"]
-margin_left = -90.0
-margin_top = -24.0
-margin_right = 90.0
-margin_bottom = 25.0
-theme = ExtResource( 12 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
-text = "ahh..."
-align = 1
-valign = 1
-
 [node name="HintText" type="Label" parent="HintSpeechbubble"]
-margin_left = 40.0
-margin_top = 30.0
-margin_right = 660.0
-margin_bottom = 190.0
+margin_left = 51.0
+margin_top = 36.0
+margin_right = 865.0
+margin_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 15 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
+custom_colors/font_color = Color( 0.984314, 0.964706, 0.835294, 1 )
 text = "I will give you some very important hints concerning this game."
 valign = 1
 autowrap = true

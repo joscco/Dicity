@@ -59,7 +59,6 @@ func _ready():
 func _process(_delta):
 	if selectedDice != null:
 		ghostSprite.texture = selectedDice.get_node('DiceSprite').texture
-		## Make the ghost follow smoothly
 		ghostSprite.position = get_local_mouse_position()
 		ghostSprite.scale = lerp(ghostSprite.scale, Vector2(1,1), 0.3)
 	else:
@@ -68,6 +67,9 @@ func _process(_delta):
 		else:
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
 			
+	showWarnings()
+	
+func showWarnings():
 	if not warnings.empty():
 		if (is_instance_valid(warnings['food']) 
 			and is_instance_valid(warnings['mood']) 

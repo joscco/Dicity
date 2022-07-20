@@ -36,12 +36,19 @@ offset = Vector2( -50, -100 )
 
 [node name="Multiplier" type="RichTextLabel" parent="Sprite"]
 modulate = Color( 0.988235, 0.968627, 0.847059, 0.654902 )
-margin_left = 8.0
-margin_top = -38.0
-margin_right = 45.0
-margin_bottom = -5.0
+margin_left = 6.0
+margin_top = -42.0
+margin_right = 43.0
+margin_bottom = -9.0
 theme = ExtResource( 6 )
 scroll_active = false
+
+[node name="BulldozeOverlay" type="Sprite" parent="Sprite"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -43, -92 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -89,5 +96,3 @@ angle_random = 1.0
 scale_amount = 2.32
 scale_amount_random = 0.8
 scale_amount_curve = SubResource( 1 )
-
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
