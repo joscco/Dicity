@@ -1,20 +1,21 @@
 extends Control
+class_name DiceRollScreen
 
 export (PackedScene) var die
 
 var currentActionSprite = null
 var thrownDice = []
 var overlayActive = false
+var bulldozerOverlayActive = false
 
 onready var gameOverlay : TextureRect = $DiceOverlay
 onready var bulldozerOverlay : TextureRect = $BulldozerOverlay
-onready var cancelButton : TextureRect = $CancelButton
+onready var cancelButton : TextureButton = $CancelButton
 onready var diceAnchor : TextureRect = $SlotsBackground/DiceAnchor
 
-onready var nextRoundButton: TextureRect = $Buttons/NextRoundSprite
-onready var bulldozerButton : TextureRect = $Buttons/BulldozerButton
-onready var colorChangeButton: TextureRect = $Buttons/ChangeColorSprite
-onready var numberChangeButton : TextureRect = $Buttons/ChangeNumberSprite
+onready var nextRoundButton: TextureButton = $Buttons/NextRoundButton
+onready var bulldozerButton : TextureButton = $Buttons/BulldozerButton
+onready var numberChangeButton : TextureButton = $Buttons/ChangeNumberSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,6 +58,28 @@ func toggleOverlay():
 		deactivateGameOverlay()
 	else:
 		activateGameOverlay()
+		
+func toggleBulldozerOverlay():
+	if bulldozerOverlayActive:
+		deactivateBulldozerOverlay()
+	else:
+		activateBulldozerOverlay()
+		
+func activateBulldozerOverlay():
+	bulldozerOverlayActive = true
+	nextRoundButton.active = false
+	cancelButton.active = true
+	nextRoundButton.delight()
+	cancelButton.highlight()
+	bulldozerOverlay.highlight()
+	
+func deactivateBulldozerOverlay():
+	bulldozerOverlayActive = false
+	nextRoundButton.active = true
+	cancelButton.active = false
+	nextRoundButton.highlight()
+	cancelButton.delight()
+	bulldozerOverlay.delight()
 	
 func deactivateGameOverlay():
 	overlayActive = false

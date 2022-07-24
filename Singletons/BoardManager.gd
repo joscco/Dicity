@@ -160,6 +160,8 @@ func getPointsForAllTypes(matrix = boardState):
 	return allPoints
 
 func getIndustryPointsWithoutClusters() -> int:
+	if boardState == []:
+		return 0
 	var filteredByType = createFilterByTypeCopy(boardState, TYPE.INDUSTRY)
 	return getSumOfNonNullEntries(filteredByType)
 

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 const adaptationSpeed = 0.1
 signal level_up_screen_done
@@ -9,17 +9,17 @@ onready var percentageDisplay : Label = $MoneyBar/PointsDisplay
 onready var moneyBar: TextureProgress = $MoneyBar
 onready var levelCount: Label = $MoneyBar/LevelCountBack/LevelCount
 
-onready var foodBar: TextureProgress = $HBoxContainer/Food/FoodBar
-onready var educationBar: TextureProgress = $HBoxContainer/Education/EducationBar
-onready var funBar: TextureProgress = $HBoxContainer/Fun/FunBar
+onready var foodBar: TextureProgress = $Stats/Food/Food/FoodBar
+onready var educationBar: TextureProgress = $Stats/Education/Education/EducationBar
+onready var funBar: TextureProgress = $Stats/Fun/Fun/FunBar
 
-onready var foodPercentLabel: Label = $HBoxContainer/Food/FoodBar/PointsDisplay
-onready var educationPercentLabel: Label = $HBoxContainer/Education/EducationBar/PointsDisplay
-onready var funPercentLabel: Label= $HBoxContainer/Fun/FunBar/PointsDisplay
+onready var foodPercentLabel: Label = $Stats/Food/Food/FoodBar/PointsDisplay
+onready var educationPercentLabel: Label = $Stats/Education/Education/EducationBar/PointsDisplay
+onready var funPercentLabel: Label= $Stats/Fun/Fun/FunBar/PointsDisplay
 
-onready var foodEffectLabel: Label = $HBoxContainer/Food/Effects/Num
-onready var educationEffectLabel: Label = $HBoxContainer/Education/Effects/Num
-onready var funEffectLabel: Label= $HBoxContainer/Fun/Effects/Num
+onready var foodEffectLabel: Label = $Stats/Food/Food/Effects/Num
+onready var educationEffectLabel: Label = $Stats/Education/Education/Effects/Num
+onready var funEffectLabel: Label= $Stats/Fun/Fun/Effects/Num
 
 # These bars only accept int values, so lerping leads to errors
 var moneyBarFloatValue : float = 0
@@ -35,7 +35,6 @@ var levelUpTween: Tween = Tween.new()
 var changingLevelCount = false
 
 func _ready():
-	
 	add_child(tween)
 	add_child(levelUpTween)
 	GameManager.setGUIManager(self)
@@ -52,7 +51,6 @@ func on_level_up():
 	emit_signal("level_up_screen_done")
 
 func _process(_delta):
-	
 	roundsLeftLabel.text = str(clamp(10 - GameManager.rollsLeft + 1, 0, 10)) + "/10"
 	percentageDisplay.text = str(GameManager.money) + "/" + str(GameManager.getMoneyNeededForThisLevel())
 	

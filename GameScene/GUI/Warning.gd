@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var tween
 export var type = ""
@@ -11,7 +11,7 @@ func _ready():
 	GameManager.warnings[type]=self
 
 func _start_tween():
-	tween.interpolate_property(self,'scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
+	tween.interpolate_property(self,'rect_scale',tween_values[0], tween_values[1], 0.75, Tween.TRANS_BACK, Tween.EASE_OUT)    
 	tween.start()
 
 func _on_Tween_tween_completed(_object, _key):

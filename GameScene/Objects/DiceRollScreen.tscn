@@ -19,12 +19,13 @@
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/slotsBackground.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/bulldozerButton.png" type="Texture" id=18]
 [ext_resource path="res://GameScene/GUI/BulldozerButton.gd" type="Script" id=19]
-[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/bulldozerOverlay.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Graphics/DiceGraphics/emptyField.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Graphics/DiceGraphics/Buttons/yellow.png" type="Texture" id=22]
 
 [node name="DiceRollScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 2 )
 die = ExtResource( 16 )
 
@@ -34,6 +35,7 @@ margin_left = -47.0
 margin_top = -57.0
 margin_right = 1953.0
 margin_bottom = 1103.0
+mouse_filter = 2
 texture = ExtResource( 5 )
 script = ExtResource( 12 )
 
@@ -60,15 +62,6 @@ margin_bottom = -20.5
 rect_pivot_offset = Vector2( 0, 100 )
 texture = ExtResource( 21 )
 
-[node name="BulldozerOverlay" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.560784 )
-margin_left = -40.0
-margin_top = -62.0
-margin_right = 1960.0
-margin_bottom = 1098.0
-texture = ExtResource( 20 )
-script = ExtResource( 12 )
-
 [node name="Buttons" type="HBoxContainer" parent="."]
 anchor_top = 0.5
 anchor_bottom = 0.5
@@ -78,20 +71,22 @@ margin_bottom = 499.0
 custom_constants/separation = 30
 alignment = 1
 
-[node name="NextRoundSprite" type="TextureRect" parent="Buttons"]
+[node name="NextRoundButton" type="TextureButton" parent="Buttons"]
 margin_left = 43.0
 margin_right = 168.0
 margin_bottom = 139.0
 rect_pivot_offset = Vector2( 62, 62 )
-texture = ExtResource( 15 )
+mouse_filter = 1
+texture_normal = ExtResource( 15 )
 script = ExtResource( 14 )
 
-[node name="BulldozerButton" type="TextureRect" parent="Buttons"]
+[node name="BulldozerButton" type="TextureButton" parent="Buttons"]
 margin_left = 198.0
 margin_right = 323.0
 margin_bottom = 139.0
 rect_pivot_offset = Vector2( 62, 62 )
-texture = ExtResource( 18 )
+mouse_filter = 1
+texture_normal = ExtResource( 18 )
 script = ExtResource( 19 )
 
 [node name="ChangeColorSprite" type="TextureRect" parent="Buttons"]
@@ -105,13 +100,16 @@ margin_left = 19.0
 margin_top = 19.5
 margin_right = 58.0
 margin_bottom = 58.5
+mouse_filter = 1
+texture_normal = ExtResource( 22 )
 
 [node name="Red" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
 margin_left = 67.0
 margin_top = 19.5
 margin_right = 106.0
 margin_bottom = 58.5
-texture = ExtResource( 9 )
+mouse_filter = 1
+texture_normal = ExtResource( 9 )
 methodName = "changeStateToRed"
 
 [node name="Beige" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
@@ -119,7 +117,8 @@ margin_left = 19.0
 margin_top = 66.5
 margin_right = 58.0
 margin_bottom = 105.5
-texture = ExtResource( 7 )
+mouse_filter = 1
+texture_normal = ExtResource( 7 )
 methodName = "changeStateToBeige"
 
 [node name="Black" parent="Buttons/ChangeColorSprite" instance=ExtResource( 4 )]
@@ -127,22 +126,35 @@ margin_left = 67.0
 margin_top = 66.5
 margin_right = 106.0
 margin_bottom = 105.5
-texture = ExtResource( 10 )
+mouse_filter = 1
+texture_normal = ExtResource( 10 )
 methodName = "changeStateToBlack"
 
-[node name="ChangeNumberSprite" type="TextureRect" parent="Buttons"]
+[node name="ChangeNumberSprite" type="TextureButton" parent="Buttons"]
 margin_left = 508.0
 margin_right = 633.0
 margin_bottom = 139.0
 rect_pivot_offset = Vector2( 62, 62 )
-texture = ExtResource( 1 )
+mouse_filter = 1
+texture_normal = ExtResource( 1 )
 script = ExtResource( 6 )
 
-[node name="CancelButton" type="TextureRect" parent="."]
+[node name="BulldozerOverlay" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.560784 )
+margin_left = -44.0
+margin_top = 849.0
+margin_right = 1956.0
+margin_bottom = 2009.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+script = ExtResource( 12 )
+
+[node name="CancelButton" type="TextureButton" parent="."]
 margin_left = 44.0
 margin_top = 899.0
 margin_right = 169.0
 margin_bottom = 1024.0
 rect_pivot_offset = Vector2( 62, 62 )
-texture = ExtResource( 11 )
+mouse_filter = 1
+texture_normal = ExtResource( 11 )
 script = ExtResource( 13 )

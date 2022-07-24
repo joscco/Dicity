@@ -1,21 +1,18 @@
-extends TextureRect
+extends TextureButton
 
-onready var diceRollScreen = get_parent().get_parent().get_parent()
+onready var diceRollScreen = get_parent().get_parent()
 var active = true
 var tween = Tween.new()
 
 func _ready():
 	add_child(tween)
 
-func _input(event):
-	if active:
-		if not GameManager.showingDialogue:
-			if GameManager.currentAction == null:
-				if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-					if get_global_rect().has_point(get_global_mouse_position()):
-							SoundManager.playSound("diceroll")
-							wiggleSize()
-							GameManager.nextRound()
+func _pressed():
+	print("Next Round Clicked")
+	if active and not GameManager.showingDialogue and GameManager.currentAction == null:
+		SoundManager.playSound("diceroll")
+		wiggleSize()
+		GameManager.nextRound()
 
 func wiggleSize():
 	tween.interpolate_property(self, 'rect_scale', null, Vector2(1.3, 1.3), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)

@@ -11,5 +11,5 @@ func highlight():
 	tween.start()
 
 func delight():
-	tween.interpolate_property(self, 'modulate', null, Color(1, 1, 1, 0), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, 'modulate', null, Color(1,1,1,0), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()

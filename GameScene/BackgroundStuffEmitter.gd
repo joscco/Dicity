@@ -8,7 +8,7 @@ func _ready():
 	splatterStuff()
 
 func splatterStuff():
-	for i in range(numberOfStuffs):
+	for _i in range(numberOfStuffs):
 		var xs = randi() % int(rect_size[0])
 		var ys = randi() % int(rect_size[1])
 		var index = randi() % 15 + 1

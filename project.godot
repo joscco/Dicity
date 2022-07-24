@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "DiceRollScreen",
+"language": "GDScript",
+"path": "res://GameScene/Objects/DiceRollScreen.gd"
+} ]
+_global_script_class_icons={
+"DiceRollScreen": ""
+}
+
 [application]
 
 config/name="Dicity"

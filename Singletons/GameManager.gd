@@ -13,6 +13,8 @@ const maxGridHeight = 5
 const maxMountainCount = 50
 
 var level:int
+var tutorialLevel:int
+var inTutorial: bool
 var inLevelUpMode:bool = false
 
 enum GAME_OVER_REASON {
@@ -67,7 +69,8 @@ func _process(_delta):
 		else:
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
 			
-	showWarnings()
+	if level >= 1:
+		showWarnings()
 	
 func showWarnings():
 	if not warnings.empty():
@@ -88,10 +91,12 @@ func showWarnings():
 				warnings['education'].hide()
 			
 func startNewGame():
-	level = 7
+	level = 0
+	tutorialLevel = 0
+	inTutorial = true
 	
-	gridWidth = 6
-	gridHeight = 5
+	gridWidth = 0
+	gridHeight = 0
 	mountainCount = 0
 	
 	resetTownStats()
@@ -138,7 +143,7 @@ func nextRound():
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
-	return  -5 + 10*level 
+	return int(max(1, 5*level))
 
 func getBoni():
 	numberChanges = int(getFunPercent()/20) + 1
@@ -154,14 +159,20 @@ func updateStats():
 	
 	if money >= getMoneyNeededForThisLevel():
 		levelUp()
+		
+func levelUpTutorial():
+	tutorialLevel += 1
+	
+	
 
 func levelUp():
 	# Give some Player feedback
-	SoundManager.playSound("success")
-	guiManager.on_level_up()
-	inLevelUpMode = true
-	yield(guiManager, "level_up_screen_done")
-	inLevelUpMode = false
+	if level >= 1:
+		SoundManager.playSound("success")
+		guiManager.on_level_up()
+		inLevelUpMode = true
+		yield(guiManager, "level_up_screen_done")
+		inLevelUpMode = false
 	
 	# Update Stats and create new board
 	level += 1
@@ -169,8 +180,8 @@ func levelUp():
 	resetTownStats()
 	resetDiceStats()
 
-	gridWidth = min(maxGridWidth, gridWidth + (1 - (level % 2)) * 2)
-	gridHeight = min(maxGridHeight, gridHeight + (level % 2) * 2)
+	gridWidth = min(maxGridWidth, gridWidth + (level % 2) * 1)
+	gridHeight = max(1, min(maxGridHeight, gridHeight + (1 - (level % 2)) * 1))
 	if level > 2:
 		mountainCount = clamp(mountainCount + 1, 0, min(maxMountainCount, gridHeight * gridWidth / 3))
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)

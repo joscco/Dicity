@@ -111,12 +111,12 @@ func _input(event):
 					$Sprite.offset = Vector2(-$Sprite.texture.get_width() / 2, -$Sprite.texture.get_height())
 					newTile.shrinkAway()
 					stopTweening()
-					delight()
 					yield(newTile.tween, "tween_completed")
 					# Once it's faded out, just act normally
 					BoardManager.boardState[index[0]][index[1]] = [0, 0]
 					GameManager.updateStats()
 					boardRenderer.refreshBoardState()
+					delight()
 					
 		else:
 			highlight()

@@ -46,6 +46,7 @@ func drawNewBoard():
 		tile.queue_free()
 
 	# And draw the new ones
+	print(BoardManager.boardState)
 	var rows = BoardManager.boardState.size()
 	var columns = BoardManager.boardState[0].size()
 	

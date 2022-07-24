@@ -25,40 +25,40 @@
 [ext_resource path="res://Assets/Themes/NunitoBold30.tres" type="Theme" id=23]
 [ext_resource path="res://Assets/Themes/NunitoBold40.tres" type="Theme" id=24]
 [ext_resource path="res://Assets/Graphics/StartScreen/titleDice.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Themes/NunitoBold80WithBorder.tres" type="Theme" id=26]
 [ext_resource path="res://GameScene/GUI/Warning.gd" type="Script" id=27]
+[ext_resource path="res://GameScene/MayorDialogue.tscn" type="PackedScene" id=28]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+input_pass_on_modal_close_click = false
 script = ExtResource( 17 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 754.0 ]
-}
 
 [node name="Throws Left" type="TextureRect" parent="."]
-margin_left = 40.0
-margin_top = 35.0
-margin_right = 291.0
-margin_bottom = 312.0
+margin_left = 64.0
+margin_top = 317.0
+margin_right = 315.0
+margin_bottom = 594.0
 rect_scale = Vector2( 0.35, 0.35 )
 theme = ExtResource( 24 )
 texture = ExtResource( 25 )
 
 [node name="Num" type="Label" parent="."]
-margin_left = 154.0
-margin_top = 59.0
-margin_right = 261.0
-margin_bottom = 115.0
+margin_left = 178.0
+margin_top = 341.0
+margin_right = 285.0
+margin_bottom = 397.0
 theme = ExtResource( 24 )
 custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
 text = "6/10"
 
 [node name="MoneyBar" type="TextureProgress" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -612.0
-margin_top = 47.0
-margin_right = 612.0
-margin_bottom = 139.0
+margin_left = 127.0
+margin_top = 46.0
+margin_right = 551.0
+margin_bottom = 138.0
 rect_pivot_offset = Vector2( 612, 46 )
 step = 0.1
 texture_under = ExtResource( 5 )
@@ -67,15 +67,21 @@ texture_progress = ExtResource( 10 )
 
 [node name="PointsDisplay" type="Label" parent="MoneyBar"]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-margin_left = -66.5
-margin_top = 18.0
-margin_right = 66.5
-margin_bottom = 133.0
+anchor_bottom = 0.5
+margin_left = -52.5
+margin_top = -46.5
+margin_right = 52.5
+margin_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource( 24 )
 custom_colors/font_color = Color( 0.560784, 0.529412, 0.470588, 1 )
 text = "18/100
 "
+align = 1
+valign = 1
 
 [node name="LevelCountBack" type="TextureRect" parent="MoneyBar"]
 anchor_top = 0.5
@@ -98,50 +104,67 @@ text = "42"
 align = 1
 valign = 1
 
-[node name="DiceRollScreen" parent="." instance=ExtResource( 15 )]
+[node name="Mayor" parent="." instance=ExtResource( 28 )]
+margin_left = 17.0
+margin_top = -199.0
+margin_right = 17.0
+margin_bottom = -199.0
 
-[node name="MuteButton" type="Sprite" parent="."]
-position = Vector2( 1769, 96 )
-z_index = 2
-texture = ExtResource( 18 )
+[node name="DiceRollScreen" parent="." instance=ExtResource( 15 )]
+pause_mode = 2
+
+[node name="MuteButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -1870.0
+margin_top = 179.0
+margin_right = -1713.0
+margin_bottom = 290.0
+rect_pivot_offset = Vector2( 78, 55 )
+texture_normal = ExtResource( 18 )
 script = ExtResource( 19 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Stats" type="HBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -897.0
-margin_top = -349.0
-margin_right = 1023.0
-margin_bottom = -247.0
+margin_left = -409.0
+margin_top = -1043.0
+margin_right = 921.0
+margin_bottom = -935.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 500, -43 )
 custom_constants/separation = 15
 alignment = 1
 
-[node name="FoodIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 125.0
-margin_right = 227.0
-margin_bottom = 102.0
+[node name="Food" type="HBoxContainer" parent="Stats"]
+margin_left = 60.0
+margin_right = 452.0
+margin_bottom = 108.0
+
+[node name="FoodIcon" type="TextureRect" parent="Stats/Food"]
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 105.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 21 )
 
-[node name="Food" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 242.0
-margin_top = 4.0
-margin_right = 671.0
-margin_bottom = 98.0
+[node name="Food" type="VBoxContainer" parent="Stats/Food"]
+margin_left = 106.0
+margin_top = 1.0
+margin_right = 392.0
+margin_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="FoodBar" type="TextureProgress" parent="HBoxContainer/Food"]
-margin_right = 429.0
-margin_bottom = 48.0
+[node name="FoodBar" type="TextureProgress" parent="Stats/Food/Food"]
+margin_right = 286.0
+margin_bottom = 59.0
 rect_pivot_offset = Vector2( 215, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 2 )
@@ -150,7 +173,7 @@ texture_under = ExtResource( 7 )
 texture_over = ExtResource( 14 )
 texture_progress = ExtResource( 9 )
 
-[node name="PointsDisplay" type="Label" parent="HBoxContainer/Food/FoodBar"]
+[node name="PointsDisplay" type="Label" parent="Stats/Food/Food/FoodBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 0
@@ -161,47 +184,79 @@ text = "18/100"
 align = 1
 valign = 1
 
-[node name="Effects" type="HBoxContainer" parent="HBoxContainer/Food"]
-margin_top = 52.0
-margin_right = 429.0
-margin_bottom = 94.0
-custom_constants/separation = 15
+[node name="FoodWarning" type="Control" parent="Stats/Food/Food/FoodBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 27 )
+type = "food"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Food/Effects"]
+[node name="FoodWarningText" type="Label" parent="Stats/Food/Food/FoodBar/FoodWarning"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.0
+margin_top = -48.0
+margin_right = 170.0
+margin_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 24 )
+custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
+text = " Warning! "
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="Stats/Food/Food/FoodBar/FoodWarning"]
+
+[node name="Effects" type="HBoxContainer" parent="Stats/Food/Food"]
+margin_top = 63.0
+margin_right = 286.0
+margin_bottom = 105.0
+custom_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/Food/Food/Effects"]
 margin_bottom = 42.0
 
-[node name="Dice per Throw" type="Label" parent="HBoxContainer/Food/Effects"]
-margin_left = 15.0
-margin_right = 237.0
+[node name="Dice per Throw" type="Label" parent="Stats/Food/Food/Effects"]
+margin_left = 10.0
+margin_right = 232.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.992157, 0.658824, 0, 1 )
 text = "Dice per Throw:"
 
-[node name="Num" type="Label" parent="HBoxContainer/Food/Effects"]
-margin_left = 252.0
-margin_right = 288.0
+[node name="Num" type="Label" parent="Stats/Food/Food/Effects"]
+margin_left = 242.0
+margin_right = 278.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.992157, 0.658824, 0, 1 )
 text = "12"
 
-[node name="FunIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 686.0
-margin_right = 788.0
-margin_bottom = 102.0
+[node name="Fun" type="HBoxContainer" parent="Stats"]
+margin_left = 467.0
+margin_right = 862.0
+margin_bottom = 108.0
+
+[node name="FunIcon" type="TextureRect" parent="Stats/Fun"]
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 105.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 22 )
 
-[node name="Fun" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 803.0
-margin_right = 1232.0
-margin_bottom = 102.0
+[node name="Fun" type="VBoxContainer" parent="Stats/Fun"]
+margin_left = 106.0
+margin_right = 395.0
+margin_bottom = 108.0
 
-[node name="FunBar" type="TextureProgress" parent="HBoxContainer/Fun"]
-margin_right = 429.0
-margin_bottom = 48.0
+[node name="FunBar" type="TextureProgress" parent="Stats/Fun/Fun"]
+margin_right = 289.0
+margin_bottom = 62.0
 rect_pivot_offset = Vector2( 215, 24 )
 size_flags_vertical = 4
 theme = ExtResource( 2 )
@@ -210,7 +265,7 @@ texture_under = ExtResource( 1 )
 texture_over = ExtResource( 12 )
 texture_progress = ExtResource( 3 )
 
-[node name="PointsDisplay" type="Label" parent="HBoxContainer/Fun/FunBar"]
+[node name="PointsDisplay" type="Label" parent="Stats/Fun/Fun/FunBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 24 )
@@ -219,47 +274,77 @@ text = "18/100"
 align = 1
 valign = 1
 
-[node name="Effects" type="HBoxContainer" parent="HBoxContainer/Fun"]
-margin_top = 52.0
-margin_right = 429.0
-margin_bottom = 94.0
-custom_constants/separation = 15
+[node name="MoodWarning" type="Control" parent="Stats/Fun/Fun/FunBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 27 )
+type = "mood"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Fun/Effects"]
+[node name="FoodWarningText" type="Label" parent="Stats/Fun/Fun/FunBar/MoodWarning"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 1.0
+margin_right = 1.0
+margin_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 24 )
+custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
+text = " Warning! "
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="Stats/Fun/Fun/FunBar/MoodWarning"]
+
+[node name="Effects" type="HBoxContainer" parent="Stats/Fun/Fun"]
+margin_top = 66.0
+margin_right = 289.0
+margin_bottom = 108.0
+custom_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/Fun/Fun/Effects"]
 margin_bottom = 42.0
 
-[node name="Number Changes Left" type="Label" parent="HBoxContainer/Fun/Effects"]
-margin_left = 15.0
-margin_right = 326.0
+[node name="Number Changes" type="Label" parent="Stats/Fun/Fun/Effects"]
+margin_left = 10.0
+margin_right = 257.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.862745, 0.345098, 0.054902, 1 )
-text = "Number Changes Left:"
+text = "Number Changes:"
 
-[node name="Num" type="Label" parent="HBoxContainer/Fun/Effects"]
-margin_left = 341.0
-margin_right = 359.0
+[node name="Num" type="Label" parent="Stats/Fun/Fun/Effects"]
+margin_left = 267.0
+margin_right = 285.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.862745, 0.345098, 0.054902, 1 )
 text = "1"
 
-[node name="EducationIcon" type="TextureRect" parent="HBoxContainer"]
-margin_left = 1247.0
-margin_right = 1349.0
-margin_bottom = 102.0
+[node name="Education" type="HBoxContainer" parent="Stats"]
+margin_left = 877.0
+margin_right = 1270.0
+margin_bottom = 108.0
+
+[node name="EducationIcon" type="TextureRect" parent="Stats/Education"]
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 105.0
 rect_pivot_offset = Vector2( 51, 51 )
 size_flags_vertical = 4
 texture = ExtResource( 20 )
 
-[node name="Education" type="VBoxContainer" parent="HBoxContainer"]
-margin_left = 1364.0
-margin_right = 1795.0
-margin_bottom = 102.0
+[node name="Education" type="VBoxContainer" parent="Stats/Education"]
+margin_left = 106.0
+margin_right = 393.0
+margin_bottom = 108.0
 
-[node name="EducationBar" type="TextureProgress" parent="HBoxContainer/Education"]
-margin_right = 431.0
-margin_bottom = 49.0
+[node name="EducationBar" type="TextureProgress" parent="Stats/Education/Education"]
+margin_right = 287.0
+margin_bottom = 56.0
 rect_pivot_offset = Vector2( 215, 25 )
 size_flags_vertical = 4
 theme = ExtResource( 2 )
@@ -268,7 +353,7 @@ texture_under = ExtResource( 6 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 8 )
 
-[node name="PointsDisplay" type="Label" parent="HBoxContainer/Education/EducationBar"]
+[node name="PointsDisplay" type="Label" parent="Stats/Education/Education/EducationBar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 24 )
@@ -277,105 +362,68 @@ text = "18/100"
 align = 1
 valign = 1
 
-[node name="Effects" type="HBoxContainer" parent="HBoxContainer/Education"]
-margin_top = 53.0
-margin_right = 431.0
-margin_bottom = 95.0
-custom_constants/separation = 15
+[node name="EducationWarning" type="Control" parent="Stats/Education/Education/EducationBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 27 )
+type = "education"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Education/Effects"]
+[node name="FoodWarningText" type="Label" parent="Stats/Education/Education/EducationBar/EducationWarning"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -167.5
+margin_top = -28.0
+margin_right = 167.5
+margin_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 24 )
+custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
+text = " Warning! "
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="Stats/Education/Education/EducationBar/EducationWarning"]
+
+[node name="Effects" type="HBoxContainer" parent="Stats/Education/Education"]
+margin_top = 60.0
+margin_right = 287.0
+margin_bottom = 102.0
+custom_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Stats/Education/Education/Effects"]
 margin_bottom = 42.0
 
-[node name="Type Changes Left" type="Label" parent="HBoxContainer/Education/Effects"]
-margin_left = 15.0
-margin_right = 284.0
+[node name="Type Changes" type="Label" parent="Stats/Education/Education/Effects"]
+margin_left = 10.0
+margin_right = 215.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.87451, 0.678431, 0.52549, 1 )
-text = "Type Changes Left:"
+text = "Type Changes:"
 
-[node name="Num" type="Label" parent="HBoxContainer/Education/Effects"]
-margin_left = 299.0
-margin_right = 335.0
+[node name="Num" type="Label" parent="Stats/Education/Education/Effects"]
+margin_left = 225.0
+margin_right = 261.0
 margin_bottom = 42.0
 theme = ExtResource( 23 )
 custom_colors/font_color = Color( 0.87451, 0.678431, 0.52549, 1 )
 text = "16"
 
 [node name="LevelUpScreen" type="TextureRect" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -351.5
-margin_top = -246.0
-margin_right = 351.5
-margin_bottom = 94.0
+margin_left = -351.0
+margin_top = -164.0
+margin_right = 352.0
+margin_bottom = 176.0
 rect_pivot_offset = Vector2( 351, 170 )
 texture = ExtResource( 16 )
 
-[node name="Effects" type="HBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -463.5
-margin_top = -283.0
-margin_right = 463.5
-margin_bottom = -241.0
-
-[node name="FoodWarning" type="Node2D" parent="."]
-visible = false
-position = Vector2( 503, 750 )
-script = ExtResource( 27 )
-type = "food"
-
-[node name="FoodWarningText" type="Label" parent="FoodWarning"]
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource( 26 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
-text = " Warning! "
-align = 1
-valign = 1
-
-[node name="Tween" type="Tween" parent="FoodWarning"]
-
-[node name="MoodWarning" type="Node2D" parent="."]
-visible = false
-position = Vector2( 1082, 749 )
-script = ExtResource( 27 )
-type = "mood"
-
-[node name="FoodWarningText" type="Label" parent="MoodWarning"]
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource( 26 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
-text = " Warning! "
-align = 1
-valign = 1
-
-[node name="Tween" type="Tween" parent="MoodWarning"]
-
-[node name="EducationWarning" type="Node2D" parent="."]
-visible = false
-position = Vector2( 1646, 750 )
-script = ExtResource( 27 )
-type = "education"
-
-[node name="FoodWarningText" type="Label" parent="EducationWarning"]
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource( 26 )
-custom_colors/font_color = Color( 0.137255, 0.0941176, 0.109804, 1 )
-text = " Warning! "
-align = 1
-valign = 1
-
-[node name="Tween" type="Tween" parent="EducationWarning"]
-
-[connection signal="tween_completed" from="FoodWarning/Tween" to="FoodWarning" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="MoodWarning/Tween" to="MoodWarning" method="_on_Tween_tween_completed"]
-[connection signal="tween_completed" from="EducationWarning/Tween" to="EducationWarning" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="Stats/Food/Food/FoodBar/FoodWarning/Tween" to="Stats/Food/Food/FoodBar/FoodWarning" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="Stats/Fun/Fun/FunBar/MoodWarning/Tween" to="Stats/Fun/Fun/FunBar/MoodWarning" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="Stats/Education/Education/EducationBar/EducationWarning/Tween" to="Stats/Education/Education/EducationBar/EducationWarning" method="_on_Tween_tween_completed"]
