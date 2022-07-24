@@ -65,7 +65,7 @@ func highlight():
 			$Sprite.texture = tempTexture
 			$Sprite.offset = Vector2(-tempTexture.get_width()/2 , -tempTexture.get_height())
 			
-	if GameManager.currentAction == "bulldoze" and value[0] != 0:
+	if GameManager.currentAction == "bulldoze" and value[0] > 0:
 		selectionOverlay.show()
 		bulldozeOverlay.show()
 	
@@ -101,7 +101,7 @@ func _input(event):
 						boardRenderer.refreshBoardState()
 						startTweening()
 			elif GameManager.currentAction == "bulldoze":
-				if value[0] != 0:
+				if value[0] > 0:
 					SoundManager.playSound("plop")
 					$DustParticles.emitting = true
 					# Fun part: build a copy of the current tile, add it on top and fade it away

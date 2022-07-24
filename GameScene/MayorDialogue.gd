@@ -96,6 +96,7 @@ func startHintTimer():
 	hintTimer.start(20)
 	yield(hintTimer, "timeout")
 	hint()
+	yield(hintBubbleTween, "tween_completed")
 	hintTimer.stop()
 	hintTimer.start(6)
 	yield(hintTimer, "timeout")

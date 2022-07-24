@@ -28,7 +28,7 @@ func _ready():
 
 func indexToScreenPos(row, column, totalRows, totalColumns):
 	var val = Vector2(
-		(row - (totalRows)/2.0) * (tileWidth + offset),
+		(row - (totalRows)/2.0) * (tileWidth + offset) + tileWidth/2,
 		(column - (totalColumns)/2.0) * (tileWidth + offset) + tileWidth
 	)
 	return val

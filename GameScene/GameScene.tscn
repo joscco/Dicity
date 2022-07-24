@@ -9,6 +9,6 @@
 [node name="Background" parent="." instance=ExtResource( 6 )]
 
 [node name="BoardRenderer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 960, 516 )
+position = Vector2( 960, 480 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
