@@ -74,8 +74,7 @@ func _process(_delta):
 		else:
 			ghostSprite.scale = lerp(ghostSprite.scale, Vector2(0, 0), 0.3)
 			
-	if level >= 1:
-		showWarnings()
+	showWarnings()
 	
 func showWarnings():
 	if not warnings.empty():
@@ -153,7 +152,7 @@ func nextRound():
 	
 func getMoneyNeededForThisLevel() -> int:
 	if inTutorial:
-		return [1, 5, 24, 50, 70, 90, 120][mayor.tutorialLevel]
+		return [1, 5, 24, 50, 70, 90, 150][mayor.tutorialLevel]
 	return int(max(1, 5*level))
 
 func getBoni():
@@ -263,6 +262,7 @@ func showTutorialLevel(tutLevel: int):
 		totalRolls = 10
 		rollsLeft = 10
 		diceLeft = 0
+		nextRoundAllowed = false
 		numberChangesLeft = 0
 		typeChangesLeft = 0
 
@@ -302,6 +302,7 @@ func showTutorialLevel(tutLevel: int):
 		
 	elif tutLevel == 6:
 		totalRolls = 10
+		nextRoundAllowed = false
 		rollsLeft = 10
 		gridHeight = 3
 		gridWidth = 7
@@ -310,14 +311,14 @@ func showTutorialLevel(tutLevel: int):
 			[[6, 3], [0, 0], [0, 0]], 
 			[[6, 3], [0, 0], [0, 0]], 
 			[[6, 3], [0, 0], [0, 0]], 
-			[[0, 0], [-1, 0], [0, 0]], 
+			[[6, 3], [-1, 0], [0, 0]], 
 			[[5, 3], [0, 0], [0, 0]],
 			[[5, 3], [0, 0], [0, 0]], 
 			[[5, 3], [-1, 0], [0, 0]]
 		]
 		GameManager.updateStats()
 		boardRenderer.drawNewBoard()
-		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3]])
+		diceRollScreen.setDice([[6, 0], [5, 0], [5, 0], [6, 1], [6, 1], [5, 1], [6, 2], [5, 2], [5, 2]])
 	
 func getMoneyPercent():
 	return 100.0 * money / getMoneyNeededForThisLevel()

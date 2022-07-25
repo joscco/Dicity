@@ -1,13 +1,14 @@
 extends Control
 
 var tutorialTexts = {
-	0: ["Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. Would you like me to show you around a bit?",\
-		"Alright, splendid. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but my family keeps assigning me project after project.",\
+	0: ["Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. Would you like play a little tutorial?",\
+		"Splendid. To be honest, I am not made for the life of a mayor.",\
+		"My lifelong dream is to become a competitive Yahtzee player, but my family keeps assigning me these city projects.",
 		"Would you mind taking over for me? At least for a little while, so I can hone my Yahtzee skills."],
 	1: ["Here you have a little land to train with. The main idea: Roll the dice and place them on the land.", \
 	 	"If it were up to me, you could place them any way you like but my family gives me these ridiculous productivity quotas to fulfill.", \
 		"Black buildings produce money. The larger the number, the larger the yield.",\
-		"Basically if the city doesn't produce enough money after a certain amount of dice rolls they will come check up on me and then we are busted.", \
+		"So if the city doesn't produce enough money after a certain amount of dice rolls they will come check up on me and then we are busted.", \
 		"So be kind and place a few black buildings to fulfill the money demands!"],
 	2: ["Great, that seems to work! Then let's go to the next step, building clusters.",\
 		"A cluster is formed by two or more buildings of same type and number placed next to each other.",\
@@ -16,19 +17,22 @@ var tutorialTexts = {
 		"Now try to make your own cluster to get us some money."],
 	3: ["Awesome! Now the mountains are gone too, more space to build stuff, yeah!",
 		"But don't just go building huge clusters of factories. Large clusters will negatively impact neighboring tiles.",
-		"Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either. Everything in moderation, I guess.",
-		"See yourself what happens if you build a factory cluster next to the food cluster"],
+		"Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either.",
+		" Everything in moderation, I guess. See yourself what happens if you build a factory cluster next to the food cluster"],
 	4: ["Well, looks like that factory cluster gave the food cluster a little knock down.", 
 		"And know we need even more money but have no space left! Urgh.",
-		"Looks like we have to bulldoze some of these food buildings to make room for new factories. Could you do that? There's a button for that right below me. Just press it and select the building you want to tear down."],
-	5: ["Hello there new freedom! Well done!", "Now to the other things you can do: Apart from the bulldozer you can find other buttons to throw new dice, change the color of a die or to reroll it below me.",
-		"How often you can do these actions is governed by your city's education and entertainment level respectively. Your city's food influences how many dice you get each round.", 
+		"Looks like we have to bulldoze some of these food buildings to make room for new factories. Could you do that?",
+		"There's a button for that right below me. Just press it and select the building you want to tear down."],
+	5: ["Hello there new freedom! Well done!", 
+		"Now to the other things you can do: Apart from the bulldozer you can find other buttons to throw new dice, change the color of a die or to reroll it below me.",
+		"How often you can do these actions is governed by your city's education and entertainment level respectively.",
+		"Your city's food influences how many dice you get each round.", 
 		"You normally get 10 dice rolls per level, but since you're still learning, we'll give you 100 here.",
 		"Now try to reach the money quota with all these fancy buttons"],
 	6: ["Superb, you did it! Then let me just give you some final strategic words.",
 		"If your city has no food, entertainment or education at the end of a turn my family will know right away.",
 		"This town here has a lot of factories and makes good money but education, food and fun is greatly in danger.",
-		"Save this town and then you'll be ready for the real game! Thanks in advance."]
+		"Save this town and then you'll be ready for the real game! When you feel ready, just close the tutorial. Thanks in advance."]
 }
 
 var hintTexts =[\
