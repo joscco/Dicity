@@ -58,10 +58,10 @@ patch_margin_bottom = 30
 [node name="SkipTutorial" type="TextureButton" parent="TutorialSpeechbubble"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -63.0
-margin_top = -38.0
-margin_right = 4.0
-margin_bottom = 29.0
+margin_left = -31.0
+margin_top = -34.0
+margin_right = 36.0
+margin_bottom = 33.0
 rect_pivot_offset = Vector2( 33, 33 )
 mouse_filter = 1
 texture_normal = ExtResource( 3 )
