@@ -26,6 +26,20 @@ func _ready():
 	diceAnchor.hide()
 	throwDice()
 	GameManager.diceRollScreen = self
+	
+func setDice(arr):
+	for thrownDie in thrownDice:
+		if is_instance_valid(thrownDie):
+			thrownDie.vanish(false)
+	
+	GameManager.diceLeft = arr.size()
+	for i in range(arr.size()):
+		var dieInstance: Node2D = die.instance()
+		add_child(dieInstance)
+		thrownDice.append(dieInstance)
+		dieInstance.setType(arr[i][1])
+		dieInstance.setEyes(arr[i][0])
+		dieInstance.position = diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100)
 
 func throwDice():
 	for thrownDie in thrownDice:
@@ -38,11 +52,13 @@ func throwDice():
 		thrownDice.append(dieInstance)
 		dieInstance.position = diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100)
 
-func moveUpDice():
+func cleanDiceCache():
 	for i in range(thrownDice.size() - 1, -1, -1):
 		if !is_instance_valid(thrownDice[i]):
 			thrownDice.remove(i)
-
+	
+func moveUpDice():
+	cleanDiceCache()
 	var diceLeftInArray = thrownDice.size()
 	for i in range(diceLeftInArray):
 		thrownDice[i].moveTo(diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100))

@@ -1,35 +1,24 @@
 extends Control
 
-var tutorialState = 0
-var tutorialOver = false
-var lastHint = null
-
-var speechBubbleTween = Tween.new()
-var hintBubbleTween = Tween.new()
-var hintTimer = Timer.new()
-
-func _ready():
-	GameManager.showingDialogue = true
-	$TutorialSpeechbubble/TutorialText.text = tutorialTexts[0][0]
-	$HintSpeechbubble.hide()
-	
-	add_child(speechBubbleTween)
-	add_child(hintBubbleTween)
-	add_child(hintTimer)
-	
 var tutorialTexts = {
 	0: ["Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. Would you like me to show you around a bit?",\
-		"Alright, splendid. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but alas my family keeps assigning me project after project.",\
+		"Alright, splendid. I must confess, I am not made for the life of a mayor. My lifelong dream is to become a competitive Yahtzee player, but my family keeps assigning me project after project.",\
 		"Would you mind taking over for me? At least for a little while, so I can hone my Yahtzee skills.",\
 		"It's not as difficult as it sounds, don't worry. Here, let me show you what to do."],
 	1: ["Here you have a little land to train with. The main principle is very easy: Just roll the dice and place them on the land.", \
 	 	"If it were up to me, you could place them any way you like but my family gives me these ridiculous productivity quotas to fulfill.", \
 		"Black buildings produce money. As a rule of thumb the larger the number, the larger the yield.",\
 		"Basically if the city doesn't produce enough money after a certain amount of dice rolls they will come check up on me and then we are busted.", \
-		"So be kind and place a few black buildings to fulfill the money demands!"]
+		"So be kind and place a few black buildings to fulfill the money demands!"],
+	2: ["Great, that seems to work! Then let's go to the next step, building clusters.",\
+		"A cluster is formed by two or more buildings of same type and number placed next to each other.",\
+		"You can see a food cluster of buildings with number 6 above already!",\
+		"Building a cluster of the same building will increase the yield of all buildings in that cluster immensely.",\
+		"Now try to make your own cluster to get us some money."],
+	3: ["Awesome!", "blablibly"],
+	4: ["lulu, lua", "lkajldkjasd"]
 }
 
-#"Building a cluster of the same building will increase the yield of all buildings in the cluster.",\
 #"But don't just go building huge clusters of factories. Firstly because you need food, entertainment and education to improve your luck with the dice and secondly because large clusters will negatively impact neighboring tiles.",\
 #"Nobody wants to live right next to a giant factory complex, right? But then again, I wouldn't want to live right next to a huge cluster of kindergartens either. Everything in moderation, I guess.",\
 #"Also if your city has no food, entertainment or education at the end of the turn my family will know right away.",\
@@ -61,41 +50,63 @@ var hintTexts =[\
 "Every new city my family assigns me has more mountains and a higher quota. It's like they want me to fail eventually."
 ]
 
-func next():
-	if tutorialOver:
-		return
-		
-	tutorialState += 1
+var tutorialLevel = 0
+var tutorialState = 0
+var lastHint = null
 
-	if tutorialState < tutorialTexts[GameManager.level].size():
-		GameManager.showingDialogue = true
-		$TutorialSpeechbubble/TutorialText.text = tutorialTexts[GameManager.level][tutorialState]
-	else:
+var initialPositionHint
+
+var speechBubbleTween = Tween.new()
+var hintBubbleTween = Tween.new()
+var hintTimer = Timer.new()
+
+func _ready():
+	GameManager.showingDialogue = true
+	GameManager.setMayor(self)
+	$TutorialSpeechbubble/TutorialText.text = tutorialTexts[0][0]
+	$HintSpeechbubble.hide()
+	
+	initialPositionHint = $HintSpeechbubble.rect_position
+	
+	add_child(speechBubbleTween)
+	add_child(hintBubbleTween)
+	add_child(hintTimer)
+	
+func next():
+	tutorialState += 1
+	$TutorialSpeechbubble/TutorialNextButton.show()
+
+	if tutorialState >= tutorialTexts[tutorialLevel].size():
+		tutorialLevel += 1
 		tutorialState = -1
 		
-		if GameManager.level == 0:
-			GameManager.levelUp()
-
-		if GameManager.level >= 5:
+		if tutorialLevel >= 5:
 			closeTutorial()
 		else:
+			GameManager.showTutorialLevel(tutorialLevel)
 			next()
+	else:
+		GameManager.showingDialogue = true
+		$TutorialSpeechbubble/TutorialText.text = tutorialTexts[tutorialLevel][tutorialState]
+		if tutorialLevel > 0 and tutorialState == tutorialTexts[tutorialLevel].size() - 1:
+			$TutorialSpeechbubble/TutorialNextButton.hide()
+			GameManager.showingDialogue = false
 
 func closeTutorial():
+	GameManager.inTutorial = false
 	speechBubbleTween.interpolate_property($TutorialSpeechbubble, "rect_scale", null, Vector2(1, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	speechBubbleTween.start()
 	yield(speechBubbleTween, "tween_completed")
 	$TutorialSpeechbubble.hide()
-	tutorialOver = true
 	startHintTimer()
+	GameManager.startNewGame()
 	GameManager.showingDialogue = false
-	GameManager.inTutorial = false
 	
 func startHintTimer():
 	hintTimer.stop()
 	hintTimer.start(20)
 	yield(hintTimer, "timeout")
-	hint()
+	newHint()
 	yield(hintBubbleTween, "tween_completed")
 	hintTimer.stop()
 	hintTimer.start(6)
@@ -103,22 +114,21 @@ func startHintTimer():
 	closeHint()
 	
 func closeHint():
-	hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_scale", null, Vector2(1, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_position", null, initialPositionHint + Vector2(0, 400), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	hintBubbleTween.start()
 	yield(hintBubbleTween, "tween_completed")
 	$HintSpeechbubble.hide()
 	startHintTimer()
 	
-func hint():
-	if tutorialOver:
-		SoundManager.playSound('plop')
-		var hintIndex = randi() % hintTexts.size()
-		while hintIndex == lastHint:
-			hintIndex = randi() % hintTexts.size()
-		lastHint = hintIndex
-		
-		$HintSpeechbubble.show()
-		$HintSpeechbubble/HintText.text = hintTexts[hintIndex]
-		hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_scale", null, Vector2(1,1), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-		hintBubbleTween.start()
+func newHint():
+	SoundManager.playSound('plop')
+	var hintIndex = randi() % hintTexts.size()
+	while hintIndex == lastHint:
+		hintIndex = randi() % hintTexts.size()
+	lastHint = hintIndex
+	
+	$HintSpeechbubble.show()
+	$HintSpeechbubble/HintText.text = hintTexts[hintIndex]
+	hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_position", null, initialPositionHint, 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	hintBubbleTween.start()
 		

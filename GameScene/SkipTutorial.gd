@@ -9,8 +9,6 @@ func _ready():
 func _pressed():
 	SoundManager.playSound('plop')
 	wiggleInSize()
-	if GameManager.level == 0:
-		GameManager.levelUp()
 	mayor.closeTutorial()
 
 func wiggleInSize():

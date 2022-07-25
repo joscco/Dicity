@@ -7,14 +7,14 @@ var diceRollScreen = null
 var showingDialogue = false
 var boardRenderer = null
 var guiManager = null
+var mayor = null
 
 const maxGridWidth = 14
 const maxGridHeight = 5
 const maxMountainCount = 50
 
-var level:int
-var tutorialLevel:int
-var inTutorial: bool
+var level:int = 0
+var inTutorial:bool = true
 var inLevelUpMode:bool = false
 
 enum GAME_OVER_REASON {
@@ -40,9 +40,9 @@ var numberChangesLeft:int
 var typeChanges:int
 var typeChangesLeft:int
 
-var gridWidth
-var gridHeight
-var mountainCount 
+var gridWidth: int = 0
+var gridHeight: int = 0
+var mountainCount: int = 0 
 
 func setBoardRenderer(renderer):
 	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
@@ -50,13 +50,15 @@ func setBoardRenderer(renderer):
 	
 func setGUIManager(manager):
 	guiManager = manager
+	
+func setMayor(newMayor):
+	mayor = newMayor
 
 func _ready():
 	ghostSprite = Sprite.new()
 	ghostSprite.modulate.a = 0.5
 	ghostSprite.z_index = 1
 	add_child(ghostSprite)
-	startNewGame()
 
 func _process(_delta):
 	if selectedDice != null:
@@ -91,16 +93,18 @@ func showWarnings():
 				warnings['education'].hide()
 			
 func startNewGame():
-	level = 0
-	tutorialLevel = 0
-	inTutorial = true
+	level = 1
 	
-	gridWidth = 0
-	gridHeight = 0
+	gridWidth = 1
+	gridHeight = 1
 	mountainCount = 0
 	
 	resetTownStats()
 	resetDiceStats()
+	
+	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
+	boardRenderer.drawNewBoard()
+	diceRollScreen.throwDice()
 	
 func resetTownStats():
 	food = 0
@@ -143,6 +147,8 @@ func nextRound():
 		diceRollScreen.throwDice()
 	
 func getMoneyNeededForThisLevel() -> int:
+	if inTutorial:
+		return [1, 5, 50, 39, 50, 69][mayor.tutorialLevel]
 	return int(max(1, 5*level))
 
 func getBoni():
@@ -159,35 +165,70 @@ func updateStats():
 	
 	if money >= getMoneyNeededForThisLevel():
 		levelUp()
-		
-func levelUpTutorial():
-	tutorialLevel += 1
-	
-	
 
 func levelUp():
 	# Give some Player feedback
-	if level >= 1:
-		SoundManager.playSound("success")
-		guiManager.on_level_up()
-		inLevelUpMode = true
-		yield(guiManager, "level_up_screen_done")
-		inLevelUpMode = false
+	if inTutorial:
+		mayor.next()
+	else:
+		if level > 0:
+			SoundManager.playSound("success")
+			guiManager.on_level_up()
+			inLevelUpMode = true
+			yield(guiManager, "level_up_screen_done")
+			inLevelUpMode = false
+		
+		# Update Stats and create new board
+		level += 1
+		
+		resetTownStats()
+		resetDiceStats()
+
+		gridWidth = min(maxGridWidth, gridWidth + (level % 2) * 1)
+		gridHeight = max(1, min(maxGridHeight, gridHeight + (1 - (level % 2)) * 1))
+		if level > 2:
+			mountainCount = clamp(mountainCount + 1, 0, min(maxMountainCount, gridHeight * gridWidth / 3))
+		BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
+		boardRenderer.drawNewBoard()
+		diceRollScreen.throwDice()
 	
-	# Update Stats and create new board
-	level += 1
-	
+func showTutorialLevel(tutLevel: int):
 	resetTownStats()
 	resetDiceStats()
-
-	gridWidth = min(maxGridWidth, gridWidth + (level % 2) * 1)
-	gridHeight = max(1, min(maxGridHeight, gridHeight + (1 - (level % 2)) * 1))
-	if level > 2:
-		mountainCount = clamp(mountainCount + 1, 0, min(maxMountainCount, gridHeight * gridWidth / 3))
-	BoardManager.shuffleNewBoard(gridHeight, gridWidth, mountainCount)
-	boardRenderer.drawNewBoard()
 	
-	diceRollScreen.throwDice()
+	if tutLevel == 1:
+		gridHeight = 1
+		gridWidth = 1
+		
+		BoardManager.boardState = [[[0, 0]]]
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([[6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
+		
+	elif tutLevel == 2:
+		gridHeight = 2
+		gridWidth = 2
+		
+		BoardManager.boardState = [
+			[[6, 0], [-1, 0], [0, 0]], 
+			[[6, 0], [-1, 0], [0, 0]], 
+			[[6, 0], [-1, 0], [0, 0]]
+		]
+		GameManager.updateStats()
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3], [6, 0]])
+		
+	elif tutLevel == 3:
+		gridHeight = 2
+		gridWidth = 4
+		
+		BoardManager.boardState = [
+			[[6, 0], [6, 0], [0, 0]], 
+			[[6, 0], [-1, 0], [0, 0]], 
+			[[6, 0], [6, 0], [0, 0]]
+		]
+		GameManager.updateStats()
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3], [6, 0]])
 	
 func getMoneyPercent():
 	return 100.0 * money / getMoneyNeededForThisLevel()

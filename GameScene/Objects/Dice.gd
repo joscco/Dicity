@@ -24,7 +24,7 @@ func _ready():
 	
 func moveTo(newPosition: Vector2): 
 	var distance = (newPosition - position).length()
-	moveTween.interpolate_property(self, "position", null, newPosition, distance / moveSpeed, Tween.TRANS_BACK, Tween.EASE_OUT)
+	moveTween.interpolate_property(self, "position", null, newPosition, min(distance / moveSpeed, 0.8), Tween.TRANS_BACK, Tween.EASE_OUT)
 	moveTween.start()
 
 func changeSprite():
@@ -54,6 +54,20 @@ func changeType(newType):
 	else:
 		print('no more typechanges')
 		SoundManager.playSound('error')
+		
+func setType(newType):
+	if type == newType:
+			print('already of that type')
+	else:
+		type = newType
+		changeSprite()
+		
+func setEyes(newEyes):
+	if eyes == newEyes:
+		print('already of that type')
+	else:
+		eyes = newEyes
+		changeSprite()
 
 func applyAction():
 	if GameManager.currentAction == null:

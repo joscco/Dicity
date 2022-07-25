@@ -9,7 +9,7 @@ func _ready():
 	_start_tween()
 
 func _pressed():
-	mayor.hint()
+	mayor.newHint()
 					
 
 func _start_tween():

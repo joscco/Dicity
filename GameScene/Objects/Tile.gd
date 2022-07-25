@@ -94,10 +94,10 @@ func _input(event):
 						BoardManager.negativeImpact(index[0],index[1])
 						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
 						GameManager.diceRollScreen.thrownDice.erase(GameManager.selectedDice)
+						GameManager.diceRollScreen.moveUpDice()
 						GameManager.selectedDice.vanish()
 						GameManager.selectedDice = null
 						GameManager.updateStats()
-						GameManager.diceRollScreen.moveUpDice()
 						boardRenderer.refreshBoardState()
 						startTweening()
 			elif GameManager.currentAction == "bulldoze":

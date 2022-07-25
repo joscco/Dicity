@@ -8,7 +8,7 @@ func _ready():
 	add_child(tween)
 
 func _pressed():
-	if not GameManager.showingDialogue:
+	if !GameManager.inTutorial:
 			SoundManager.playSound("plop")
 			toggleState()
 				
