@@ -43,7 +43,8 @@ func elementToSpritePath(element):
 func drawNewBoard():
 	# Remove old tiles:
 	for tile in indexToTileDict.values():
-		tile.queue_free()
+		if is_instance_valid(tile):
+			tile.queue_free()
 
 	# And draw the new ones
 	var rows = BoardManager.boardState.size()

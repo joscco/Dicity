@@ -87,12 +87,13 @@ func _input(event):
 						SoundManager.playSound('error')
 						print('cant place on existing die') 
 					else:
+						# Level Change can mess things up here!
 						SoundManager.playSound("plop")
 						$DustParticles.emitting = true
 						value = [GameManager.selectedDice.eyes, GameManager.selectedDice.type]
+						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
 						BoardManager.boardState[index[0]][index[1]] = value
 						BoardManager.negativeImpact(index[0],index[1])
-						$Sprite.texture = boardRenderer.indexToSpriteDict[value]
 						GameManager.diceRollScreen.thrownDice.erase(GameManager.selectedDice)
 						GameManager.diceRollScreen.moveUpDice()
 						GameManager.selectedDice.vanish()

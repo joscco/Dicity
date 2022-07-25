@@ -8,10 +8,8 @@ func _ready():
 	add_child(tween)
 
 func _pressed():
-	print("Bulldozer Clicked")
-	if not GameManager.showingDialogue:
-			SoundManager.playSound("plop")
-			toggleState()
+	SoundManager.playSound("plop")
+	toggleState()
 				
 func toggleState():
 	if GameManager.currentAction == 'bulldoze':

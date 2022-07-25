@@ -8,9 +8,8 @@ func _ready():
 	add_child(tween)
 
 func _pressed():
-	if !GameManager.inTutorial:
-			SoundManager.playSound("plop")
-			toggleState()
+	SoundManager.playSound("plop")
+	toggleState()
 				
 func toggleState():
 	if GameManager.currentAction == 'changeNumber':

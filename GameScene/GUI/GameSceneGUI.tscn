@@ -106,9 +106,9 @@ valign = 1
 
 [node name="Mayor" parent="." instance=ExtResource( 28 )]
 margin_left = 17.0
-margin_top = -199.0
+margin_top = -194.0
 margin_right = 17.0
-margin_bottom = -199.0
+margin_bottom = -194.0
 
 [node name="DiceRollScreen" parent="." instance=ExtResource( 15 )]
 pause_mode = 2

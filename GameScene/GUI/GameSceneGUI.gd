@@ -51,7 +51,7 @@ func on_level_up():
 	emit_signal("level_up_screen_done")
 
 func _process(_delta):
-	roundsLeftLabel.text = str(clamp(10 - GameManager.rollsLeft + 1, 0, 10)) + "/10"
+	roundsLeftLabel.text = str(clamp(GameManager.totalRolls - GameManager.rollsLeft + 1, 0, GameManager.totalRolls)) + "/" + str(GameManager.totalRolls)
 	percentageDisplay.text = str(GameManager.money) + "/" + str(GameManager.getMoneyNeededForThisLevel())
 	
 	foodEffectLabel.text = str(GameManager.diceCount)

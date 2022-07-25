@@ -137,8 +137,6 @@ func getAllConnectedComponents(matrix):
 	for row in range(rows):
 		for column in range(columns):
 			if matrix[row][column]!= 0:
-				print("Start cluster in:")
-				print(str([row, column]))
 				var comp = getOneConnectedComponent(matrix, row, column)				
 				components.append(comp)
 	return components
@@ -207,7 +205,7 @@ func negativeImpact(i,j):
 					if boardState[member[0]-1][member[1]][1]!=clusterType[1]:
 						negativelyImpacted.append([ member[0]-1 ,member[1] ])
 						boardState[member[0]-1][member[1]][0] = max(0,boardState[member[0]-1][member[1]][0]-malus)
-			if member[0]<GameManager.gridWidth-1:
+			if member[0] < GameManager.gridWidth - 1:
 				if boardState[member[0]+1][member[1]][0] > 0:
 					if boardState[member[0]+1][member[1]][1]!=clusterType[1]:
 						negativelyImpacted.append([ member[0]+1 ,member[1] ])

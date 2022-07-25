@@ -13,6 +13,8 @@ const maxGridWidth = 14
 const maxGridHeight = 5
 const maxMountainCount = 50
 
+var nextRoundAllowed = false
+
 var level:int = 0
 var inTutorial:bool = true
 var inLevelUpMode:bool = false
@@ -32,6 +34,7 @@ var fun :int
 var education:int
 var money:int
 
+var totalRolls:int
 var rollsLeft:int
 var diceCount:int
 var diceLeft:int
@@ -93,6 +96,7 @@ func showWarnings():
 				warnings['education'].hide()
 			
 func startNewGame():
+	nextRoundAllowed = true
 	level = 1
 	
 	gridWidth = 1
@@ -113,6 +117,7 @@ func resetTownStats():
 	money = 0
 
 func resetDiceStats():
+	totalRolls = 10
 	rollsLeft = 10
 	diceCount = 5
 	diceLeft = diceCount
@@ -148,7 +153,7 @@ func nextRound():
 	
 func getMoneyNeededForThisLevel() -> int:
 	if inTutorial:
-		return [1, 5, 50, 39, 50, 69][mayor.tutorialLevel]
+		return [1, 5, 24, 50, 70, 90, 120][mayor.tutorialLevel]
 	return int(max(1, 5*level))
 
 func getBoni():
@@ -169,7 +174,7 @@ func updateStats():
 func levelUp():
 	# Give some Player feedback
 	if inTutorial:
-		mayor.next()
+		mayor.nextTutorialLevel()
 	else:
 		if level > 0:
 			SoundManager.playSound("success")
@@ -196,39 +201,123 @@ func showTutorialLevel(tutLevel: int):
 	resetTownStats()
 	resetDiceStats()
 	
+	if tutLevel == 0:
+		diceLeft = 0
+		numberChangesLeft = 0
+		typeChangesLeft = 0
+		
+		gridHeight = 0
+		gridWidth = 0
+		
+		BoardManager.boardState = [[]]
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([])
+	
 	if tutLevel == 1:
+		diceLeft = 0
+		numberChangesLeft = 0
+		typeChangesLeft = 0
+		
 		gridHeight = 1
 		gridWidth = 1
 		
 		BoardManager.boardState = [[[0, 0]]]
 		boardRenderer.drawNewBoard()
-		diceRollScreen.setDice([[6, 3], [5, 3], [4, 3], [3, 3], [2, 3], [1, 3]])
+		diceRollScreen.setDice([[6, 3], [5, 3]])
 		
 	elif tutLevel == 2:
-		gridHeight = 2
+		diceLeft = 0
+		numberChangesLeft = 0
+		typeChangesLeft = 0
+		
+		gridHeight = 3
 		gridWidth = 2
 		
 		BoardManager.boardState = [
-			[[6, 0], [-1, 0], [0, 0]], 
 			[[6, 0], [-1, 0], [0, 0]], 
 			[[6, 0], [-1, 0], [0, 0]]
 		]
 		GameManager.updateStats()
 		boardRenderer.drawNewBoard()
-		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3], [6, 0]])
+		diceRollScreen.setDice([[6, 3], [6, 3]])
 		
 	elif tutLevel == 3:
-		gridHeight = 2
-		gridWidth = 4
+		diceLeft = 0
+		numberChangesLeft = 0
+		typeChangesLeft = 0
+
+		gridHeight = 3
+		gridWidth = 3
 		
 		BoardManager.boardState = [
 			[[6, 0], [6, 0], [0, 0]], 
 			[[6, 0], [-1, 0], [0, 0]], 
 			[[6, 0], [6, 0], [0, 0]]
 		]
+
 		GameManager.updateStats()
 		boardRenderer.drawNewBoard()
-		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3], [6, 0]])
+		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3]])
+		
+	elif tutLevel == 4:
+		totalRolls = 10
+		rollsLeft = 10
+		diceLeft = 0
+		numberChangesLeft = 0
+		typeChangesLeft = 0
+
+		gridHeight = 3
+		gridWidth = 3
+		BoardManager.boardState = [
+			[[6, 0], [3, 0], [6, 3]], 
+			[[6, 0], [-1, 0], [6, 3]], 
+			[[6, 0], [4, 0], [6, 3]]
+		]
+		GameManager.updateStats()
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3]])
+		
+	elif tutLevel == 5:
+		
+		diceLeft = 0
+		numberChangesLeft = 3
+		typeChangesLeft = 3
+		nextRoundAllowed = true
+		totalRolls = 100
+		rollsLeft = 100
+
+		gridHeight = 3
+		gridWidth = 5
+		
+		BoardManager.boardState = [
+			[[3, 2], [-1, 0], [0, 0]], 
+			[[3, 2], [0, 0], [0, 0]], 
+			[[0, 0], [0, 0], [-1, 0]],
+			[[1, 0], [-1, 0], [0, 0]], 
+			[[1, 0], [0, 0], [0, 0]]
+		]
+		GameManager.updateStats()
+		boardRenderer.drawNewBoard()
+		diceRollScreen.throwDice()
+		
+	elif tutLevel == 6:
+		totalRolls = 10
+		rollsLeft = 10
+		gridHeight = 3
+		gridWidth = 7
+		
+		BoardManager.boardState = [
+			[[6, 3], [0, 0], [0, 0]], 
+			[[6, 3], [0, 0], [0, 0]], 
+			[[6, 3], [0, 0], [0, 0]], 
+			[[0, 0], [-1, 0], [0, 0]], 
+			[[5, 3], [0, 0], [0, 0]],
+			[[5, 3], [0, 0], [0, 0]], 
+			[[5, 3], [-1, 0], [0, 0]]
+		]
+		GameManager.updateStats()
+		boardRenderer.drawNewBoard()
+		diceRollScreen.setDice([[6, 3], [6, 3], [6, 3]])
 	
 func getMoneyPercent():
 	return 100.0 * money / getMoneyNeededForThisLevel()

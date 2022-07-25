@@ -8,7 +8,7 @@ func _ready():
 	add_child(tween)
 
 func _pressed():
-	if active and !GameManager.inTutorial and GameManager.currentAction == null:
+	if active and GameManager.nextRoundAllowed and GameManager.currentAction == null:
 		SoundManager.playSound("diceroll")
 		wiggleSize()
 		GameManager.nextRound()
