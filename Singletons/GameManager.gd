@@ -152,8 +152,8 @@ func nextRound():
 	
 func getMoneyNeededForThisLevel() -> int:
 	if inTutorial:
-		return [1, 5, 24, 50, 70, 90, 150][mayor.tutorialLevel]
-	return int(max(1, 5*level))
+		return [1, 5, 24, 50, 70, 90, 500][mayor.tutorialLevel]
+	return int(max(1, 5*level*(level+1)/2))
 
 func getBoni():
 	numberChanges = int(getFunPercent()/20) + 1
@@ -188,7 +188,7 @@ func levelUp():
 		resetTownStats()
 		resetDiceStats()
 
-		gridWidth = min(maxGridWidth, gridWidth + (level % 2) * 1)
+		gridWidth = min(maxGridWidth, gridWidth + (level % 2) * 2)
 		gridHeight = max(1, min(maxGridHeight, gridHeight + (1 - (level % 2)) * 1))
 		if level > 2:
 			mountainCount = clamp(mountainCount + 1, 0, min(maxMountainCount, gridHeight * gridWidth / 3))
@@ -305,32 +305,34 @@ func showTutorialLevel(tutLevel: int):
 		nextRoundAllowed = false
 		rollsLeft = 10
 		gridHeight = 3
-		gridWidth = 7
+		gridWidth = 9
 		
 		BoardManager.boardState = [
-			[[6, 3], [0, 0], [0, 0]], 
-			[[6, 3], [0, 0], [0, 0]], 
-			[[6, 3], [0, 0], [0, 0]], 
-			[[6, 3], [-1, 0], [0, 0]], 
-			[[5, 3], [0, 0], [0, 0]],
-			[[5, 3], [0, 0], [0, 0]], 
-			[[5, 3], [-1, 0], [0, 0]]
+			[[6, 3], [6, 3], [6, 3]],
+			[[6, 3], [6, 3], [6, 3]], 
+			[[6, 3], [-1, 0], [-1, 0]], 
+			[[-1, 0], [0, 0], [0, 0]], 
+			[[0, 0], [0, 0], [0, 0]], 
+			[[0, 0], [0, 0], [0, 0]],
+			[[0, 0], [0, 0], [0, 0]], 
+			[[0, 0], [0, 0], [0, 0]],
+			[[0, 0], [0, 0], [0, 0]]
 		]
 		GameManager.updateStats()
 		boardRenderer.drawNewBoard()
-		diceRollScreen.setDice([[6, 0], [5, 0], [5, 0], [6, 1], [6, 1], [5, 1], [6, 2], [5, 2], [5, 2]])
+		diceRollScreen.setDice([[6, 0], [6, 0], [6, 0], [6, 1], [6, 1], [5, 1], [6, 2], [5, 2], [5, 2]])
 	
 func getMoneyPercent():
 	return 100.0 * money / getMoneyNeededForThisLevel()
 	
 func getEducationPercent():
-	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.8
+	var educationNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 1
 	return 50.0 + education - educationNeededForIndustry
 	
 func getFunPercent():
-	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.5
+	var funNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 0.8
 	return 50.0 + fun - funNeededForIndustry
 	
 func getFoodPercent():
-	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 1.0
+	var foodNeededForIndustry = BoardManager.getIndustryPointsWithoutClusters() * 1.4
 	return 50.0 + food - foodNeededForIndustry

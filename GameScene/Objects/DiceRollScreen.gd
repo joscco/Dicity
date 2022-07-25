@@ -11,6 +11,7 @@ var bulldozerOverlayActive = false
 onready var gameOverlay : TextureRect = $DiceOverlay
 onready var bulldozerOverlay : TextureRect = $BulldozerOverlay
 onready var cancelButton : TextureButton = $CancelButton
+onready var slotsBackground: TextureRect = $SlotsBackground
 onready var diceAnchor : TextureRect = $SlotsBackground/DiceAnchor
 
 onready var nextRoundButton: TextureButton = $Buttons/NextRoundButton
@@ -35,11 +36,11 @@ func setDice(arr):
 	GameManager.diceLeft = arr.size()
 	for i in range(arr.size()):
 		var dieInstance: Node2D = die.instance()
-		add_child(dieInstance)
+		slotsBackground.add_child(dieInstance)
 		thrownDice.append(dieInstance)
 		dieInstance.setType(arr[i][1])
 		dieInstance.setEyes(arr[i][0])
-		dieInstance.position = diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100)
+		dieInstance.position = diceAnchor.get_rect().position + Vector2(50 + i* 110, 100)
 
 func throwDice():
 	for thrownDie in thrownDice:
@@ -48,9 +49,9 @@ func throwDice():
 	GameManager.diceLeft = GameManager.diceCount
 	for i in range(GameManager.diceCount):
 		var dieInstance: Node2D = die.instance()
-		add_child(dieInstance)
+		slotsBackground.add_child(dieInstance)
 		thrownDice.append(dieInstance)
-		dieInstance.position = diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100)
+		dieInstance.position = diceAnchor.get_rect().position + Vector2(50 + i* 110, 100)
 
 func cleanDiceCache():
 	for i in range(thrownDice.size() - 1, -1, -1):
@@ -61,7 +62,7 @@ func moveUpDice():
 	cleanDiceCache()
 	var diceLeftInArray = thrownDice.size()
 	for i in range(diceLeftInArray):
-		thrownDice[i].moveTo(diceAnchor.get_global_rect().position + Vector2(50 + i* 110, 100))
+		thrownDice[i].moveTo(diceAnchor.get_rect().position + Vector2(50 + i* 110, 100))
 
 func changeHighlightedSprite(newHighlight):
 	if currentActionSprite != null:

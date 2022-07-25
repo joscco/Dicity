@@ -1,6 +1,6 @@
 extends TextureButton
 
-onready var diceRollScreen = get_parent().get_parent()
+onready var diceRollScreen = get_parent()
 var tween
 
 func _ready():

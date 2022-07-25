@@ -8,7 +8,7 @@ const moveSpeed = 100
 
 var typeMap = ['Food','Fun','Education','Industry']
 
-onready var diceRollScreen = get_parent()
+onready var diceRollScreen = get_parent().get_parent()
 
 func _ready():
 	randomize()

@@ -20,7 +20,7 @@ func cancel():
 	diceRollScreen.deactivateBulldozerOverlay()
 	
 func highlight():
-	tween.interpolate_property(self, 'rect_scale', null, Vector2(0.9, 0.9), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, 'rect_scale', null, Vector2(1, 1), 0.3, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	tween.start()
 
 func delight():

@@ -8,6 +8,7 @@ func _ready():
 	
 func _pressed():
 	mayor.closeHint()
+	mayor.hintManuallyClosed = true
 	wiggleInSize()
 	SoundManager.playSound('plop')
 					

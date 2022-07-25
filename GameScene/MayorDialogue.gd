@@ -1,41 +1,42 @@
 extends Control
 
 var tutorialTexts = {
-	0: ["Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. Would you like play a little tutorial?",\
+	0: ["Hello there 'ol chap. My name is Mayor Diceington of the Dice Dynasty. Would you like to play a little tutorial?",
 		"Splendid. You can go back and forth during the tutorial with the arrows and close it with the x on the top right.",
-		"Well then. To be honest, I am not made for the life of a mayor.",\
+		"Well then. To be honest, I am not made for the life of a mayor.",
 		"My lifelong dream is to become a competitive Yahtzee player, but alas my family keeps assigning me project after project.",
 		"Would you mind taking over for me? At least for a little while, so I can hone my Yahtzee skills."],
-	1: ["Here is your first little land to train with. Grab the dice below and place them on the land.", \
-	 	"If it were up to me, you could place them any way you like but my family gives me these ridiculous productivity quotas to fulfill.", \
-		"Black buildings produce money. The larger the number, the larger the yield.",\
-		"If a city doesn't produce enough money after a certain amount of dice rolls my family will come check up on me and then we are busted.", \
-		"So be kind and place a nice black building to fulfill the money demands."],
-	2: ["Great, that seems to work! Then let's go to the next step: Building clusters.",\
-		"A cluster is formed by two or more buildings of same type and number placed next to each other.",\
-		"You can see a food cluster example with number 6 above already! Food building are always yellow. Like eggs yolks.",\
-		"Building a cluster of the same building will increase the yield of all buildings in that cluster immensely!",\
+	1: ["Here is your first little land to train with.",
+		"If a city doesn't produce enough money after a certain amount of dice rolls my family will come check up on me and then we are busted.",
+		"Black buildings produce money. Black like the oil my family built its fortune on. The larger the number, the larger the yield.",
+		"So be kind and place a nice black building on this grid to fulfill the money demands."],
+	2: ["Great, that seems to work! Then let's go to the next step: Building clusters.",
+		"A cluster is formed by two or more buildings of same type and number placed next to each other.",
+		"You can see a food cluster example with number 6 above already! Food building are always yellow. Like eggs yolks.",
+		"Building a cluster of the same building will increase the yield of all buildings in that cluster immensely!",
 		"Try it yourself by making your own cluster to get us some money."],
 	3: ["Awesome! Now that the mountains are gone too, we have even more space to build stuff, yeah!",
 		"But don't just go building huge clusters of factories. Large clusters will negatively impact neighboring tiles.",
 		"Nobody wants to live right next to a giant factory complex, right? But of course, I wouldn't want to live right next to a huge cluster of kindergartens either.",
 		"Everything in moderation, I guess. See yourself what happens if you build a factory cluster next to the food cluster."],
 	4: ["Well, looks like that factory cluster gave the food cluster quite a knock down.", 
-		"Oh look, the money demand has risen but we have no free places to build left. Yikes.",
-		"Looks like we have to bulldoze some of these food buildings to make room for new factories. Could you do that?",
-		"There's a bulldozer button right below me I think. Just press it and select the building you want to tear down."],
+		"Futhermore, the money demand has risen but we have no more free places left to build on - Yikes.",
+		"We have to bulldoze some of these food buildings to make room for new factories. Could you do that?",
+		"There's a bulldozer button right below me, I think. Just press it and select the building you want to tear down.",
+		"When you're finished, just press it again or use the red x button that will appear below me."],
 	5: ["Hello there new freedom! Well done!", 
 		"Apart from the bulldozer you can find other buttons below me to throw new dice, change their colors or to reroll their numbers.",
-		"How often you can do these actions is governed by your city's education and entertainment level respectively.",
-		"Entertainment buildings are red and education buildings are beige. Red like fire and beige like... well, a boring beige wall.",
+		"How often you can use these actions is governed by your city's education and entertainment level respectively.",
+		"On the top right, you can see some bars which show your current food, fun and education level. Keep these bars up by building corresponding buildings.",
+		"Food buildings are yellow (like I said), fun buildings are red and education buildings are beige. Red like a clown's nose and beige like... well, a boring beige wall.",
 		"Finally, your city's food influences how many dice you get each round.", 
-		"You normally get 10 dice roll rounds per level, but since you're still learning, we'll give you 100 here.",
+		"You normally get 10 dice rolls per level, but since you're still learning, we'll give you 100 here.",
 		"Now try to reach the money quota with all these fancy buttons by building some factories!"],
 	6: ["Superb, you did it! Then let me just give you some final strategic words.",
 		"If your city has no food, entertainment or education at the end of a turn, my family will know right away.",
 		"And believe me, if they know, you'll be out. So try to listen to warnings in case your food, fun and education bars run low.",
-		"This town is a good example: It has lot of factories and makes good money. But food and fun is greatly in danger.",
-		"Make this town a happier place by building some entertainment and food buildings!",
+		"This town is a good example: It has lot of factories and makes good money. But food, education and fun is greatly in danger.",
+		"Make this town a happier place by building some food, entertainment and education buildings!",
 		"Thank you for listening, I think you're ready for the real game. You can close the tutorial on the upper right x now."]
 }
 
@@ -68,10 +69,11 @@ var tutorialState = 0
 var lastHint = null
 
 var initialPositionHint
+var initialPositionDialogue
+var hintManuallyClosed = false
 
 var speechBubbleTween = Tween.new()
 var hintBubbleTween = Tween.new()
-var hintTimer = Timer.new()
 
 func _ready():
 	GameManager.showingDialogue = true
@@ -80,11 +82,13 @@ func _ready():
 	$HintSpeechbubble.hide()
 	$TutorialSpeechbubble/TutorialPrevButton.hide()
 	
+	initialPositionDialogue = $TutorialSpeechbubble.rect_position
+	
 	initialPositionHint = $HintSpeechbubble.rect_position
+	$HintSpeechbubble.rect_position += Vector2(0, 400)
 	
 	add_child(speechBubbleTween)
 	add_child(hintBubbleTween)
-	add_child(hintTimer)
 	
 func prev():
 	tutorialState -= 1
@@ -134,33 +138,24 @@ func next():
 
 func closeTutorial():
 	GameManager.inTutorial = false
-	speechBubbleTween.interpolate_property($TutorialSpeechbubble, "rect_scale", null, Vector2(1, 0), 0.5, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	speechBubbleTween.interpolate_property($TutorialSpeechbubble, "rect_position", null, initialPositionDialogue + Vector2(0, 400), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	speechBubbleTween.start()
 	yield(speechBubbleTween, "tween_completed")
 	$TutorialSpeechbubble.hide()
-	startHintTimer()
 	GameManager.startNewGame()
 	GameManager.showingDialogue = false
-	
-func startHintTimer():
-	hintTimer.stop()
-	hintTimer.start(20)
-	yield(hintTimer, "timeout")
-	newHint()
-	yield(hintBubbleTween, "tween_completed")
-	hintTimer.stop()
-	hintTimer.start(6)
-	yield(hintTimer, "timeout")
-	closeHint()
+	showHint(15)
 	
 func closeHint():
 	hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_position", null, initialPositionHint + Vector2(0, 400), 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	hintBubbleTween.start()
 	yield(hintBubbleTween, "tween_completed")
 	$HintSpeechbubble.hide()
-	startHintTimer()
+	showHint(15)
 	
-func newHint():
+func showHint(seconds: int):
+	yield(get_tree().create_timer(seconds), "timeout")
+	hintManuallyClosed = false
 	SoundManager.playSound('plop')
 	var hintIndex = randi() % hintTexts.size()
 	while hintIndex == lastHint:
@@ -171,4 +166,8 @@ func newHint():
 	$HintSpeechbubble/HintText.text = hintTexts[hintIndex]
 	hintBubbleTween.interpolate_property($HintSpeechbubble, "rect_position", null, initialPositionHint, 0.5, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 	hintBubbleTween.start()
-		
+	
+	yield(get_tree().create_timer(6), "timeout")
+	if $HintSpeechbubble.visible and !hintManuallyClosed:
+		closeHint()
+	
