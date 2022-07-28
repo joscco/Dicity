@@ -36,8 +36,14 @@ margin_top = -57.0
 margin_right = 1953.0
 margin_bottom = 1103.0
 mouse_filter = 2
-texture = ExtResource( 5 )
 script = ExtResource( 12 )
+
+[node name="Button" type="Button" parent="DiceOverlay"]
+margin_left = -13.0
+margin_top = -245.0
+margin_right = 1999.0
+margin_bottom = 921.0
+icon = ExtResource( 5 )
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_top = 1.0
@@ -164,3 +170,5 @@ rect_pivot_offset = Vector2( 62, 62 )
 mouse_filter = 1
 texture_normal = ExtResource( 11 )
 script = ExtResource( 13 )
+
+[connection signal="pressed" from="DiceOverlay/Button" to="DiceOverlay" method="_on_Button_pressed"]
